@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vphongph <vphongph@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 17:54:44 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/10 22:04:07 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/10 22:00:33 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/10 22:07:53 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_print_alphabet(void)
+void	ft_swap(int *a, int *b)
 {
-	write(1, "abcdefghijklmnopqrstuvwxyz", 26);
+	int c;
+
+	c = *a;
+	*a = *b;
+	*b = c;
 }
