@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/11 00:17:37 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/11 00:43:20 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,22 @@ void	ft_putnbr(int nb)
 
 //printf("blabla = \n%s", arg);
 
-
+int ft_iterative_factorial(int nb);
 
 int		main(void)
 // int	main(int ac, char **av)
 {
+
+	int a = 12;
+
+	printf("\n\nnb = %i", a);
+
+	printf("\nnb fact = %i", ft_iterative_factorial(a));
 
 
 	// if (ac != 2)
 		// return 0;
 	// ft_putnbr(atoi(av[1]));
 	// ft_putchar('\n');
-	return (0);
+	return 0;
 }
