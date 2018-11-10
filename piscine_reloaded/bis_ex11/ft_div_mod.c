@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_negative.c                                   :+:      :+:    :+:   */
+/*   ft_div_mod.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/10 05:43:16 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/10 23:28:31 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/10 23:11:55 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/10 23:40:10 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_is_negative(int n)
+void	ft_div_mod(int a, int b, int *div, int *mod)
 {
-	if (n >= 0)
-		write(1, "P", 1);
-	else
-		write(1, "N", 1);
+	*div = a / b;
+	*mod = a % b;
 }
