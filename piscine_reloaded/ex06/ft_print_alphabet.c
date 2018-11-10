@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_alphabet.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victorphongphaysane <victorphongphaysane@student.42.fr>+#+  +:+       +#+        */
+/*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/09 18:34:38 by victorphongphaysane###   ########.fr       */
+/*   Created: 2018/11/09 18:34:38 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/10 01:30:43 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-std.h>
+#include <unistd.h>
 
 void	ft_print_alphabet(void);
 
