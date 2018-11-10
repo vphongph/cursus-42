@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_print_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vphongph <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 17:54:44 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/10 06:34:42 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/10 05:38:33 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/10 05:38:37 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
 
-void	ft_print_alphabet(void)
+void	ft_print_numbers(void)
 {
-	write(1, "abcdefghijklmnopqrstuvwxyz", 26);
+	write(1, "0123456789", 10);
 }
