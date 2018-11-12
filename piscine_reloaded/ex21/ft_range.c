@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 23:09:40 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/13 00:37:41 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/13 00:49:36 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int		*ft_range(int min, int max)
 	if (!(range = (int*)malloc((max - min) * sizeof(*range))))
 		return (NULL);
 	while (min < max)
+	{
 		range[i] = min;
 		min++;
+		i++;
+	}
 	return (range);
 }

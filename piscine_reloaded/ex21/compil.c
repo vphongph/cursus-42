@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/13 00:37:39 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/13 00:49:06 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int		main(void)
 {
 
 	int min = 1;
-	int max = 2;
+	int max = 10;
 
-	printf("\nmin = %d, max = %d, ft_range = %d",min, max, *ft_range(min, max));
+	printf("\nmin = %d, max = %d",min, max);
 
 	int *tab = ft_range(min, max);
 	int i = 0;
 	while (i < (max - min))
-		printf("[%d]\n", tab[i++]);
+		printf("\n%d\n", tab[i++]);
 
 	// if (ac != 2)
 		// return 0;
