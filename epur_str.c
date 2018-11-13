@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 15:31:20 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/13 16:56:57 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/13 19:37:52 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,24 @@ int		main(int ac, char **av)
 		return (0);
 	}
 
-	printf("\nav =%s", av[1]);
-	printf("\nrework_str(av) =%s", rework_str(av[1]));
+	printf("\nav =%s\n", av[1]);
+
+	char *tab;
+
+	tab = rework_str(av[1]); 
+	while (*tab)
+	{	
+		while (*tab && *tab != ' ')
+		{
+			write(1, tab, 1);
+			tab++;
+		}
+		write(1, tab++, 1);
+		while (*tab == ' ')
+			tab++;
+	}
+
+//	printf("\nrework_str(av) =%s", rework_str(av[1]));
 
 	return (0);
 }
