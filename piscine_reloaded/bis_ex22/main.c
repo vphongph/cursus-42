@@ -7,7 +7,6 @@ int		main(void)
 
 	i = -2147483648;
 
-	printf(" ");
 	printf("%d\n", ABS(-'c'));
 	printf("%ld\n", ABS(-2147483648));
 	return (0);

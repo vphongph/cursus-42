@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 15:31:20 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/13 19:37:52 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/15 00:23:59 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int		main(int ac, char **av)
 			write(1, tab, 1);
 			tab++;
 		}
-		write(1, tab++, 1);
+		if (*tab)
+			write(1, " ",1);
 		while (*tab == ' ')
 			tab++;
 	}
