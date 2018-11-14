@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/13 00:49:06 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/14 12:15:30 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int		main(void)
 // int	main(int ac, char **av)
 {
 
-	int min = 1;
-	int max = 10;
+	int min = -2147483648;
+	int max = -2147483640;
 
 	printf("\nmin = %d, max = %d",min, max);
 
