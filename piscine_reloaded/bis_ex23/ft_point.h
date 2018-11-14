@@ -6,18 +6,17 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 13:02:20 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/14 14:09:11 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/14 23:14:45 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_POINT_H
 # define FT_POINT_H
 
-
-typedef struct 	lol 
+typedef struct	s_uesh
 {
-  int x;
-  int y;
+	int x;
+	int y;
 }				t_point;
 
 #endif

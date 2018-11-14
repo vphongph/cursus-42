@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/14 17:27:20 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/14 23:07:34 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		main(void)
 	// int y;
 	
 		// y = ft_count(str[2]);
-	ft_foreach(tab, 100	, ft_putnbr);
+	ft_foreach(tab, 10	, ft_putnbr);
 
 	// if (ac != 2)
 		// return 0;
