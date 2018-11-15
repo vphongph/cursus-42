@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 17:37:00 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/15 03:22:48 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/15 03:29:16 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		main(int ac, char **av)
 	if (ac > 2)
 	{
 		write(2, "Too many arguments.\n", 21);
-		return(0);
+		return (0);
 	}
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
