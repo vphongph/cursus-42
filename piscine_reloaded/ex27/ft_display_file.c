@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 17:37:00 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/15 03:29:16 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/15 03:39:41 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int		main(int ac, char **av)
 
 	if (ac == 1)
 	{
-		write(2, "File name missing.\n", 20);
+		write(1, "File name missing.\n", 20);
 		return (0);
 	}
 	if (ac > 2)
 	{
-		write(2, "Too many arguments.\n", 21);
+		write(1, "Too many arguments.\n", 21);
 		return (0);
 	}
 	fd = open(av[1], O_RDONLY);
@@ -38,6 +38,5 @@ int		main(int ac, char **av)
 	}
 	if (close(fd) != 0)
 		return (1);
-	write(1, "\n", 1);
 	return (0);
 }
