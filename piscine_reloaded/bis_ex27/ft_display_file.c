@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 17:37:00 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/15 03:12:07 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/14 22:58:11 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,8 @@ int		main(int ac, char **av)
 		return (1);
 	return (0);
 }
+/*
+** L27 Si fd est <0 c'est que j'ai pas reussi a l'ouvrir, donc pas de close
+** L29 Read de 128 octet + lire de return de read
+** L33 Bien check si tu reussi a close
+*/

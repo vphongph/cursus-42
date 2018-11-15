@@ -6,20 +6,21 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/11/15 03:10:16 by vphongph         ###   ########.fr        #
+#    Updated: 2018/11/14 23:00:09 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = ft_display_file.c
-RM = /bin/rm -f
 NAME = ft_display_file
-O = *.o
+SRC = ft_display_file.c
+OBJECTS = ft_display_file.o
 
-all: 
-	@gcc -Wall -Wextra -Werror $(SRC) -o $(NAME)
+all : $(NAME)
 
-clean: 
-	@$(RM) $(O)
+$(NAME) :
+	gcc -Wall -Wextra -Werror -o $(NAME) $(SRC)
 
-fclean: clean 
-	@$(RM) $(NAME)
+clean :
+	/bin/rm -f $(OBJECTS)
+
+fclean : clean
+	/bin/rm -f $(NAME)
