@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 17:54:44 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/15 02:02:33 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/15 02:20:58 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_alphabet(void)
 	char c;
 
 	c = 'a';
-	while(c <= 'z')
+	while (c <= 'z')
 	{
 		ft_putchar(c);
 		c++;
