@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compil_memset.c                                    :+:      :+:    :+:   */
+/*   compil_bzero.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/16 18:23:03 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/16 20:50:08 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,27 @@ void	ft_putnbr(int nb)
 int		main(void)
 // int	main(int ac, char **av)
 {
-	int i = 169;
-	size_t length = 5;
+
+	int	tab[3] = [5, 6, 7];
+
+	ft_bzero(tab, sizeof(int) * 3);
+
+	size_t length = 0;
 	//size_t lol = -1;
 	char str[11] = "qweasdzxc!";
 	char str2[11] = "qweasdzxc!";
 	
-	void *b = str;
-	void *b2 = str2;
+	void *s = str;
+	void *s2 = str2;
 
-	printf("\n      str = %s", str);
-	printf("\n     str2 = %s", str2);
+	printf("\n         str = %s", str);
+	printf("\n        str2 = %s", str2);
 
-	printf("\n   memset = %s", memset(b, i, length));
-	printf("\nft_memset = %s", ft_memset(b2, i, length));
+	bzero(s, length);
+	ft_bzero(s2, length);
+
+	printf("\n\n   bzero str = %s", str);
+	printf("\nft_bzero str = %s", str2);
 
 	printf("\n%c%c%c\n\n", 226, 152, 131);
 
@@ -68,7 +75,6 @@ int		main(void)
 	//printf("\nsize_t = %lu", lol);
 	// if (ac != 2)
 		// return 0;
-	// ft_putnbr(atoi(av[1]));
-	// ft_putchar('\n');
+	// ft_putnbr(atoi(av[1]));	// ft_putchar('\n');
 	return (0);
 }
