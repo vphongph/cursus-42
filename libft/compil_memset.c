@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compil.c                                           :+:      :+:    :+:   */
+/*   compil_memset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/16 15:00:14 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/16 17:32:15 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "libft.h"
 
 void	ft_putchar(char c)
 {
@@ -42,24 +43,27 @@ void	ft_putnbr(int nb)
 
 //printf("blabla = \n%s", arg);
 
-
-
 int		main(void)
 // int	main(int ac, char **av)
 {
-	int i = 122;
-	void *b;
-	size_t length = 9;
-	size_t lol = -1;
+	int i = -130;
+	size_t length = 5;
+	//size_t lol = -1;
 	char str[11] = "qweasdzxc!";
+	char str2[11] = "qweasdzxc!";
+	
+	void *b = str;
+	void *b2 = str2;
 
-	b = str;
+	printf("\n      str = %s", str);
+	printf("\n     str2 = %s", str2);
 
-	printf("\nstr = %s", str);
+	// printf("\nsize = %lu", sizeof(size_t));
 
-	printf("\nmemset = %s", memset(b, i, length));
+	printf("\n   memset = %s", memset(b, i, length));
+	printf("\nft_memset = %s", ft_memset(b2, i, length));
 
-	printf("\nsize_t = %zu", lol);
+	//printf("\nsize_t = %lu", lol);
 	// if (ac != 2)
 		// return 0;
 	// ft_putnbr(atoi(av[1]));

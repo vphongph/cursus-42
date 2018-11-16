@@ -6,7 +6,21 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 14:03:34 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/16 14:04:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/16 17:32:16 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+void	*ft_memset(void *b, int c, size_t len)
+{	
+	size_t i;
+
+	i = 0;
+	while (i < len)
+	{
+		((char *)b)[i] = (unsigned char)c;
+		i++;
+	}
+	return (b);
+}
