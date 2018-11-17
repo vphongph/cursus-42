@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/17 02:42:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/17 21:33:39 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int		main(void)
 {
 	// size_t length = 1;
 
-	char str[11] = "qweasdzxc!";
-	char str2[11] = "qweasdzxc!";
+	// char str[11] = "qweasdzxc!";
+	// char str2[11] = "qweasdzxc!";
 	
 	int	tab[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 	int	tab2[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
-	printf("\n         str = %s", str);
-	printf("\n        str2 = %s", str2);
+	// printf("\n         str = %s", str);
+	// printf("\n        str2 = %s", str2);
 
 	fflush(stdout);
 	write(1, "\n", 1);
@@ -85,12 +85,11 @@ int		main(void)
 
 	// bzero(tab, sizeof(int) * 3);
 	// ft_bzero(tab2, sizeof(int) * 3);
+	bzero(tab, 42);
+	ft_bzero(tab2, 42);
 
-	bzero(tab, 64);
-	ft_bzero(tab2, 64);
-
-	printf("\n\n   bzero str = %s", str);
-	printf("\nft_bzero str = %s", str2);
+	// printf("\n\n   bzero str = %s", str);
+	// printf("\nft_bzero str = %s", str2);
 
 
 	fflush(stdout);

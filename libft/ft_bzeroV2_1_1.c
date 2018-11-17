@@ -6,37 +6,47 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 23:15:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/17 02:44:17 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/17 21:33:37 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
+#include <stdio.h>
 
 void	ft_bzero(void *s, size_t n)
 {
 	size_t i;
 
 	i = 0;
-	while (i < n)
+	while (n > 0)
 	{
-		if (n >= sizeof(long long))
+		if (n >= 8)
 		{
+			write(1, "caca1", 5);
 			((long long *)s)[i] = 0;
 			i++;
+			n -= 8;
 		}
-		else if (n >= sizeof(int))
+		else if (n >= 4)
 		{
+			write(1, "caca2", 5);
 			((int *)s)[i] = 0;
 			i++;
+			n -= 4;
 		}
-		else if (n >= sizeof(short))
+		else if (n >= 2)
 		{
+			write(1, "caca3", 5);
 			((short *)s)[i] = 0;
 			i++;
+			n -= 2;
 		}
 		else
 		{
+			write(1, "caca4", 5);
 			((char *)s)[i] = '\0';
 			i++;
+			n -= 1;
 		}
 	}
 }
