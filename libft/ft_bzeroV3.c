@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/17 02:44:40 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/17 19:04:57 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/17 23:49:40 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,31 @@
 void	ft_bzero(void *s, size_t n)
 {
 	size_t i;
+	size_t j;
 
 	i = 0;
-	while (i < n)
+	j = 0;
+	while (j <  n / 8)
 	{
-		/8
+		((long long *)s)[i++] = 0;
+		j++;
 	}
+	n -= j * 8;
+	j = 0;
+	while (j <  n / 4)
+	{
+		((int *)s)[i++] = 0;
+		j++;
+	}
+	n -= j * 4;
+	j = 0;
+	while (j <  n / 2)
+	{
+		((short *)s)[i++] = 0;
+		j++;
+	}
+	n -= j * 2;
+	if (n == 1)
+		((char *)s)[i] = 0;
+
 }
