@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/17 01:45:42 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/17 02:42:54 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int		main(void)
 	// bzero(tab, sizeof(int) * 3);
 	// ft_bzero(tab2, sizeof(int) * 3);
 
-	bzero(tab, 40);
-	ft_bzero(tab2, 40);
+	bzero(tab, 64);
+	ft_bzero(tab2, 64);
 
 	printf("\n\n   bzero str = %s", str);
 	printf("\nft_bzero str = %s", str2);
@@ -114,6 +114,12 @@ int		main(void)
 		fflush(stdout);
 		write(1, " ", 1);
 	}
+
+	// printf("\n%lu", sizeof(char));
+	// printf("\n%lu", sizeof(short));
+	// printf("\n%lu", sizeof(int));
+	// printf("\n%lu", sizeof(long));
+	// printf("\n%lu", sizeof(long long));
 
 
 	// if (ac != 2)

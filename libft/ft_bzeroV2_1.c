@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 23:15:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/17 01:43:42 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/17 02:40:34 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -18,12 +18,12 @@ void	ft_bzero(void *s, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		// if (n >= sizeof(long))
-		// {
-		// 	((long *)s)[i] = 0;
-		// 	i += sizeof(long);
-		// }
-		if (n >= sizeof(int))
+		if (n >= sizeof(long long))
+		{
+			((long long *)s)[i] = 0;
+			i += sizeof(long);
+		}
+		else if (n >= sizeof(int))
 		{
 			((int *)s)[i] = 0;
 			i += sizeof(int);
@@ -36,7 +36,7 @@ void	ft_bzero(void *s, size_t n)
 		else
 		{
 			((char *)s)[i] = '\0';
-			i += sizeof(char);
+			i++;
 		}
 	}
 }
