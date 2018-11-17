@@ -1,23 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_bzeroV2_1_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/17 01:03:44 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/16 23:15:50 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/17 01:42:08 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# define BUF_SIZE 128
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
+void	ft_bzero(void *s, size_t n)
+{
+	size_t i;
 
-void	*ft_memset(void *b, int c, size_t len);
-void	ft_bzero(void *s, size_t n);
-
-#endif
+	i = 0;
+	while (i < n)
+	{
+		// if (n >= sizeof(long))
+		// {
+		// 	((long *)s)[i] = 0;
+		// 	i++;
+		// }
+		if (n >= sizeof(int))
+		{
+			((int *)s)[i] = 0;
+			i++;
+		}
+		else if (n >= sizeof(short))
+		{
+			((short *)s)[i] = 0;
+			i++;
+		}
+		else
+		{
+			((char *)s)[i] = '\0';
+			i++;
+		}
+	}
+}

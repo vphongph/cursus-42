@@ -1,15 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzeroV0.c                                       :+:      :+:    :+:   */
+/*   ft_bzeroV2_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/16 23:12:18 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/16 23:12:36 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/16 23:15:50 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/17 01:43:42 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
@@ -19,41 +18,25 @@ void	ft_bzero(void *s, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		if (n >= sizeof(long long))
+		// if (n >= sizeof(long))
+		// {
+		// 	((long *)s)[i] = 0;
+		// 	i += sizeof(long);
+		// }
+		if (n >= sizeof(int))
 		{
-			((long long *)s)[i] = 0;
-			i += sizeof(long long);
+			((int *)s)[i] = 0;
+			i += sizeof(int);
+		}
+		else if (n >= sizeof(short))
+		{
+			((short *)s)[i] = 0;
+			i += sizeof(short);
 		}
 		else
 		{
 			((char *)s)[i] = '\0';
-			i++;
+			i += sizeof(char);
 		}
 	}
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t i;
-
-	i = 0;
-	while (i < n)
-	{
-		((char *)s)[i] = 0;
-		i++;
-	}
-}
-
-
-int main(int argc, char const *argv[])
-{
-	char	*ptr  = 10;
-	int		*ptr2 = 10;
-	int		i = 5;
-
-	(valeur de ptr) + (taille de lecture * index)
-
-	ptr[i] => 10 + (sizeof(char) * 5) =>10 + (1 * 5) => 15
-	ptr2[i] => 10 + (sizeof(int) * 5) => 10 + (4 * 5) => 30
-	return 0;
 }

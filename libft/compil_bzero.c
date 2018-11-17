@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/16 20:50:08 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/17 01:45:42 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,32 +47,75 @@ void	ft_putnbr(int nb)
 int		main(void)
 // int	main(int ac, char **av)
 {
+	// size_t length = 1;
 
-	int	tab[3] = [5, 6, 7];
-
-	ft_bzero(tab, sizeof(int) * 3);
-
-	size_t length = 0;
-	//size_t lol = -1;
 	char str[11] = "qweasdzxc!";
 	char str2[11] = "qweasdzxc!";
 	
-	void *s = str;
-	void *s2 = str2;
+	int	tab[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	int	tab2[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
 	printf("\n         str = %s", str);
 	printf("\n        str2 = %s", str2);
 
-	bzero(s, length);
-	ft_bzero(s2, length);
+	fflush(stdout);
+	write(1, "\n", 1);
+
+	int i = 0;
+	while (i < 20)
+	{
+		printf("%d", tab[i++]);
+		fflush(stdout);
+		write(1, " ", 1);
+	}
+	
+	fflush(stdout);
+	write(1, "\n", 1);
+
+	i = 0;
+	while (i < 20)
+	{
+		printf("%d", tab2[i++]);
+		fflush(stdout);
+		write(1, " ", 1);
+	}
+
+	// bzero(str, length);
+	// ft_bzero(str2, length);
+
+	// bzero(tab, sizeof(int) * 3);
+	// ft_bzero(tab2, sizeof(int) * 3);
+
+	bzero(tab, 40);
+	ft_bzero(tab2, 40);
 
 	printf("\n\n   bzero str = %s", str);
 	printf("\nft_bzero str = %s", str2);
 
-	printf("\n%c%c%c\n\n", 226, 152, 131);
 
-	// printf("\nsize = %lu", sizeof(size_t));
-	//printf("\nsize_t = %lu", lol);
+	fflush(stdout);
+	write(1, "\n", 1);
+
+	i = 0;
+	while (i < 20)
+	{
+		printf("%d", tab[i++]);
+		fflush(stdout);
+		write(1, " ", 1);
+	}
+	
+	fflush(stdout);
+	write(1, "\n", 1);
+
+	i = 0;
+	while (i < 20)
+	{
+		printf("%d", tab2[i++]);
+		fflush(stdout);
+		write(1, " ", 1);
+	}
+
+
 	// if (ac != 2)
 		// return 0;
 	// ft_putnbr(atoi(av[1]));	// ft_putchar('\n');
