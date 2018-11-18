@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 01:49:59 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/18 02:21:02 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/18 19:28:51 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,13 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		i++;
 	}
 	return (dst);
+}
+#include <stdio.h>
+int main()
+{
+	char test[] = "abcdefghij";
+
+	printf("%s\n", memmove(test + 3, test, 6));
+	printf("%s\n", test);
+	return (0);
 }

@@ -6,12 +6,12 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 23:15:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/17 23:22:47 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/18 18:51:43 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+#include <unistd.h>
 
 void	ft_bzero(void *s, size_t n)
 {
