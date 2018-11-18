@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compil_memcpy.c                                    :+:      :+:    :+:   */
+/*   compil_memccpy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/18 02:28:16 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/18 02:39:01 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int		main(void)
 	int	tabdest2[20] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
 
 	int i;
-	size_t n = 40;
+	size_t n = 80;
+	int c = 1;
 
 	i = 0;
 	while (i < 20)
@@ -70,8 +71,8 @@ int		main(void)
 	fflush(stdout);
 	write(1, "\nDEST2\n", 7);
 
-	memcpy(tabdest, tabsrc, n);
-	ft_memcpy(tabdest2, tabsrc2, n);
+	memccpy(tabdest, tabsrc, c, n);
+	ft_memccpy(tabdest2, tabsrc2, c, n);
 
 
 	i = 0;
