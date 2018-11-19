@@ -1,26 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   compil_memmove.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/16 14:03:34 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/19 21:28:51 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/19 19:53:09 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/19 21:35:55 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>	
 
-void	*ft_memset(void *b, int c, size_t len)
+int		main(void)
+
 {
-	size_t i;
+	
+	int	tab[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	// int	tab2[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
-	i = 0;
-	while (i < len)
+	int i = 0;
+
+	while (i < 20)
 	{
-		((unsigned char *)b)[i] = (unsigned char)c;
+		printf("[%d]=%d ", i, tab[i]);
 		i++;
 	}
-	return (b);
+	printf("\n");
+
+	size_t len = 12;
+	// memmove(tab + 1, tab, len);
+	ft_memmove(tab + 1, tab, len);
+
+	i = 0;
+
+	while (i < 20)
+	{
+		printf("[%d]=%d ", i, tab[i]);
+		i++;
+	}
+	printf("\n");
+return (0);
 }
