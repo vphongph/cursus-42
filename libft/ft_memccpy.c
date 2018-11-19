@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/17 23:54:41 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/18 03:35:35 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/19 18:42:10 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 		{
 			((unsigned char *)dst)[i] = ((const unsigned char *)src)[i];
 			i++;
-			return (dst + i);
+			return (&dst[i]);
 		}
 		else
 			((unsigned char *)dst)[i] = ((const unsigned char *)src)[i];

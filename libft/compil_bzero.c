@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/17 23:27:36 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/19 18:36:14 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,32 @@ int		main(void)
 	int	tab[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 	int	tab2[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
+/*	int i = 0;
+	printf("Address tab %p\n", tab);
+	while (i < 20)
+	{
+		printf("Index:%d Address:%p\n", i, &((char*)tab)[i]);
+		i++;
+	}
+	tab[i] = *(tab + i);
+	printf("Address tab %p\n", tab);
+*/
+	int	size = 20;
+	bzero(tab2, size);
+	ft_bzero(tab, size);
+
+	int i = 0;
+
+	while (i < 20)
+	{
+		printf("tab[%d] = %d || tab2[%d] = %d\n", i, tab[i], i, tab2[i]);
+		i++;
+	}
+
 	// printf("\n         str = %s", str);
 	// printf("\n        str2 = %s", str2);
 
-	fflush(stdout);
+/*	fflush(stdout);
 	write(1, "\n", 1);
 
 	int i = 0;
@@ -85,12 +107,11 @@ int		main(void)
 
 	// bzero(tab, sizeof(int) * 3);
 	// ft_bzero(tab2, sizeof(int) * 3);
-	bzero(tab, 69);
-	ft_bzero(tab2, 69);
+	bzero(tab, 41);
+	ft_bzero(tab2, 41);
 
 	// printf("\n\n   bzero str = %s", str);
 	// printf("\nft_bzero str = %s", str2);
-
 
 	fflush(stdout);
 	write(1, "\n", 1);
@@ -124,5 +145,5 @@ int		main(void)
 	// if (ac != 2)
 		// return 0;
 	// ft_putnbr(atoi(av[1]));	// ft_putchar('\n');
-	return (0);
+*/	return (0);
 }
