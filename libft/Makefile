@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/11/20 14:06:30 by vphongph         ###   ########.fr        #
+#    Updated: 2018/11/20 15:14:43 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC		= 	ft_memset.c \
 			ft_memmove.c \
 			ft_memchr.c \
 			ft_memcmp.c \
-			ft_strlen.c
+			ft_strlen.c \
+			ft_strdup.c
 
 OBJECTS	= 	$(SRC:.c=.o)
 
