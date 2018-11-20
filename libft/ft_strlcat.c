@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 15:50:10 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/20 22:09:36 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/20 19:12:33 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/20 22:09:38 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dst, const char *src)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t i;
+	size_t j;
+	size_t tmp1;
+	size_t tmp2;
 
+	i = ft_strlen(src);
+	j = ft_strlen(dst);
+	tmp1 = i;
+	tmp2 = j;
+	if (size <= j)
+		return (i + size);
 	i = 0;
-	while (src[i])
+	size -= (j + 1);
+	while (size > 0 && src[i])
 	{
-		dst[i] = src[i];
-		i++;
+		dst[j++] = src[i++];
+		size--;
 	}
-	dst[i] = '\0';
-	return (dst);
+	dst[j] = '\0';
+	while (size > 0)
+	{
+		dst++;
+		size--;
+	}
+	return (tmp1 + tmp2);
 }
