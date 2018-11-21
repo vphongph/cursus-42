@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   compil_strncmp.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 12:40:10 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/21 19:05:05 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/21 21:33:10 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/21 22:28:09 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <unistd.h>
 
-char	*ft_strchr(const char *s, int c)
+int		main(void)
 {
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if ((char)c == '\0')
-		return ((char *)s);
-	return (NULL);
+	size_t n = 2;
+	char s[11] = {'a','b','c','\0','t','H','u','i','o','p','\0'};
+	char s2[11] = {'a','b','d','\0','t','H','u','i','o','p','\0'};
+
+	printf("   strncmp = %d\n",strncmp(s, s2, n));
+	printf("ft_strncmp = %d\n",ft_strncmp(s, s2, n));
+
+	return (0);
 }
