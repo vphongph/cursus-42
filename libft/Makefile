@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/11/22 15:58:27 by vphongph         ###   ########.fr        #
+#    Updated: 2018/11/22 21:58:54 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,14 @@ SRC		= 	ft_memset.c	\
 			ft_strcmp.c	\
 			ft_strncmp.c\
 			ft_atoi.c	\
+			ft_isalpha.c\
+			ft_isdigit.c\
+			ft_isalnum.c\
+			ft_isascii.c\
+			ft_isprint.c\
+			ft_toupper.c\
+
+
 
 OBJECTS	= 	$(SRC:.c=.o)
 
