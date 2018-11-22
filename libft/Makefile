@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/11/22 21:58:54 by vphongph         ###   ########.fr        #
+#    Updated: 2018/11/22 22:14:08 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,7 @@ SRC		= 	ft_memset.c	\
 			ft_isascii.c\
 			ft_isprint.c\
 			ft_toupper.c\
-
-
+			ft_tolower.c\
 
 OBJECTS	= 	$(SRC:.c=.o)
 

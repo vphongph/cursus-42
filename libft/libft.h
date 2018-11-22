@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/22 21:57:58 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/22 22:13:43 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_toupper(int c);
+int		ft_tolower(int c);
 
 #endif
