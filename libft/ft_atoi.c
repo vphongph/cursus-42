@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compil_atoi.c                                      :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 22:54:54 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/22 17:31:28 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/22 13:34:32 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/22 17:48:33 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-
-
-int		main(void)
+int		ft_atoi(const char *str)
 {
+	int					s;
+	unsigned long long	nb;
 
-	// char s[11] = {'1','2','3','4','5','6','7','8','9','z','\0'};
-	char s2[] = "-9223372036854775809";
-
-	printf("   atoi = %d\n", atoi(s2));
-	printf("ft_atoi = %d\n", ft_atoi(s2));
-
-	// printf("s2 = %s\n", s2);
-	// printf("s3 = %s\n", s3);
-
-	// printf("%d, %d, %d, %d, %d\n", '\f', '\t', '\n', '\r', '\v');
-
-
-	return (0);
+	s = 0;
+	nb = 0;
+	while (*str == 32 || (*str >= 9 && *str <= 13))
+		str++;
+	if ((s = *str == '-' ? -1 : 1) == -1 || *str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+		nb = nb * 10 - '0' + *str++;
+	if (nb > 9223372036854775807ULL && s == 1)
+		return (-1);
+	if (nb > 9223372036854775808ULL && s == -1)
+		return (0);
+	return (nb * s);
 }
 
 /*
