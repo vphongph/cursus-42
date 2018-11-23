@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/11/23 00:29:03 by vphongph         ###   ########.fr        #
+#    Updated: 2018/11/23 02:05:22 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS	= 	ft_memset.c	\
 			ft_strchr.c	\
 			ft_strrchr.c\
 			ft_strstr.c	\
+			ft_strnstr.c\
 			ft_strcmp.c	\
 			ft_strncmp.c\
 			ft_atoi.c	\

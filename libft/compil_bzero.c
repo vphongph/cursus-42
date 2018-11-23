@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/19 18:36:14 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/23 02:47:52 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		main(void)
 	tab[i] = *(tab + i);
 	printf("Address tab %p\n", tab);
 */
-	int	size = 20;
+	int	size = 80;
 	bzero(tab2, size);
 	ft_bzero(tab, size);
 

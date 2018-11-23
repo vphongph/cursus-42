@@ -6,11 +6,13 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/17 02:44:40 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/17 23:49:40 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/23 02:51:42 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
+#include <stdio.h>
+
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -19,27 +21,32 @@ void	ft_bzero(void *s, size_t n)
 
 	i = 0;
 	j = 0;
-	while (j <  n / 8)
+	while (n / sizeof(long long) > 0)
 	{
-		((long long *)s)[i++] = 0;
-		j++;
+		*(long long *)s = 0;
+		s += sizeof(long long);
+		n -= sizeof(long long);
+		printf("LONG LONG\n");
 	}
-	n -= j * 8;
-	j = 0;
-	while (j <  n / 4)
+	while (n / sizeof(int) > 0)
 	{
-		((int *)s)[i++] = 0;
-		j++;
+		*(int *)s = 0;
+		s += sizeof(int);
+		n -= sizeof(int);
+		printf("INT\n");
 	}
-	n -= j * 4;
-	j = 0;
-	while (j <  n / 2)
+	while (n / sizeof(short) > 0)
 	{
-		((short *)s)[i++] = 0;
-		j++;
+		*(short *)s = 0;
+		s += sizeof(short);
+		n -= sizeof(short);
+		printf("SHORT\n");
 	}
-	n -= j * 2;
-	if (n == 1)
-		((char *)s)[i] = 0;
-
+	while (n > 0)
+	{
+		*(char *)s = 0;
+		s++;
+		n--;
+		printf("CHAR\n");
+	}
 }

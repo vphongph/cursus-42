@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   compil_strnstr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 23:07:55 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/23 01:44:38 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/23 02:03:33 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/23 02:21:05 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <unistd.h>
 
-char	*ft_strstr(const char *haystack, const char *needle)
+int		main(void)
 {
-	size_t i;
+	size_t n = 2;
+	char *s = "awwwwwwwwwwwb";
+	char *s2 = "wwwwwwwwwww";
 
-	if (!(*needle))
-		return ((char*)haystack);
-	while (*haystack)
-	{
-		i = 0;
-		while (haystack[i] && (haystack[i] == needle[i]))
-			i++;
-		if (!(needle[i]))
-			return ((char *)haystack);
-		haystack++;
-	}
-	return (NULL);
+	printf("   strnstr = %s\n", strnstr(s, s2, n));
+	printf("ft_strnstr = %s\n",ft_strnstr(s, s2, n));
+
+	return (0);
 }
