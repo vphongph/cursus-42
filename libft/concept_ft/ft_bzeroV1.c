@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/17 02:44:40 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/23 16:16:50 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/16 23:13:21 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/19 17:31:18 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,12 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	while (n / sizeof(long long) > 0)
+	size_t i;
+
+	i = 0;
+	while (i < n)
 	{
-		*(long long *)s = 0;
-		s += sizeof(long long);
-		n -= sizeof(long long);
-	}
-	while (n / sizeof(int) > 0)
-	{
-		*(int *)s = 0;
-		s += sizeof(int);
-		n -= sizeof(int);
-	}
-	while (n / sizeof(short) > 0)
-	{
-		*(short *)s = 0;
-		s += sizeof(short);
-		n -= sizeof(short);
-	}
-	while (n > 0)
-	{
-		*(char *)s = 0;
-		s++;
-		n--;
+		((char *)s)[i] = '\0';
+		i++;
 	}
 }
