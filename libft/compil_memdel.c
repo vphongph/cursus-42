@@ -6,28 +6,38 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 19:18:02 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/23 19:54:24 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/24 16:50:26 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
-int		main(void)
+int		main(int ac, char **av)
 {	
-	char **tab;
-	// char *str = "Hello";
 
-	tab = NULL;
+	(void)ac;
+	// char *tab[1];
 
-	// tab[0] = (char *)malloc(6);
+	//char *str;
 
-	// printf("%s\n", tab[0]);
+	//tab = &str;
 
-	ft_memdel((void **)tab);
+	// tab[0] = (char *)malloc(6 * sizeof (*tab));
 
-	// printf("%s\n", tab[0]);
+	// tab[0] = "Hello";
+
+	// write(1, *tab, 5);
+
+	// *tab = NULL;
+
+	// write(1, *tab, 5);
+
+	ft_memdel((void **)av);
+
+	// printf("%s\n", *tab);
 
 	return (0);
 }

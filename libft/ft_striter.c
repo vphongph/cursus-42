@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclr.c                                        :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 18:59:54 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/24 16:19:00 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/24 16:20:21 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/24 17:17:40 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_strclr(char *s)
+void	ft_striter(char *s, void (*f)(char *))
 {
-	size_t n;
-
-	if (s)
+	while (s && *s && (*f))
 	{
-		n = ft_strlen(s);
-		ft_bzero(s, n);
+		f(s);
+		s++;
 	}
 }
