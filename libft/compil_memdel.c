@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 19:18:02 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/24 16:50:26 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/24 18:38:40 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,28 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int		main(int ac, char **av)
+int		main(void)
 {	
 
-	(void)ac;
-	// char *tab[1];
+	void **tab;
 
-	//char *str;
+	void *str = "Hello";
 
-	//tab = &str;
+	tab = ft_memalloc(2 * sizeof (void));
 
-	// tab[0] = (char *)malloc(6 * sizeof (*tab));
+	*(tab + 1) = 0;
 
-	// tab[0] = "Hello";
+	*tab = ft_memalloc(6 * sizeof (void));
 
-	// write(1, *tab, 5);
+	// *tab = "Hello";
 
-	// *tab = NULL;
+	*tab = str;
 
-	// write(1, *tab, 5);
+	ft_memdel(tab);
 
-	ft_memdel((void **)av);
+	printf("%s\n", *tab);
 
-	// printf("%s\n", *tab);
+	printf("%lu\n", sizeof (void));
 
 	return (0);
 }
