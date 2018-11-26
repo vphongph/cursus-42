@@ -6,16 +6,20 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 17:18:24 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/26 18:52:16 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/26 19:00:21 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strmap(char const *s, char (*f)(char))
 {
+	char *str;
+
+	str = (char *)s;
+
 	while (s && *s && f)
 	{
 		f(*s);
 		s++;
 	}
-	return ((char *)s);
+	return (str);
 }
