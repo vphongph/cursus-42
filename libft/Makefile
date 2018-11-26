@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/11/24 19:49:24 by vphongph         ###   ########.fr        #
+#    Updated: 2018/11/26 18:52:14 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS	= 	ft_memset.c		\
 			ft_strclr.c		\
 			ft_striter.c	\
 			ft_striteri.c	\
+			ft_strmap.c		
 
 OBJS	= 	$(SRCS:.c=.o)
 

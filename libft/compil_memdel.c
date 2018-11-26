@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 19:18:02 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/24 18:38:40 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/26 17:16:42 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,29 @@
 int		main(void)
 {	
 
-	void **tab;
+	char **tab;
 
-	void *str = "Hello";
+	char *str;
 
-	tab = ft_memalloc(2 * sizeof (void));
+	str = ft_memalloc(6 * sizeof (str));
 
-	*(tab + 1) = 0;
+	str[0] = 'H';
+	str[1] = 'e';
+	str[2] = 'l';
+	str[3] = 'l';
+	str[4] = 'o';
+	str[5] = '\0';
 
-	*tab = ft_memalloc(6 * sizeof (void));
+	tab = &str;
 
-	// *tab = "Hello";
-
-	*tab = str;
-
-	ft_memdel(tab);
+	// str = NULL;
+	// tab = NULL;
 
 	printf("%s\n", *tab);
 
-	printf("%lu\n", sizeof (void));
+	ft_memdel((void *)&str);
+
+	printf("%s\n", *tab);
 
 	return (0);
 }

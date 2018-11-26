@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 17:38:30 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/26 17:08:19 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/26 17:18:24 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/26 18:52:16 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-void	ft_memdel(void **ap)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	if (ap && *ap)
+	while (s && *s && f)
 	{
-		free(*ap);
-		*ap = NULL;
+		f(*s);
+		s++;
 	}
+	return ((char *)s);
 }
