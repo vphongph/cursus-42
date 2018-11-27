@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   compil_strnequ.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/16 14:03:34 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/26 23:11:53 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/27 00:39:48 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/27 00:57:18 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+int		main(void)
 {
-	size_t i;
+	char s1 = {127};
+	char s2 = {-127};
 
-	i = 0;
-	while (i < len)
-	{
-		((unsigned char *)b)[i] = (unsigned char)c;
-		i++;
-	}
-	return (b);
+	printf("%d\n", s1 - s2);
+
+	return 0;
 }
