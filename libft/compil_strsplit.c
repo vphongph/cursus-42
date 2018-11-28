@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:57:06 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/28 23:27:30 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/28 23:49:10 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(void)
 	size_t i;
 	i = 0;
 
-	char *str = "   Hello   ca gaze ?         ";
+	char *str = "  Hello  Victor    ca gaze ?    ";
 	printf("nombre = %lu\n", ft_countword(str, 32, &len));
 	printf("maxlen = %lu\n", len);
 

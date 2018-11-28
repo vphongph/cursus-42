@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 17:38:30 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/29 00:20:35 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/28 23:59:08 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/29 00:36:41 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	ft_memdel(void **ap)
+char * ft_itoa(int n)
 {
-	if (ap && *ap)
+	char *str;
+	unsigned int nb;
+	int len;
+
+	len = 0;
+	nb = (unsigned int)n;
+	if (n < 0)
+		nb = (unsigned int)-n;
+	while (n != 0)
 	{
-		free(*ap);
-		*ap = NULL;
+		n = n / 10;
+		len++;
 	}
+	if (!(str = ft_memalloc((len + 1) * sizeof(*str))))
+		return (NULL);
+	nb = 
 }
