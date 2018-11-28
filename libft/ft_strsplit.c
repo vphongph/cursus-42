@@ -6,16 +6,16 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 17:41:46 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/28 18:25:16 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/28 19:26:45 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int countword(char const *s, char c)
+size_t	ft_countword(char const *s, char c)
 {
 	size_t	i;
-	int		count;
+	size_t	count;
 
 	i = 0;
 	count = 0;
@@ -33,15 +33,35 @@ int countword(char const *s, char c)
 	return (count);
 }
 
-// char	**ft_strsplit(char const *s, char c)
-// {
-// 	size_t i;
+static char	*ft_strtrimc(char const *s, char c)
+{
+	size_t	i;
+	size_t	j;
 
-// 	i = 0;
-// 	if (!s)
-// 		return (NULL);
-// 	while (s[i])
-// 		while (s[i] == '*')
-// 			i++;
-// 		while()
-// }
+	i = 0;
+	if (!s)
+	{
+		return (NULL);
+	}
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		i++;
+	j = ft_strlen(s);
+	if (j != i)
+		j--;
+	while (s[j] == ' ' || s[j] == '\n' || s[j] == '\t')
+		j--;
+	return (ft_strsub(s, (unsigned int)i, (j - i + 1)));
+}
+
+char	**ft_strsplit(char const *s, char c)
+{
+	size_t i;
+	char **tab;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	tab = ft_memalloc((countword(s, c) + 1) * sizeof(**tab));
+	tab[countword(s, c)] = 0;
+
+}
