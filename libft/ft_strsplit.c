@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 17:41:46 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/28 18:17:14 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/28 18:25:16 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int countword(char const *s, char c)
 	{
 		while(s[i] == c)
 			i++;
-		if (s[i] && s[i] == !c)
+		if (s[i] && s[i] !=c)
 			count++;
-		while ()
-
+		while (s[i] && s[i] !=c)
+			i++;
 	}
 	return (count);
 }
