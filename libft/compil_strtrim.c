@@ -11,19 +11,24 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "libft.h"
 
 int		main(void)
 {
-	char *s = "Hello";
-	char *str;
+	char *s = NULL;
+	// char *str;
 
-	str = s;
+	// str = s;
 	// str = (char *)&s;
 
-	str++;
+	// str++;
+
+	ft_strtrim(s);
 
 	printf("%s\n", s);
-	printf("%s\n", str);
+	// printf("%s\n", str);
+
+
 
 	return (0);
 }

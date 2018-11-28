@@ -14,15 +14,14 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *str;
-	size_t i;
-	size_t j;
+	char	*str;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	if (!(str = ft_memalloc(sizeof(*str) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
+	if (!s1 || !s2 || !(str = ft_memalloc(sizeof(*str)
+		* (ft_strlen(s1) + ft_strlen(s2) + 1))))
 		return (NULL);
 	while (s1[j])
 	{
