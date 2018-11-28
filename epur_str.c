@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 15:31:20 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/15 00:23:59 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/28 01:34:06 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ char*	rework_str(char *str)
 		i++;
 	}
 	i--;
-	while (str[i] == ' ')
+	printf("%d\n", i);
+	while (str[i])
 	{
 		str[i] = '\0';
 		i--;
