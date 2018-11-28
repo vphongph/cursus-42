@@ -6,21 +6,37 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:57:06 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/28 21:03:08 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/28 23:27:30 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "libft.h"
+#include <unistd.h>
 
-size_t	ft_countword(char const *s, char c, size_t *len);
+size_t		ft_countword(char const *s, char c, size_t *maxlen);
 
-int		main(int argc, char const *argv[])
+int		main(void)
 {
 	size_t len;
 	len = 0;
-	char *str = "   Hello   ca gaze ?   ";
+	size_t i;
+	i = 0;
+
+	char *str = "   Hello   ca gaze ?         ";
 	printf("nombre = %lu\n", ft_countword(str, 32, &len));
 	printf("maxlen = %lu\n", len);
+
+	char **tab;
+
+	tab = ft_strsplit(str, 32);
+
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		i++;
+	}
+
 	// printf("%ld\n", sizeof(*str));
 	return (0);
 }
