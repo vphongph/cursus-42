@@ -6,18 +6,21 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:57:06 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/28 19:16:21 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/28 21:03:08 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-size_t countword(char const *s, char c);
+size_t	ft_countword(char const *s, char c, size_t *len);
 
-int main(int argc, char const *argv[])
+int		main(int argc, char const *argv[])
 {
-	char *str = "";
-	printf("nombre = %zu\n", countword(str, 32));
+	size_t len;
+	len = 0;
+	char *str = "   Hello   ca gaze ?   ";
+	printf("nombre = %lu\n", ft_countword(str, 32, &len));
+	printf("maxlen = %lu\n", len);
 	// printf("%ld\n", sizeof(*str));
-	return 0;
+	return (0);
 }

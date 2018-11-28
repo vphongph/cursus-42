@@ -6,62 +6,60 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 17:41:46 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/28 19:26:45 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/28 21:10:05 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_countword(char const *s, char c)
+size_t	ft_countword(char const *s, char c, size_t *maxlen)
 {
 	size_t	i;
 	size_t	count;
+	size_t	tmp;
 
 	i = 0;
 	count = 0;
+	tmp = 0;
 	if (!s)
 		return (0);
 	while (s[i])
 	{
 		while(s[i] == c)
 			i++;
-		if (s[i] && s[i] !=c)
-			count++;
+		(s[i] && s[i] != c ? count++: count);
+		tmp = 0;
 		while (s[i] && s[i] !=c)
+		{
 			i++;
+			tmp++;
+		}
+		(tmp > *maxlen ? *maxlen = tmp : *maxlen);
 	}
 	return (count);
-}
-
-static char	*ft_strtrimc(char const *s, char c)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	if (!s)
-	{
-		return (NULL);
-	}
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
-		i++;
-	j = ft_strlen(s);
-	if (j != i)
-		j--;
-	while (s[j] == ' ' || s[j] == '\n' || s[j] == '\t')
-		j--;
-	return (ft_strsub(s, (unsigned int)i, (j - i + 1)));
 }
 
 char	**ft_strsplit(char const *s, char c)
 {
 	size_t i;
+	size_t j;
+	size_t maxlen;
 	char **tab;
 
 	i = 0;
+	j = 0;
 	if (!s)
 		return (NULL);
-	tab = ft_memalloc((countword(s, c) + 1) * sizeof(**tab));
-	tab[countword(s, c)] = 0;
+	if(!(tab = ft_memalloc((ft_countword(s, c, &maxlen) + 1) * sizeof(**tab))))
+		return (NULL);
+	tab[ft_countword(s, c, &maxlen)] = 0;
+
+	
+
+
+	while (tab[i])
+	{
+		while (tab[i][j])
+	}
 
 }
