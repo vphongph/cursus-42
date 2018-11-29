@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/11/29 01:09:39 by vphongph         ###   ########.fr        #
+#    Updated: 2018/11/29 18:36:22 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,12 @@ SRCS	= 	ft_memset.c		\
 			ft_strtrim.c	\
 			ft_strsplit.c	\
 			ft_itoa.c		\
-			ft_countword.c	
+			ft_putchar.c	\
+			ft_putstr.c		\
+			ft_putendl.c	\
+			ft_putnbr.c		\
+			ft_countword.c	\
+			ft_revint.c		
 
 OBJS	= 	$(SRCS:.c=.o)
 

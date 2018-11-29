@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compil_itoa.c                                      :+:      :+:    :+:   */
+/*   compil_putnbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 01:03:36 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/29 18:29:47 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/29 15:54:45 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/29 18:37:00 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "libft.h"
-#include <math.h>
 #include <stdio.h>
 
-int main(void)
+int		main(void)
 {
-	printf("%s\n", ft_itoa(0));
+	int n;
+
+	n = 1;
+
+	printf("%d\n", n);
+	fflush(stdout);
+
+	printf("%lu\n", ft_revint(n));
+	fflush(stdout);
+
+	ft_putnbr(n);
+
 	return (0);
 }

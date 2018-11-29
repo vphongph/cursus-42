@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compil_itoa.c                                      :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 01:03:36 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/29 18:29:47 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/29 14:46:01 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/29 15:08:44 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <math.h>
-#include <stdio.h>
+#include <unistd.h>
 
-int main(void)
+void	ft_putendl(char const *s)
 {
-	printf("%s\n", ft_itoa(0));
-	return (0);
+	if (!s)
+		return ;
+	write(1, s, ft_strlen(s));
+	write(1, "\n", 1);
 }

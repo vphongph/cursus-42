@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compil_itoa.c                                      :+:      :+:    :+:   */
+/*   compil_putstr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 01:03:36 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/29 18:29:47 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/29 14:34:10 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/29 14:37:22 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <math.h>
-#include <stdio.h>
 
-int main(void)
+int		main(void)
 {
-	printf("%s\n", ft_itoa(0));
+	char *str = NULL;
+
+	ft_putstr(str);
 	return (0);
 }
