@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/29 18:37:14 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/29 20:07:30 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ void	ft_putstr(char const *s);
 void	ft_putendl(char const *s);
 void	ft_putnbr(int n);
 size_t	ft_countword(char const *s, char c, size_t *maxlen);
-size_t	ft_revint(int n);
+size_t	ft_revint(int n, int *nzero);
 
 #endif
