@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 23:59:08 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/29 00:36:41 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/29 01:07:52 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,35 @@ char * ft_itoa(int n)
 {
 	char *str;
 	unsigned int nb;
+	int tmp;
 	int len;
 
 	len = 0;
-	nb = (unsigned int)n;
-	if (n < 0)
-		nb = (unsigned int)-n;
-	while (n != 0)
+	tmp = n;
+	while (tmp != 0)
 	{
-		n = n / 10;
+		tmp = tmp / 10;
 		len++;
 	}
-	if (!(str = ft_memalloc((len + 1) * sizeof(*str))))
-		return (NULL);
-	nb = 
+	if (n < 0)
+	{
+		if (!(str = ft_memalloc((len + 2) * sizeof(*str))))
+			return (NULL);
+		nb = (unsigned int)-n;
+		str[0] = '-';
+		len++;
+	}
+	else
+	{
+		if (!(str = ft_memalloc((len + 1) * sizeof(*str))))
+			return (NULL);
+		nb = (unsigned int)n;
+	} 
+	while (len > 0)
+	{
+		str[len - 1] = (nb % 10) + '0';
+		nb = nb / 10;
+		len--;
+	}
+	return (str);
 }
