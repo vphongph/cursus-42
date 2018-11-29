@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 01:03:36 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/29 12:53:14 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/29 14:16:46 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 
 int main(void)
 {
-	printf("%s\n", ft_itoa(pow(2,30)));
+	printf("%s\n", ft_itoa(0));
 	return (0);
 }

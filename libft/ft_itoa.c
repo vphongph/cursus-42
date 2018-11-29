@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 23:59:08 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/29 12:47:59 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/11/29 14:20:26 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char		*ft_itoa(int n)
 		tmp = tmp / 10;
 		len++;
 	}
-	str = ft_malloc(n, &nb, &tmp, len);
+	if (!(str = ft_malloc(n, &nb, &tmp, len)))
+		return (NULL);
 	while (len > 0)
 	{
 		str[tmp] = (nb % 10) + '0';
