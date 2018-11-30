@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 15:01:01 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/29 22:03:09 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/29 22:44:23 by vphongph          #+#    #+#             */
+/*   Updated: 2018/11/29 22:47:10 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+#include <unistd.h>
 
-char	*ft_strdup(const char *s1)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*dest;
-	size_t	i;
+	size_t	revnb;
+	char	c;
 
-	i = -1;
-	if (!(dest = (char*)malloc((ft_strlen(s1) + 1) * sizeof(*dest))))
-		return (NULL);
-	while (s1[++i])
-		dest[i] = s1[i];
-	dest[i] = '\0';
-	return (dest);
+	revnb = 0;
+	c = 0;
+	if (n == 0)
+	{
+		write(fd, "0", 1);
+		return ;
+	}
+	if (n < 0)
+		write(fd, "-", 1);
+	revnb = ft_revint(n, &n);
+	while (revnb > 0)
+	{
+		c = (revnb % 10) + '0';
+		write(fd, &c, 1);
+		revnb = revnb / 10;
+	}
+	while (n > 0)
+	{
+		write(fd, "0", 1);
+		n--;
+	}
 }

@@ -6,17 +6,17 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/11/29 18:36:22 by vphongph         ###   ########.fr        #
+#    Updated: 2018/11/30 00:51:54 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= 	libft.a
+NAME	=	libft.a
 
 CFLAGS	=	-Wall -Wextra -Werror
 
 CC		=	gcc
 
-SRCS	= 	ft_memset.c		\
+SRCS	=	ft_memset.c		\
 			ft_bzero.c		\
 			ft_memcpy.c		\
 			ft_memccpy.c	\
@@ -64,21 +64,26 @@ SRCS	= 	ft_memset.c		\
 			ft_putstr.c		\
 			ft_putendl.c	\
 			ft_putnbr.c		\
+			ft_putchar_fd.c	\
+			ft_putstr_fd.c	\
+			ft_putendl_fd.c	\
+			ft_putnbr_fd.c	\
+			ft_lstnew.c		\
 			ft_countword.c	\
 			ft_revint.c		
 
-OBJS	= 	$(SRCS:.c=.o)
+OBJS	=	$(SRCS:.c=.o)
 
-all : $(NAME)
+all		:	$(NAME)
 
-$(NAME) : $(OBJS)
-	ar r $(NAME) $(OBJS)
-	ranlib $(NAME)
+$(NAME)	:	$(OBJS)
+		ar r $(NAME) $(OBJS)
+		ranlib $(NAME)
 
-clean :
-	/bin/rm -f $(OBJS)
+clean	:
+		/bin/rm -f $(OBJS)
 
-fclean : clean
-	/bin/rm -f $(NAME)
+fclean	:	clean
+		/bin/rm -f $(NAME)
 
-re : fclean all
+re		:	fclean all
