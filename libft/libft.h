@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/03 17:46:55 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/03 22:14:19 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 t_list			*ft_lstnew(void const *content, size_t content_size);
+void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
+void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 size_t			ft_countword(char const *s, char c, size_t *maxlen);
 size_t			ft_revint(int n, int *nzero);
 

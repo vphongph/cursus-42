@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/12/03 17:47:00 by vphongph         ###   ########.fr        #
+#    Updated: 2018/12/03 22:14:36 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,8 @@ SRCS	=	ft_memset.c		\
 			ft_putendl_fd.c	\
 			ft_putnbr_fd.c	\
 			ft_lstnew.c		\
+			ft_lstdelone.c	\
+			ft_lstdel.c		\
 			ft_countword.c	\
 			ft_revint.c		
 
