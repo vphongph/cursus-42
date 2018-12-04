@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstaddend_brouillon.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 21:24:40 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/04 23:50:15 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/04 19:25:41 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/04 21:39:33 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_lstaddend(t_list **alst, t_list *new)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
+	t_list *tmp;
 
-	i = 0;
-	j = 0;
-	if (!s1 || !s2 || !(str = ft_memalloc(sizeof(*str)
-		* (ft_strlen(s1) + ft_strlen(s2) + 1))))
-		return (NULL);
-	while (s1[j])
+	tmp = *alst;
+	if (*alst && new)
 	{
-		str[i] = s1[j];
-		i++;
-		j++;
+		while (tmp->next)
+		{
+			tmp = tmp->next;
+		}
+		tmp->next = new;
+		new->next = NULL;
 	}
-	j = 0;
-	while (s2[j])
+	else
 	{
-		str[i] = s2[j];
-		i++;
-		j++;
+		*alst = new;
+		new->next = NULL;
 	}
-	return (str);
 }

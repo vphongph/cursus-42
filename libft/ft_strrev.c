@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 21:24:40 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/04 23:50:15 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/05 00:13:32 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/05 00:47:21 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strrev(char *str)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
+	char	tmp;
+	int		i;
+	int		j;
 
+	tmp = 0;
 	i = 0;
 	j = 0;
-	if (!s1 || !s2 || !(str = ft_memalloc(sizeof(*str)
-		* (ft_strlen(s1) + ft_strlen(s2) + 1))))
+	if (!str)
 		return (NULL);
-	while (s1[j])
-	{
-		str[i] = s1[j];
-		i++;
+	while (str[j])
 		j++;
-	}
-	j = 0;
-	while (s2[j])
+	j > 0 ? j-- : j;
+	while (i != j && j > 0)
 	{
-		str[i] = s2[j];
+		tmp = str[i];
+		str[i] = str[j];
+		str[j] = tmp;
 		i++;
-		j++;
+		j--;
 	}
 	return (str);
 }

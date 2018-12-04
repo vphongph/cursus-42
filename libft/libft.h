@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/04 19:39:20 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/05 00:27:01 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 size_t			ft_countword(char const *s, char c, size_t *maxlen);
 size_t			ft_revint(int n, int *nzero);
-void			ft_lstaddend(t_list **alst, t_list *new);
+void			ft_lstaddend(t_list **alst, void *content, size_t content_size);
+void			ft_printbit(unsigned char c);
+char			*ft_strjoinfree(char const *s1, char const *s2, char c);
+char			*ft_strrev(char *str);
 
 #endif

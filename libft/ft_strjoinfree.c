@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strjoinfree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 21:24:40 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/04 23:50:15 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/04 23:27:36 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/04 23:53:33 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static void	ft_free(char *s1, char *s2, char c)
+{
+	c == 'l' ? free(s1) : s1;
+	c == 'r' ? free(s2) : s2;
+	c == 'b' ? free(s1) : s1;
+	c == 'b' ? free(s2) : s2;
+}
+
+char		*ft_strjoinfree(char const *s1, char const *s2, char c)
 {
 	char	*str;
 	size_t	i;
@@ -36,5 +45,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 		j++;
 	}
+	ft_free((char *)s1, (char *)s2, c);
 	return (str);
 }

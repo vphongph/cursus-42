@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   compil_strrev.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 21:24:40 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/04 23:50:15 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/05 00:24:25 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/05 00:50:51 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <unistd.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int		main(void)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
+	char s[] = "totor";
 
-	i = 0;
-	j = 0;
-	if (!s1 || !s2 || !(str = ft_memalloc(sizeof(*str)
-		* (ft_strlen(s1) + ft_strlen(s2) + 1))))
-		return (NULL);
-	while (s1[j])
-	{
-		str[i] = s1[j];
-		i++;
-		j++;
-	}
-	j = 0;
-	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	return (str);
+	printf("str = %s\n", s);
+	printf("rev = %s\n", ft_strrev(s));
+
+	return (0);
 }
