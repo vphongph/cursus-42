@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 02:49:31 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/04 03:41:22 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/04 19:25:15 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 t_list *ft_prout(t_list *lst)
 {
 
-	lst->content = NULL;
-	lst->content_size = 0;
+	lst->content = "Prout";
+	lst->content_size = 6;
+
+	// lst = ft_lstnew("Prout", 6);
 	return (lst);
 }
 
@@ -42,19 +44,17 @@ int		main(void)
 	while (tmp)
 	{
 		printf("%s\n", tmp->content);
+		printf("%p\n", tmp->next);
 		tmp = tmp->next;
 	}
 
-	tmp = ft_lstmap(killian1, ft_prout);
-
-	ft_prout(killian1);
-	
-	tmp = killian1;
+	tmp = ft_lstmap(killian1, &ft_prout);
 
 	printf("\n");
 	while (tmp)
 	{
 		printf("%s\n", tmp->content);
+		printf("%p\n", tmp->next);
 		tmp = tmp->next;
 	}
 	

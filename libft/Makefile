@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/12/04 01:24:54 by vphongph         ###   ########.fr        #
+#    Updated: 2018/12/04 19:37:45 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,8 @@ SRCS	=	ft_memset.c		\
 			ft_lstiter.c	\
 			ft_lstmap.c		\
 			ft_countword.c	\
-			ft_revint.c		
+			ft_revint.c		\
+			ft_lstaddend.c	
 
 OBJS	=	$(SRCS:.c=.o)
 

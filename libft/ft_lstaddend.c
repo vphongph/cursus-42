@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/03 23:59:06 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/04 18:48:47 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/04 19:25:41 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/04 19:27:32 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void	ft_lstaddend(t_list **alst, t_list *new)
 {
 	t_list *tmp;
 
-	tmp = lst;
-	while (tmp && f)
+	tmp = *alst;
+	if (*alst && new)
 	{
-		f(tmp);
-		tmp = tmp->next;
+		while (tmp->next)
+		{
+			tmp = tmp->next;
+		}
+		tmp->next = new;
+		new->next = NULL;
+	}
+	else
+	{
+		*alst = new;
+		new->next = NULL;
 	}
 }
