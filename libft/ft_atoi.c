@@ -19,7 +19,7 @@ int		ft_atoi(const char *str)
 	nb = 0;
 	while (*str == 32 || (*str >= 9 && *str <= 13))
 		str++;
-	if ((s = *str == '-' ? -1 : 1) == -1 || *str == '+')
+	if ((s = (*str == '-') ? -1 : 1) == -1 || *str == '+')
 		str++;
 	while (*str >= '0' && *str <= '9')
 		nb = nb * 10 - '0' + *str++;

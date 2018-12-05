@@ -42,7 +42,7 @@ char		*ft_itoa(int n)
 	int				len;
 
 	nb = 0;
-	len = n == 0 ? 1 : 0;
+	len = (n == 0) ? 1 : 0;
 	tmp = n;
 	while (tmp != 0)
 	{
