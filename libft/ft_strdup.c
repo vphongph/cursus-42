@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 15:01:01 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/29 22:03:09 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/05 22:47:01 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strdup(const char *s1)
 	size_t	i;
 
 	i = -1;
-	if (!(dest = (char*)malloc((ft_strlen(s1) + 1) * sizeof(*dest))))
+	if (!(dest = (char *)malloc((ft_strlen(s1) + 1) * sizeof(*dest))))
 		return (NULL);
 	while (s1[++i])
 		dest[i] = s1[i];

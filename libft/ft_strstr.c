@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 23:07:55 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/23 01:44:38 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/05 23:01:00 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 	size_t i;
 
 	if (!(*needle))
-		return ((char*)haystack);
+		return ((char *)haystack);
 	while (*haystack)
 	{
 		i = 0;

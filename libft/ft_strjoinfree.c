@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 23:27:36 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/04 23:53:33 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/05 22:48:55 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_free(char *s1, char *s2, char c)
 	c == 'b' ? free(s2) : s2;
 }
 
-char		*ft_strjoinfree(char const *s1, char const *s2, char c)
+char		*ft_strjoinfree(char *s1, char *s2, char c)
 {
 	char	*str;
 	size_t	i;
@@ -29,7 +29,7 @@ char		*ft_strjoinfree(char const *s1, char const *s2, char c)
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2 || !(str = ft_memalloc(sizeof(*str)
+	if (!s1 || !s2 || !(str = (char *)ft_memalloc(sizeof(*str)
 		* (ft_strlen(s1) + ft_strlen(s2) + 1))))
 		return (NULL);
 	while (s1[j])

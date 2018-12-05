@@ -6,11 +6,12 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 23:31:58 by vphongph          #+#    #+#             */
-/*   Updated: 2018/11/28 23:57:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/05 22:50:41 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 static char	**ft_fill(char const *s, char c, char **tab)
 {
@@ -50,12 +51,15 @@ char		**ft_strsplit(char const *s, char c)
 	if (!s)
 		return (NULL);
 	nb = ft_countword(s, c, &maxlen);
-	if (!(tab = ft_memalloc((nb + 1) * sizeof(*tab))))
+	if (!(tab = (char **)ft_memalloc((nb + 1) * sizeof(*tab))))
 		return (NULL);
 	while (i < nb)
 	{
-		if (!(tab[i] = ft_memalloc((maxlen + 1) * sizeof(**tab))))
+		if (!(tab[i] = (char *)ft_memalloc((maxlen + 1) * sizeof(**tab))))
+		{
+			free(tab);
 			return (NULL);
+		}
 		i++;
 	}
 	return (ft_fill(s, c, tab));

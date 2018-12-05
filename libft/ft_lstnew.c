@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 00:14:23 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/04 18:08:35 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/05 22:44:39 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list *newlst;
 
-	if (!(newlst = ft_memalloc(sizeof(t_list))))
+	if (!(newlst = (t_list *)ft_memalloc(sizeof(t_list))))
 		return (NULL);
 	if (!content)
 	{
@@ -26,7 +26,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		if (!(newlst->content = ft_memalloc(content_size)))
+		if (!(newlst->content = (void *)ft_memalloc(content_size)))
 		{
 			free(newlst);
 			return (NULL);
