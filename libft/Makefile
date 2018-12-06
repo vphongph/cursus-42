@@ -79,7 +79,9 @@ SRCS	=	ft_memset.c		\
 			ft_lstaddend.c	\
 			ft_printbit.c	\
 			ft_strjoinfree.c\
-			ft_memdup.c
+			ft_strrev.c		\
+			ft_printtab.c	\
+			ft_memdup.c		
 
 OBJS	=	$(SRCS:.c=.o)
 
