@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 23:31:58 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/05 22:50:41 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/06 03:20:26 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ char		**ft_strsplit(char const *s, char c)
 	{
 		if (!(tab[i] = (char *)ft_memalloc((maxlen + 1) * sizeof(**tab))))
 		{
+			maxlen = 0;
+			while (maxlen < i)
+				free(tab[maxlen++]);
 			free(tab);
 			return (NULL);
 		}

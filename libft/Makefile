@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/12/05 22:54:40 by vphongph         ###   ########.fr        #
+#    Updated: 2018/12/06 03:22:48 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ SRCS	=	ft_memset.c		\
 			ft_countword.c	\
 			ft_revint.c		\
 			ft_lstaddend.c	\
+			ft_lstfree.c	\
 			ft_printbit.c	\
 			ft_strjoinfree.c\
 			ft_strrev.c		\

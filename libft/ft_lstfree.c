@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstfree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 00:20:16 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/06 03:19:53 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/06 03:07:56 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/06 03:21:30 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+void	ft_lstfree(t_list **alst)
 {
-	t_list *newlst;
-	t_list *add;
+	t_list *tmp;
 
-	newlst = NULL;
-	if (!lst || !f)
-		return (NULL);
-	while (lst)
+	if (alst)
 	{
-		add = f(lst);
-		if (ft_lstaddend(&newlst, add->content, add->content_size) == 1)
-			ft_lstfree(&newlst);
-		lst = lst->next;
+		while (*alst)
+		{
+			tmp = *alst;
+			*alst = (*alst)->next;
+			free(tmp->content);
+			free(tmp);
+		}
+		*alst = NULL;
 	}
-	return (newlst);
 }
