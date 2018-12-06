@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 23:27:36 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/05 22:48:55 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/06 13:24:42 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,15 @@ char		*ft_strjoinfree(char *s1, char *s2, char c)
 	j = 0;
 	if (!s1 || !s2 || !(str = (char *)ft_memalloc(sizeof(*str)
 		* (ft_strlen(s1) + ft_strlen(s2) + 1))))
-		return (NULL);
-	while (s1[j])
 	{
-		str[i] = s1[j];
-		i++;
-		j++;
+		ft_free(s1, s2, c);
+		return (NULL);
 	}
+	while (s1[j])
+		str[i++] = s1[j++];
 	j = 0;
 	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	ft_free((char *)s1, (char *)s2, c);
+		str[i++] = s2[j++];
+	ft_free(s1, s2, c);
 	return (str);
 }

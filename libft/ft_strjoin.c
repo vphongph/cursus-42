@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 21:24:40 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/05 22:47:51 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/06 13:24:43 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		* (ft_strlen(s1) + ft_strlen(s2) + 1))))
 		return (NULL);
 	while (s1[j])
-	{
-		str[i] = s1[j];
-		i++;
-		j++;
-	}
+		str[i++] = s1[j++];
 	j = 0;
 	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
+		str[i++] = s2[j++];
 	return (str);
 }

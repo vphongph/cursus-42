@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:32:26 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/05 18:16:58 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/06 13:11:40 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ int		ft_printtab(char **tab)
 	int i;
 
 	i = 0;
-	while (tab && tab[i])
+	if (tab)
 	{
-		ft_putstr(tab[i]);
-		i++;
+		while (tab[i])
+		{
+			ft_putstr(tab[i]);
+			i++;
+		}
 	}
 	return (i);
 }
