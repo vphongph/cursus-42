@@ -18,7 +18,6 @@ void	ft_putnbr_fd(int n, int fd)
 	size_t	revnb;
 	char	c;
 
-	revnb = 0;
 	c = 0;
 	if (n == 0)
 	{

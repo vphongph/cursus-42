@@ -18,7 +18,6 @@ char	*ft_strrev(char *str)
 	int		i;
 	int		j;
 
-	tmp = 0;
 	i = 0;
 	j = 0;
 	if (!str)

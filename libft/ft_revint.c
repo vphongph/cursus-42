@@ -24,7 +24,6 @@ size_t	ft_revint(int n, int *nzero)
 	unsigned int	nb;
 
 	rev = 0;
-	nb = 0;
 	if (n < 0)
 		nb = (unsigned int)-n;
 	else

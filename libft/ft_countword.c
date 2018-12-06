@@ -20,7 +20,6 @@ size_t		ft_countword(char const *s, char c, size_t *maxlen)
 
 	i = 0;
 	count = 0;
-	tmp = 0;
 	if (!s)
 		return (0);
 	while (s[i])

@@ -47,7 +47,6 @@ char		**ft_strsplit(char const *s, char c)
 
 	i = 0;
 	maxlen = 0;
-	nb = 0;
 	if (!s)
 		return (NULL);
 	nb = ft_countword(s, c, &maxlen);

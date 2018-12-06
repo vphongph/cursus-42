@@ -15,7 +15,6 @@ int		ft_atoi(const char *str)
 	int					s;
 	unsigned long long	nb;
 
-	s = 0;
 	nb = 0;
 	while (*str == 32 || (*str >= 9 && *str <= 13))
 		str++;
