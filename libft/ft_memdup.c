@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 18:21:37 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/07 20:25:57 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/07 21:39:53 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	*ft_memdup(void *s, size_t n)
 	if (!s || !(mem = (void *)ft_memalloc(n)))
 		return (NULL);
 	tmp = mem;
-	// while (n / sizeof(t_megaspeed) > 0)
-	// {
-	// 	*(t_megaspeed *)mem = *(t_megaspeed *)s;
-	// 	s += sizeof(t_megaspeed);
-	// 	mem += sizeof(t_megaspeed);
-	// 	n -= sizeof(t_megaspeed);
-	// }
+	while (n / sizeof(t_gigaspeed) > 0)
+	{
+		*(t_gigaspeed *)mem = *(t_gigaspeed *)s;
+		s += sizeof(t_gigaspeed);
+		mem += sizeof(t_gigaspeed);
+		n -= sizeof(t_gigaspeed);
+	}
 	while (n / sizeof(long long) > 0)
 	{
 		*(long long *)mem = *(long long *)s;

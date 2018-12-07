@@ -91,4 +91,10 @@ typedef struct s_megaspeed
 	t_centikilospeed 	ram10;
 }				t_megaspeed;
 
+typedef struct	s_gigaspeed
+{
+ char ram[1073741824];
+} 				t_gigaspeed;
+
+
 #endif

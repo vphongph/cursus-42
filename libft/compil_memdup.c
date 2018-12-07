@@ -19,9 +19,9 @@ int		main(void)
 
 {
 
-	int	tab[1024000] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	int	tab[1073741824] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 	int *tab2 = NULL;
-	size_t len = 1024000;
+	size_t len = 1073741824;
 	size_t yop = 0;
 
 	// unsigned int i = 0;
@@ -50,9 +50,8 @@ int		main(void)
 	// }
 	// printf("\n");
 
-	printf("%lu\n", sizeof(t_kilospeed));
-	printf("%lu\n", sizeof(t_centikilospeed));
-	printf("%lu\n", sizeof(t_megaspeed));
+	// printf("%lu\n", sizeof(titi));
+	// printf("%lu\n", sizeof(toto));
 	// printf("%lu\n", sizeof(t_megaspeed));
 
 	return (0);
