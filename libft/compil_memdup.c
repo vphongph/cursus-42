@@ -19,7 +19,7 @@ int		main(void)
 
 {
 
-	int	tab[1073741824] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	int	tab[268435456] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 	int *tab2 = NULL;
 	size_t len = 1073741824;
 	size_t yop = 0;
@@ -33,10 +33,10 @@ int		main(void)
 	// }
 	// printf("\n");
 
-	while (yop < 10000)
+	while (yop < 1)
 	{
 		tab2 = ft_memdup(tab, len);
-		if (yop < 9999)
+		if (yop < 3)
 			free (tab2);
 		yop++;
 	}
@@ -50,9 +50,7 @@ int		main(void)
 	// }
 	// printf("\n");
 
-	// printf("%lu\n", sizeof(titi));
-	// printf("%lu\n", sizeof(toto));
-	// printf("%lu\n", sizeof(t_megaspeed));
+	printf("%lu\n", sizeof(t_megaspeed));
 
 	return (0);
 }

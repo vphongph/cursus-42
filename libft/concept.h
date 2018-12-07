@@ -41,43 +41,43 @@ typedef	struct	s_kilospeed
 	void		*ram32;	void	*ram64;	void	*ram96;	void	*ram128;
 }				t_kilospeed;
 
-typedef struct s_centikilospeed
+typedef struct	s_centikilospeed
 {
-	t_kilospeed 	ram1;	t_kilospeed 	ram33;	t_kilospeed 	ram65;	t_kilospeed 	ram97;
-	t_kilospeed 	ram2;	t_kilospeed 	ram34;	t_kilospeed 	ram66;	t_kilospeed 	ram98;
-	t_kilospeed 	ram3;	t_kilospeed 	ram35;	t_kilospeed 	ram67;	t_kilospeed 	ram99;
-	t_kilospeed 	ram4;	t_kilospeed 	ram36;	t_kilospeed 	ram68;	t_kilospeed 	ram100;
-	t_kilospeed 	ram5;	t_kilospeed 	ram37;	t_kilospeed 	ram69;
-	t_kilospeed 	ram6;	t_kilospeed 	ram38;	t_kilospeed 	ram70;
-	t_kilospeed 	ram7;	t_kilospeed 	ram39;	t_kilospeed 	ram71;
-	t_kilospeed 	ram8;	t_kilospeed 	ram40;	t_kilospeed 	ram72;
-	t_kilospeed 	ram9;	t_kilospeed 	ram41;	t_kilospeed 	ram73;
-	t_kilospeed 	ram10;	t_kilospeed 	ram42;	t_kilospeed 	ram74;
-	t_kilospeed 	ram11;	t_kilospeed 	ram43;	t_kilospeed 	ram75;
-	t_kilospeed 	ram12;	t_kilospeed 	ram44;	t_kilospeed 	ram76;
-	t_kilospeed 	ram13;	t_kilospeed 	ram45;	t_kilospeed 	ram77;
-	t_kilospeed 	ram14;	t_kilospeed 	ram46;	t_kilospeed 	ram78;
-	t_kilospeed 	ram15;	t_kilospeed 	ram47;	t_kilospeed 	ram79;
-	t_kilospeed 	ram16;	t_kilospeed 	ram48;	t_kilospeed 	ram80;
-	t_kilospeed 	ram17;	t_kilospeed 	ram49;	t_kilospeed 	ram81;
-	t_kilospeed 	ram18;	t_kilospeed 	ram50;	t_kilospeed 	ram82;
-	t_kilospeed 	ram19;	t_kilospeed 	ram51;	t_kilospeed 	ram83;
-	t_kilospeed 	ram20;	t_kilospeed 	ram52;	t_kilospeed 	ram84;
-	t_kilospeed 	ram21;	t_kilospeed 	ram53;	t_kilospeed 	ram85;
-	t_kilospeed 	ram22;	t_kilospeed 	ram54;	t_kilospeed 	ram86;
-	t_kilospeed 	ram23;	t_kilospeed 	ram55;	t_kilospeed 	ram87;
-	t_kilospeed 	ram24;	t_kilospeed 	ram56;	t_kilospeed 	ram88;
-	t_kilospeed 	ram25;	t_kilospeed 	ram57;	t_kilospeed 	ram89;
-	t_kilospeed 	ram26;	t_kilospeed 	ram58;	t_kilospeed 	ram90;
-	t_kilospeed 	ram27;	t_kilospeed 	ram59;	t_kilospeed 	ram91;
-	t_kilospeed 	ram28;	t_kilospeed 	ram60;	t_kilospeed 	ram92;
-	t_kilospeed 	ram29;	t_kilospeed 	ram61;	t_kilospeed 	ram93;
-	t_kilospeed 	ram30;	t_kilospeed 	ram62;	t_kilospeed 	ram94;
-	t_kilospeed 	ram31;	t_kilospeed 	ram63;	t_kilospeed 	ram95;
-	t_kilospeed 	ram32;	t_kilospeed 	ram64;	t_kilospeed 	ram96;
+	t_kilospeed ram1;	t_kilospeed ram33;	t_kilospeed	ram65;	t_kilospeed ram97;
+	t_kilospeed ram2;	t_kilospeed	ram34;	t_kilospeed	ram66;	t_kilospeed ram98;
+	t_kilospeed ram3;	t_kilospeed	ram35;	t_kilospeed ram67;	t_kilospeed ram99;
+	t_kilospeed ram4;	t_kilospeed ram36;	t_kilospeed ram68;	t_kilospeed ram100;
+	t_kilospeed ram5;	t_kilospeed ram37;	t_kilospeed ram69;
+	t_kilospeed ram6;	t_kilospeed ram38;	t_kilospeed ram70;
+	t_kilospeed ram7;	t_kilospeed ram39;	t_kilospeed ram71;
+	t_kilospeed ram8;	t_kilospeed ram40;	t_kilospeed ram72;
+	t_kilospeed ram9;	t_kilospeed ram41;	t_kilospeed ram73;
+	t_kilospeed ram10;	t_kilospeed ram42;	t_kilospeed ram74;
+	t_kilospeed ram11;	t_kilospeed ram43;	t_kilospeed ram75;
+	t_kilospeed ram12;	t_kilospeed ram44;	t_kilospeed ram76;
+	t_kilospeed ram13;	t_kilospeed ram45;	t_kilospeed ram77;
+	t_kilospeed ram14;	t_kilospeed ram46;	t_kilospeed ram78;
+	t_kilospeed ram15;	t_kilospeed ram47;	t_kilospeed ram79;
+	t_kilospeed ram16;	t_kilospeed ram48;	t_kilospeed ram80;
+	t_kilospeed ram17;	t_kilospeed ram49;	t_kilospeed ram81;
+	t_kilospeed ram18;	t_kilospeed ram50;	t_kilospeed ram82;
+	t_kilospeed ram19;	t_kilospeed ram51;	t_kilospeed ram83;
+	t_kilospeed ram20;	t_kilospeed ram52;	t_kilospeed ram84;
+	t_kilospeed ram21;	t_kilospeed ram53;	t_kilospeed ram85;
+	t_kilospeed ram22;	t_kilospeed ram54;	t_kilospeed ram86;
+	t_kilospeed ram23;	t_kilospeed ram55;	t_kilospeed ram87;
+	t_kilospeed ram24;	t_kilospeed ram56;	t_kilospeed ram88;
+	t_kilospeed ram25;	t_kilospeed ram57;	t_kilospeed ram89;
+	t_kilospeed ram26;	t_kilospeed ram58;	t_kilospeed ram90;
+	t_kilospeed ram27;	t_kilospeed ram59;	t_kilospeed ram91;
+	t_kilospeed ram28;	t_kilospeed ram60;	t_kilospeed ram92;
+	t_kilospeed ram29;	t_kilospeed ram61;	t_kilospeed ram93;
+	t_kilospeed ram30;	t_kilospeed ram62;	t_kilospeed ram94;
+	t_kilospeed ram31;	t_kilospeed ram63;	t_kilospeed ram95;
+	t_kilospeed ram32;	t_kilospeed ram64;	t_kilospeed ram96;
 }				t_centikilospeed;
 
-typedef struct s_megaspeed
+typedef struct	s_megaspeed
 {
 	t_centikilospeed 	ram1;
 	t_centikilospeed 	ram2;
@@ -91,10 +91,21 @@ typedef struct s_megaspeed
 	t_centikilospeed 	ram10;
 }				t_megaspeed;
 
-typedef struct	s_gigaspeed
+typedef struct	s_megaspeedchar
 {
- char ram[1073741824];
-} 				t_gigaspeed;
+	char	ram[1048576];
+}				t_megaspeedchar;
+
+typedef struct	s_megaspeedint
+{
+	int		ram[262144];
+}				t_megaspeedint;
+
+
+// typedef struct	s_gigaspeed
+// {
+//  char ram[1073741824];
+// } 				t_gigaspeed;
 
 
 #endif
