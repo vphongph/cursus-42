@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   compil_memdup.c                                    :+:      :+:    :+:   */
@@ -6,48 +6,54 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 19:53:09 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/05 22:08:15 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/07 20:05:23 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "concept.h"
 
 int		main(void)
 
 {
 
-	int	tab[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	int	tab[1024000] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 	int *tab2 = NULL;
-	size_t len = 44;
+	size_t len = 1024000;
 	size_t yop = 0;
 
-	unsigned int i = 0;
+	// unsigned int i = 0;
 
-	while (i < len / sizeof(int))
-	{
-		printf("[%d]=%d ", i, tab[i]);
-		i++;
-	}
-	printf("\n");
+	// while (i < len / sizeof(int))
+	// {
+	// 	printf("[%d]=%d ", i, tab[i]);
+	// 	i++;
+	// }
+	// printf("\n");
 
-	while (yop < 10000000)
+	while (yop < 10000)
 	{
 		tab2 = ft_memdup(tab, len);
-		if (yop < 9999999)
+		if (yop < 9999)
 			free (tab2);
 		yop++;
 	}
 
-	i = 0;
+	// i = 0;
 
-	while (i < len / sizeof(int))
-	{
-		printf("[%d]=%d ", i, tab2[i]);
-		i++;
-	}
-	printf("\n");
-return (0);
+	// while (i < len / sizeof(int))
+	// {
+	// 	printf("[%d]=%d ", i, tab2[i]);
+	// 	i++;
+	// }
+	// printf("\n");
+
+	printf("%lu\n", sizeof(t_kilospeed));
+	printf("%lu\n", sizeof(t_centikilospeed));
+	printf("%lu\n", sizeof(t_megaspeed));
+	// printf("%lu\n", sizeof(t_megaspeed));
+
+	return (0);
 }
