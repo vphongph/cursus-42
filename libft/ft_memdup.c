@@ -6,13 +6,11 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 18:21:37 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/08 00:21:12 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/08 01:28:23 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "concept.h"
-
 
 /*
 ** ATTENTION size_t n
@@ -27,13 +25,6 @@ void	*ft_memdup(void *s, size_t n)
 	if (!s || !(mem = (void *)ft_memalloc(n)))
 		return (NULL);
 	tmp = mem;
-	while (n / sizeof(t_megaspeedchar) > 0)
-	{
-		*(t_megaspeedchar *)mem = *(t_megaspeedchar *)s;
-		s += sizeof(t_megaspeedchar);
-		mem += sizeof(t_megaspeedchar);
-		n -= sizeof(t_megaspeedchar);
-	}
 	while (n / sizeof(long long) > 0)
 	{
 		*(long long *)mem = *(long long *)s;

@@ -15,13 +15,23 @@
 #include <stdlib.h>
 #include "concept.h"
 
+/*
+	while (n / sizeof(t_bufspeed) > 0)
+	{
+		*(t_bufspeed *)mem = *(t_bufspeed *)s;
+		s += sizeof(t_bufspeed);
+		mem += sizeof(t_bufspeed);
+		n -= sizeof(t_bufspeed);
+	}
+*/
+
 int		main(void)
 
 {
 
-	int	tab[268435456] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	int	tab[262144] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 	int *tab2 = NULL;
-	size_t len = 1073741824;
+	size_t len = 1048576;
 	size_t yop = 0;
 
 	// unsigned int i = 0;
@@ -33,10 +43,10 @@ int		main(void)
 	// }
 	// printf("\n");
 
-	while (yop < 1)
+	while (yop < 10000)
 	{
 		tab2 = ft_memdup(tab, len);
-		if (yop < 3)
+		if (yop < 9999)
 			free (tab2);
 		yop++;
 	}
@@ -50,7 +60,8 @@ int		main(void)
 	// }
 	// printf("\n");
 
-	printf("%lu\n", sizeof(t_megaspeed));
+	printf("tab  : %lu\n", sizeof(tab));
+	printf("mega : %lu\n", sizeof(t_megaspeed));
 
 	return (0);
 }
