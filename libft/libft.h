@@ -6,13 +6,22 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/07 19:26:37 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/10 03:55:32 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUF_SIZE 128
+# define BUF_SIZE	128
+# define RED		"\e[38;2;255;0;0m"
+# define BLUE		"\e[38;2;57;154;250m"
+# define GREEN		"\e[38;2;175;215;44m"
+# define YELLOW		"\e[38;2;243;197;80m"
+# define ALLIANCE	"\e[38;2;60;195;129m"
+# define FEDERATION	"\e[38;2;68;130;216m"
+# define ASSEMBLY	"\e[38;2;159;101;206m"
+# define ORDER		"\e[38;2;252;106;86m"
+# define RESET		"\e[0m"
 # include <string.h>
 
 typedef	struct	s_list
