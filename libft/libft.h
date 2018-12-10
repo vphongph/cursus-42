@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/10 03:55:32 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/10 19:46:59 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # define BLUE		"\e[38;2;57;154;250m"
 # define GREEN		"\e[38;2;175;215;44m"
 # define YELLOW		"\e[38;2;243;197;80m"
-# define ALLIANCE	"\e[38;2;60;195;129m"
-# define FEDERATION	"\e[38;2;68;130;216m"
-# define ASSEMBLY	"\e[38;2;159;101;206m"
-# define ORDER		"\e[38;2;252;106;86m"
+# define ALLIANCE	"\e[38;2;51;196;127m"
+# define FEDERATION	"\e[38;2;65;128;219m"
+# define ASSEMBLY	"\e[38;2;160;97;209m"
+# define ORDER		"\e[38;2;255;105;80m"
 # define RESET		"\e[0m"
 # include <string.h>
 

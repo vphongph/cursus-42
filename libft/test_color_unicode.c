@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_color.c                                       :+:      :+:    :+:   */
+/*   test_color_unicode.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 00:00:08 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/10 04:18:24 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/10 19:32:26 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 #include "libft.h"
 
 int		main(void)
@@ -33,7 +32,10 @@ int		main(void)
 	ft_putstr("\u00FF\n");
 	ft_putstr("💎\n");
 	ft_putstr("💖\n");
+	ft_putstr("\U0001F497\n");
 	ft_putstr("\uF8FF\n");
+	ft_putstr("\U0001F514\a\n");
+
 
 	return (0);
 }
