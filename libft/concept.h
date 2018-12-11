@@ -106,10 +106,10 @@ typedef struct	s_bufspeed
 	char		ram[BUF_SIZE];
 }				t_bufspeed;
 
-typedef struct	s_gigaspeed
-{
- char ram[1073741824];
-} 				t_gigaspeed;
+// typedef struct	s_gigaspeed
+// {
+ // char ram[1073741824];
+// } 				t_gigaspeed;
 
 
 #endif
