@@ -1,6 +1,6 @@
 #ifndef CONCEPT_H
 # define CONCEPT_H
-# define BUF_SIZE 128
+# define BUFF_SIZE 128
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>

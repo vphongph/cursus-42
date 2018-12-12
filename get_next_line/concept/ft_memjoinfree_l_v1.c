@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_memjoinfree_l_v1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 20:00:26 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/12 00:10:57 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/11 22:56:29 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/12 01:00:43 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+void		*ft_memjoinfree_l(void *s1, void *s2, size_t l, size_t n)
 {
-	char	*str;
-	size_t	i;
+	void *mem;
+	void *tmp;
+	void *tmp2;
 
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (!(str = (char *)ft_memalloc(sizeof(*str) * (len + 1))))
-		return (NULL);
-	while (len > 0)
+	tmp2 = s1;
+	if (!s1 || !s2 || !(mem = ft_memalloc(l + n)))
 	{
-		str[i] = s[start];
-		start++;
-		i++;
-		len--;
+		free(s1);
+		return (NULL);
 	}
-	return (str);
+	tmp = mem;
+	while (l > 0)
+	{
+		*(char *)mem = *(char *)s1;
+		mem++;
+		s1++;
+		l--;
+	}
+	while (n > 0)
+	{
+		*(char *)mem = *(char *)s2;
+		mem++;
+		s2++;
+		n--;
+	}
+	free(tmp2);
+	return (tmp);
 }

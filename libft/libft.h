@@ -6,13 +6,13 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/11 00:01:13 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/11 17:22:33 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUF_SIZE	128
+# define BUFF_SIZE	128
 # define RED		"\e[38;2;255;0;0m"
 # define BLUE		"\e[38;2;57;154;250m"
 # define GREEN		"\e[38;2;175;215;44m"
