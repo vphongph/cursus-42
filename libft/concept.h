@@ -101,9 +101,20 @@ typedef struct	s_kilospeed
 	char		ram[1024];
 }				t_kilospeed;
 
+// typedef struct	s_512speed
+// {
+// 	char		ram[512];
+// }				t_512speed;
+
+
+// typedef struct	s_64speed
+// {
+// 	char		ram[64];
+// }				t_64speed;
+
 typedef struct	s_bufspeed
 {
-	char		ram[BUF_SIZE];
+	char		ram[BUFF_SIZE];
 }				t_bufspeed;
 
 // typedef struct	s_gigaspeed
