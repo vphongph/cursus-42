@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2018/12/06 03:22:48 by vphongph         ###   ########.fr        #
+#    Updated: 2018/12/13 22:46:15 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ SRCS	=	ft_memset.c		\
 			ft_strjoinfree.c\
 			ft_strrev.c		\
 			ft_printtab.c	\
-			ft_memdup.c		
+			ft_memdup.c
 
 OBJS	=	$(SRCS:.c=.o)
 

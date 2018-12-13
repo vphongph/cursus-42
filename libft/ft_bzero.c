@@ -5,33 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/17 02:44:40 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/12 16:19:00 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/13 18:34:10 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/13 22:52:59 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+static void	ft_zero512(void **s, size_t *n)
 {
-	while (n / sizeof(long long) > 0)
+	int			i;
+	t_64speed	speed64;
+	t_512speed	speed512;
+
+	i = 0;
+	while (i < 8)
+		((long long *)speed64.ram)[i++] = 0;
+	i = 0;
+	while (i < 8)
+		((t_64speed *)speed512.ram)[i++] = speed64;
+	while (*n / sizeof(t_512speed))
+	{
+		**(t_512speed **)s = speed512;
+		*s += sizeof(t_512speed);
+		*n -= sizeof(t_512speed);
+	}
+	while (*n / sizeof(t_64speed))
+	{
+		**(t_64speed **)s = speed64;
+		*s += sizeof(t_64speed);
+		*n -= sizeof(t_64speed);
+	}
+}
+
+void		ft_bzero(void *s, size_t n)
+{
+	ft_zero512(&s, &n);
+	while (n / sizeof(long long))
 	{
 		*(long long *)s = 0;
 		s += sizeof(long long);
 		n -= sizeof(long long);
 	}
-	while (n / sizeof(int) > 0)
+	while (n)
 	{
-		*(int *)s = 0;
-		s += sizeof(int);
-		n -= sizeof(int);
-	}
-	while (n / sizeof(short) > 0)
-	{
-		*(short *)s = 0;
-		s += sizeof(short);
-		n -= sizeof(short);
-	}
-	if (n)
 		*(char *)s = 0;
+		s++;
+		n--;
+	}
 }

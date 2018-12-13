@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 19:55:25 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/13 01:33:49 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/13 20:51:34 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ int		main(void)
 
 	int	 tab[262144] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 	int	tab2[262144] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	tab[128] = 42;
+	tab2[128] = 42;
+
+	int i = 0;
+	int	size = 1048576;
 
 /*	int i = 0;
 	printf("Address tab %p\n", tab);
@@ -33,13 +38,15 @@ int		main(void)
 	tab[i] = *(tab + i);
 	printf("Address tab %p\n", tab);
 */
-	int	size = 1048576;
-	bzero(tab, size);
-	// ft_bzero(tab2, size);
+	while (i++ < 100000)
+	{
+		// bzero(tab, size);
+		ft_bzero(tab2, size);
+	}
 
-	int i = 0;
+	// i = 0;
 
-	while (i < 20)
+	while (i < 129)
 	{
 		printf("tab[%d] = %d || tab2[%d] = %d\n", i, tab[i], i, tab2[i]);
 		i++;
@@ -52,6 +59,8 @@ int		main(void)
 	// printf("\n%lu", sizeof(int));
 	// printf("\n%lu", sizeof(long));
 	// printf("\n%lu", sizeof(long long));
+	// printf("\n%lu", sizeof(t_64speed));
+	// printf("\n%lu", sizeof(t_512speed));
 
 	return (0);
 }

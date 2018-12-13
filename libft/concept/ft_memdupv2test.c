@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdupv1.c                                      :+:      :+:    :+:   */
+/*   ft_memdupv2test.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/05 18:21:37 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/13 00:25:53 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/12 17:54:10 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/13 22:34:28 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,25 @@
 ** bien renseigner type de var et + 1 si nécessaire
 */
 
-void	*ft_memdup(void *s, size_t n)
+static void	ft_cpy512(void **mem, void **s, size_t *n)
+{
+	while (*n / sizeof(t_512speed) > 0)
+	{
+		**(t_512speed **)mem = **(t_512speed **)s;
+		*s += sizeof(t_512speed);
+		*mem += sizeof(t_512speed);
+		*n -= sizeof(t_512speed);
+	}
+	while (*n / sizeof(t_64speed) > 0)
+	{
+		**(t_64speed **)mem = **(t_64speed **)s;
+		*s += sizeof(t_64speed);
+		*mem += sizeof(t_64speed);
+		*n -= sizeof(t_64speed);
+	}
+}
+
+void		*ft_memdup(void *s, size_t n)
 {
 	void	*mem;
 	void	*tmp;
@@ -25,6 +43,7 @@ void	*ft_memdup(void *s, size_t n)
 	if (!s || !(mem = (void *)ft_memalloc(n)))
 		return (NULL);
 	tmp = mem;
+	ft_cpy512(&mem, &s, &n);
 	while (n / sizeof(long long) > 0)
 	{
 		*(long long *)mem = *(long long *)s;
@@ -32,15 +51,12 @@ void	*ft_memdup(void *s, size_t n)
 		mem += sizeof(long long);
 		n -= sizeof(long long);
 	}
-	while (n / sizeof(int) > 0
-		&& (*(int *)mem = *(int *)s) == *(int *)mem
-		&& (mem += sizeof(int)) && (s += sizeof(int)))
-		n -= sizeof(int);
-	while (n / sizeof(short) > 0
-		&& (*(short *)mem = *(short *)s) == *(short *)mem
-		&& (mem += sizeof(short)) && (s += sizeof(short)))
-		n -= sizeof(short);
-	if (n)
+	while (n)
+	{
 		*(char *)mem = *(char *)s;
+		s++;
+		mem++;
+		n--;
+	}
 	return (tmp);
 }
