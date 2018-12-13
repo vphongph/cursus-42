@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/12 23:29:18 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/14 00:57:18 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		get_next_line(const int fd, char **line)
 			// tmp_ptr = tmp
 			// tmp = sub...
 			free(tmp);
+			free(buf);
 			break;
 		}
 	}
