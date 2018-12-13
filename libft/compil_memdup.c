@@ -29,19 +29,20 @@ int		main(void)
 
 {
 
-	int	tab[1048576] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	int	tab[1048576] = {1,2,3,4,5,6,7,8,9,10,11,12,13,42,15,16,17,18,19,20};
+	// int	tab[2] = {1,2};
 	int *tab2 = NULL;
 	size_t len = 1048576;
 	size_t yop = 0;
 
-	// unsigned int i = 0;
+	unsigned int i = 0;
 
-	// while (i < len / sizeof(int))
-	// {
-	// 	printf("[%d]=%d ", i, tab[i]);
-	// 	i++;
-	// }
-	// printf("\n");
+	while (i < 2)
+	{
+		printf("[%d]=%d ", i, tab[i]);
+		i++;
+	}
+	printf("\n");
 
 	while (yop < 10000)
 	{
@@ -51,18 +52,17 @@ int		main(void)
 		yop++;
 	}
 
-	// i = 0;
+	i = 0;
 
-	// while (i < len / sizeof(int))
-	// {
-	// 	printf("[%d]=%d ", i, tab2[i]);
-	// 	i++;
-	// }
-	// printf("\n");
+	while (i < 2)
+	{
+		printf("[%d]=%d ", i, tab2[i]);
+		i++;
+	}
+	printf("\n");
 
 	printf("tab  : %lu\n", sizeof(tab));
 	printf("mega : %lu\n", sizeof(t_megaspeed));
-	printf("nb if: %lu\n", (yop == 10000 ? yop : yop));
 
 	return (0);
 }
