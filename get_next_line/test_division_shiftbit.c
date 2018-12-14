@@ -6,13 +6,15 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 01:19:10 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/14 01:29:59 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/14 02:01:18 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+
 int main(void)
 {
-	int i = 1000000000;
+	size_t i = 1000000000000;
 	// int j;
 
 	// while (i > 0)
@@ -22,10 +24,10 @@ int main(void)
 	// 	i--;
 	// }
 
-	while (i / 2)
-		i -= 2;
-	while (i >> 1)
-		i -= 2;
+	while (i / 512)
+		i -= 512;
+	while (i >> 9)
+		i -= 512;
 
 
 	return (0);
