@@ -6,12 +6,11 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/14 00:57:18 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/14 20:58:31 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "get_next_line.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -34,13 +33,13 @@ int		get_next_line(const int fd, char **line)
 		ft_putstr_fd(RED"\aGNL malloc failed\n"RESET, 2);
 		return (1);
 	}
-	if (!(buf = ft_memalloc(1)))
+	if (!(buf = ft_memalloc(BUFF_SIZE)))
 	{
 		ft_putstr_fd(RED"\aGNL malloc failed\n"RESET, 2);
 		free(tmp);
 		return (1);
 	}
-	while ((ret = read(fd, buf, 1)) > 0)
+	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		tmp = ft_memjoinfree_l(tmp, buf, j, ret);
 		j += ret;
@@ -52,14 +51,19 @@ int		get_next_line(const int fd, char **line)
 		if (tmp[i] =='\n')
 		{
 			*line = ft_strsub((char *)tmp, 0, i);
-			write(1, *line, i);
-			// tmp_ptr = tmp
-			// tmp = sub...
+			// write(1, *line, i);
 			free(tmp);
 			free(buf);
-			break;
+			return (0);
 		}
 	}
+	printf("%lu\n", j);;
+	*line = ft_memdup(tmp, j + 1);
+	// write(1, *line, j);
+	free(tmp);
+	free(buf);
+
+
 	// tmp =s
 
 	return (0);
@@ -82,7 +86,7 @@ int		main(int ac, char** av)
 		}
 
 		get_next_line(fd, &str);
-		// ft_putstr(str);
+		ft_putstr(str);
 
 		if (close(fd) == -1)
 		{

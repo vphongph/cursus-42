@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 18:21:37 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/14 20:50:39 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/14 21:30:25 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /*
 ** ATTENTION size_t n
-** bien renseigner type de var et + 1 si nécessaire
+** Bien renseigner type de var et + 1 si nécessaire (ex: type char)
+** À mettre à 0 à l sortie de la fonction
 */
 
 static void	ft_cpy8(void **mem, void **s, size_t *n)
@@ -40,7 +41,7 @@ void		*ft_memdup(void *s, size_t n)
 	void	*mem;
 	void	*tmp;
 
-	if (!s || !(mem = (void *)ft_memalloc(n)))
+	if (!s || !(mem = (void *)ft_memalloc(n + 1)))
 		return (NULL);
 	tmp = mem;
 	ft_cpy8(&mem, &s, &n);

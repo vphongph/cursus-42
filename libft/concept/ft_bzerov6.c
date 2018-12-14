@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:34:10 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/14 01:55:53 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/14 00:35:10 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,28 @@ static void	ft_zero512(void **s, size_t *n)
 	i = 0;
 	while (i < 8)
 		((t_64speed *)speed512.ram)[i++] = speed64;
-	while (*n >> 9)
+	while (*n / sizeof(t_512speed))
 	{
 		**(t_512speed **)s = speed512;
-		*s += 512;
-		*n -= 512;
+		*s += sizeof(t_512speed);
+		*n -= sizeof(t_512speed);
 	}
-	while (*n >> 6)
+	while (*n / sizeof(t_64speed))
 	{
 		**(t_64speed **)s = speed64;
-		*s += 64;
-		*n -= 64;
+		*s += sizeof(t_64speed);
+		*n -= sizeof(t_64speed);
 	}
 }
 
 void		ft_bzero(void *s, size_t n)
 {
 	ft_zero512(&s, &n);
-	while (n >> 3)
+	while (n / sizeof(long long))
 	{
 		*(long long *)s = 0;
-		s += 8;
-		n -= 8;
+		s += sizeof(long long);
+		n -= sizeof(long long);
 	}
 	while (n)
 	{
