@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/15 01:02:16 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/15 03:05:13 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/15 18:29:13 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/15 18:30:06 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
@@ -21,8 +22,9 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (!s)
 		return (NULL);
-	if (!(str = (char *)ft_memalloc(sizeof(*str) * (len + 1))))
+	if (!(str = (char *)malloc(sizeof(*str) * (len + 1))))
 		return (NULL);
+	str[len] = 0;
 	tmp = str;
 	s = &s[start];
 	while (len / sizeof(long long))
