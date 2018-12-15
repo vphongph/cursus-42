@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/14 20:58:31 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/15 03:38:41 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int		get_next_line(const int fd, char **line)
 		}
 		if (tmp[i] =='\n')
 		{
+			printf("j = %lu\n", j);
+			printf("i = %lu\n", i);
 			*line = ft_strsub((char *)tmp, 0, i);
 			// write(1, *line, i);
 			free(tmp);
@@ -57,8 +59,10 @@ int		get_next_line(const int fd, char **line)
 			return (0);
 		}
 	}
-	printf("%lu\n", j);;
-	*line = ft_memdup(tmp, j + 1);
+	printf("j = %lu\n", j);
+	printf("i = %lu\n", i);
+	// *line = ft_memdup(tmp, j);
+	*line = ft_strsub((char *)tmp, 0, j);
 	// write(1, *line, j);
 	free(tmp);
 	free(buf);
@@ -73,26 +77,27 @@ int		main(int ac, char** av)
 {
 	int fd;
 	char *str;
+	// int i = 100000;
 
 	fd = 0;
 
 	if (ac == 2)
 	{
-
-		if ((fd = open(av[1], O_RDONLY)) == -1)
-		{
-			ft_putstr_fd(RED"\aOpen failed\n"RESET, 2);
-			return (1);
-		}
-
-		get_next_line(fd, &str);
-		ft_putstr(str);
-
-		if (close(fd) == -1)
-		{
-			ft_putstr_fd(RED"\aClose failed\n"RESET, 2);
-			return (1);
-		}
+		// while (i--)
+		// {
+			if ((fd = open(av[1], O_RDONLY)) == -1)
+			{
+				ft_putstr_fd(RED"\aOpen failed\n"RESET, 2);
+				return (1);
+			}
+			get_next_line(fd, &str);
+			ft_putstr(str);
+			if (close(fd) == -1)
+			{
+				ft_putstr_fd(RED"\aClose failed\n"RESET, 2);
+				return (1);
+			}
+		// }
 	}
 	else
 	{

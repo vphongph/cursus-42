@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_strsub_v2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 20:00:26 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/15 01:48:32 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/15 01:02:16 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/15 03:05:13 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
+	char	*tmp;
 	size_t	i;
 
 	i = 0;
@@ -22,12 +23,30 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (!(str = (char *)ft_memalloc(sizeof(*str) * (len + 1))))
 		return (NULL);
-	while (len > 0)
+	tmp = str;
+	s = &s[start];
+	while (len / sizeof(long long))
 	{
-		str[i] = s[start];
-		start++;
-		i++;
-		len--;
+		*(long long *)str = *(long long *)s;
+		str += sizeof(long long);
+		s += sizeof(long long);
+		len -= sizeof(long long);
 	}
-	return (str);
+	while (len / sizeof(int))
+	{
+		*(int *)str = *(int *)s;
+		str += sizeof(int);
+		s += sizeof(int);
+		len -= sizeof(int);
+	}
+	while (len / sizeof(short))
+	{
+		*(short *)str = *(short *)s;
+		str += sizeof(short);
+		s += sizeof(short);
+		len -= sizeof(short);
+	}
+	if (len)
+		*str = *s;
+	return (tmp);
 }
