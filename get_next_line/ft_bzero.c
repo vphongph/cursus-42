@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:34:10 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/14 18:06:31 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/16 03:35:39 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static void	ft_zero512(void **s, size_t *n)
 
 void		ft_bzero(void *s, size_t n)
 {
+	if (!s)
+	{
+		ft_putstr_fd(RED"\amemcpy has NULL pointer\n"RESET, 2);
+		return ;
+	}
 	ft_zero512(&s, &n);
 	while (n >> 3)
 	{
