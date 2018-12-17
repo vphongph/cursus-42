@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strlen_v2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/16 01:48:59 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/16 23:03:48 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/17 01:57:50 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/17 02:22:57 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
 
-void	*ft_memjoin(void *s1, void *s2, size_t l, size_t n)
+size_t	ft_strlen_v2(char *s)
 {
-	void *mem;
+	char *str;
 
-	if (!(s1 && s2 && (mem = malloc(l + n))))
+	str = s;
+	while (*(long long *)str > 72057594037927935)
 	{
-		ft_putstr_fd(RED"\amemjoin NULL pointer or malloc failed\n"RESET, 2);
-		return (NULL);
+		str += sizeof(long long);
+		write(1, "haha", 4);
 	}
-	ft_memcpy_v2(mem, s1, l);
-	ft_memcpy_v2(&mem[l], s2, n);
-	return (mem);
+	while (*str)
+		str++;
+	return (str - s);
 }

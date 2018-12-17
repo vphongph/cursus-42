@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/16 03:08:10 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/17 01:37:03 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		get_next_line(const int fd, char **line)
 			printf("j = %lu\n", j);
 			printf("i = %lu\n", i);
 			*line = ft_memdup(tmp, i);
+			// *line = ft_strsub(tmp, 0, i);
 			// write(1, *line, i);
 			free(tmp);
 			free(buf);
@@ -65,6 +66,7 @@ int		get_next_line(const int fd, char **line)
 	printf("i = %lu\n", i);
 	// *line = ft_memdup(tmp, j);
 	*line = ft_memdup(tmp, i);
+	// *line = ft_strsub(tmp, 0, i);
 	// write(1, *line, j);
 	free(tmp);
 	free(buf);
