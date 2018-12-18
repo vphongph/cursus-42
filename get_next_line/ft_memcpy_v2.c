@@ -6,11 +6,12 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 01:49:59 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/16 00:08:51 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/18 18:44:37 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 static void	ft_cpy8(void **dst, void **src, size_t *n)
 {
@@ -36,7 +37,8 @@ void		*ft_memcpy_v2(void *dst, void *src, size_t n)
 
 	if (!(dst && src))
 	{
-		ft_putstr_fd(RED"\amemcpy has NULL pointer\n"RESET, 2);
+		if (ft_putstr_fd_v2(RED"\abzero v2 -> ∅ pointer\n"RESET, 2) == -1)
+			write(2, RED"\abzero v2 -> ∅ pointer & putstr fd v2 ∅\n"RESET, 59);
 		return (NULL);
 	}
 	tmp = dst;

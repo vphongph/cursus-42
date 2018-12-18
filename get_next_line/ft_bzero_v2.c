@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_bzero_v2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:34:10 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/16 03:35:39 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/18 18:45:58 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 static void	ft_zero512(void **s, size_t *n)
 {
@@ -31,11 +32,12 @@ static void	ft_zero512(void **s, size_t *n)
 	}
 }
 
-void		ft_bzero(void *s, size_t n)
+void		ft_bzero_v2(void *s, size_t n)
 {
 	if (!s)
 	{
-		ft_putstr_fd(RED"\amemcpy has NULL pointer\n"RESET, 2);
+		if (ft_putstr_fd_v2(RED"\amemcpy v2 -> ∅ pointer\n"RESET, 2) == -1)
+			write(2, RED"\amemcpy v2 -> ∅ pointer & putstr fd v2 ∅\n"RESET, 60);
 		return ;
 	}
 	ft_zero512(&s, &n);

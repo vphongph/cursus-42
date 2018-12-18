@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 01:35:06 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/18 01:51:44 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/18 18:45:12 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,20 @@
 
 int		main(void)
 {
-	char *buf[100];
 
-	int fd = 3;
+	char *str1 = NULL;
+	char *str2 = NULL;
+	// char *str1 = ALLIANCE"Vive l'Alliance !\n"RESET;
+	// static char str2[100];
 
-	char *str = ALLIANCE"0123456789\n"RESET;
+	ft_memcpy_v2(str2, str1, 100);
 
-	printf("%d", ft_putstr_fd_v2(str, 2));
-
-	printf("%zd", read(fd, buf, 1));
+	ft_bzero_v2(str2, 100);
+	printf("%d\n", ft_putstr_fd_v2(str1, 1));
+	printf("%d\n", ft_putstr_fd_v2(str2, 1));
+	printf("%d\n", ft_putstr_v2(str1));
+	printf("%d\n", ft_putstr_v2(str2));
+	// printf("%d\n", ft_strlen_v2(str1));
 
 	return (0);
 }

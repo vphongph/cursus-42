@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/18 02:00:06 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/18 18:43:24 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,7 @@ void			*ft_memjoinfree_b(void *s1, void *s2, size_t l, size_t n);
 void			*ft_memcpy_v2(void *dst, void *src, size_t n);
 int				ft_strlen_v2(char *s);
 int				ft_putstr_fd_v2(char *s, int fd);
+int				ft_putstr_v2(char *s);
+void			ft_bzero_v2(void *s, size_t n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 21:05:38 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/18 01:15:51 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/18 18:40:38 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_strlen_v2(char *s)
 {
 	char *str;
 
-	if (!s && (write(2, RED"\astrlen v2 has NULL pointer\n"RESET, 47)))
+	if (s && (write(2, RED"\astrlen v2 has NULL pointer\n"RESET, 47)))
 		return (-1);
 	str = s;
 	while (1)
