@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   test_random.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 14:29:16 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/18 01:58:35 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/18 01:35:06 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/18 01:51:44 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <fcntl.h>
 
-void	ft_putstr(char const *s)
+int		main(void)
 {
-	if (!s)
-		return ;
-	write(1, s, ft_strlen_v2((char *)s));
+	char *buf[100];
+
+	int fd = 3;
+
+	char *str = ALLIANCE"0123456789\n"RESET;
+
+	printf("%d", ft_putstr_fd_v2(str, 2));
+
+	printf("%zd", read(fd, buf, 1));
+
+	return (0);
 }

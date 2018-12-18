@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen_concept1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 14:29:16 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/18 01:58:35 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/17 01:57:50 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/17 21:05:43 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-void	ft_putstr(char const *s)
+#define DETECTNULL(X) (((X) - 0x0101010101010101) & ~(X) & 0x8080808080808080)
+
+size_t	ft_strlen_concept1(char *s)
 {
-	if (!s)
-		return ;
-	write(1, s, ft_strlen_v2((char *)s));
+	char *str;
+
+	str = s;
+	while (!(DETECTNULL(*(long long *)str)))
+	{
+		str += sizeof(long long);
+	}
+	while (*str)
+	{
+		str++;
+	}
+	return (str - s);
 }

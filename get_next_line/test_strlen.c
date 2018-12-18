@@ -6,23 +6,31 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 02:07:42 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/17 02:46:51 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/18 01:19:51 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
-
-size_t	ft_strlen_v2(char *s);
+#include <unistd.h>
 
 int		main(void)
 {
-	char str[2] = {-1, 0};
+	// char *str = NULL;
+	char str[301] = "2345678wro;iewroiew*&^&^%&*^$%&67+)_080w7ekljhvkfjhlivudfhsl35fg43654vboh^&%^%$&^$fgjhgweury123456782345678wro;iewroiew*&^&^%&*^$%&67+)_080w7ekljhvkfjhlivudfhsl35fg43654vboh^&%^%$&^$fgjhgweury123456782345678wro;iewroiew*&^&^%&*^$%&67+)_080w7ekljhvkfjhlivudfhsl35fg43654vboh^&%^%$&^$fgjhgweury12345678";
+	// char str[7] = {-128, -127, -1, -10, 5, 1, 0};
+
+	int i = 10000000;
+
+	while (i--)
+	{
+		ft_strlen_v2(str);
+	}
 
 	printf("      str = %s\n", str);
 	printf("   strlen = %lu\n", strlen(str));
 	printf("   strlen = %lu\n", ft_strlen(str));
-	printf("strlen v2 = %lu\n", ft_strlen_v2(str));
+	printf("strlen v2 = %d\n", ft_strlen_v2(str));
 
 	return (0);
 }
