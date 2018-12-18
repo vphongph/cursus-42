@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 01:49:59 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/18 18:44:37 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/18 20:08:15 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void		*ft_memcpy_v2(void *dst, void *src, size_t n)
 
 	if (!(dst && src))
 	{
-		if (ft_putstr_fd_v2(RED"\abzero v2 -> ∅ pointer\n"RESET, 2) == -1)
-			write(2, RED"\abzero v2 -> ∅ pointer & putstr fd v2 ∅\n"RESET, 59);
+		if (ft_putstr_fd_v2(RED"\amemcpy v2 -> ∅ pointer\n"RESET, 2) == -1)
+			write(2, RED"\amemcpy v2 -> ∅ pointer & putstr fd v2 ∅\n"RESET, 64);
 		return (NULL);
 	}
 	tmp = dst;
