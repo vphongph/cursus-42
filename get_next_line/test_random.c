@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 01:35:06 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/18 22:18:21 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/19 03:55:23 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,18 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
-char 	*test_leaks(void)
+void 	test_leaks(void)
 {
-	char *str;
-
-	return (str = (char *)ft_memalloc(100));
+	char *str = NULL;
+	str = (ft_memalloc(10));
+	free(str);
 }
 
 int		main(void)
 {
-	int i = 10;
-
-	// char *str1 = NULL;
-	// char *str2 = NULL;
+	char *str;
+	char *str1 = "Hello je suis un Pingouin !";
+	char *str2 = NULL;
 	// char *str1 = ALLIANCE"Vive l'Alliance !\n"RESET;
 	// static char str2[100];
 
@@ -36,9 +35,11 @@ int		main(void)
 
 	// ft_bzero_v2(str2, 100);
 
-		while (i--)
-			free (test_leaks());
+	// test_leaks();
 
+	str2 = ft_memdup(str1, ft_strlen_v2(str1));
+	printf("%s\n", str2);
+	free(str2);
 
 	// printf("%d\n", ft_putstr_fd_v2(str1, 1));
 	// printf("%d\n", ft_putstr_fd_v2(str2, 1));
@@ -47,10 +48,10 @@ int		main(void)
 	// printf("%d\n", ft_strlen_v2(str1));
 	// printf("%lu\n", strlen(str1));
 	// printf("%lu\n", strlen(str2));
-	printf("END");
+	write(1,"END\n",4);
+	str = malloc(0);
 
 	while(1)
 	{}
-
 	return (0);
 }
