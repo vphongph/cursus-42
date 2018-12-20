@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 01:35:06 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/20 20:11:28 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/20 21:09:30 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 void 	test_leaks(void)
 {
-	char *str = NULL;
-	str = ft_memalloc(10);
-	free(str);
+	// char *str = NULL;
+	// str = ft_memalloc(10);
+	// free(str);
 }
 
 int		main(void)
@@ -53,10 +53,10 @@ int		main(void)
 	// printf("%s\n", str3);
 	// free(str3);
 
-	ft_memalloc(1000);
-	ft_memalloc(1000);
-	ft_memalloc(1000);
-	ft_memalloc(1000);
+	// ft_memalloc(1000);
+	// ft_memalloc(1000);
+	// ft_memalloc(1000);
+	// ft_memalloc(1000);
 
 	// free(str3);
 
@@ -82,13 +82,8 @@ int		main(void)
 	// printf("%d\n", ft_strlen_v2(str1));
 	// printf("%lu\n", strlen(str1));
 	// printf("%lu\n", strlen("à"));
-	write(1,"END\n",4);
+	// write(1,"END\n",4);
 	// str = malloc(0);
-
-
-	while(1)
-	{}
-
 
 	return (0);
 }

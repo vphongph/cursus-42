@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/20 03:26:17 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/20 21:47:20 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		get_next_line(const int fd, char **line)
 			printf("j = %lu\n", j);
 			printf("i = %lu\n", i);
 			fflush(stdout);
+			free(*line);
 			*line = ft_strsub_v2(tmp, 0, i);
 			write(1, *line, i + 1);
 			ft_putstr_v2(ALLIANCE"%\n"RESET);
@@ -63,6 +64,7 @@ int		get_next_line(const int fd, char **line)
 	printf("j = %lu\n", j);
 	printf("i = %lu\n", i);
 	fflush(stdout);
+	free(*line);
 	*line = ft_strsub_v2(tmp, 0, i + 1);
 	write(1, *line, i + 2);
 	ft_putstr_v2(ALLIANCE"%\n"RESET);
@@ -75,7 +77,7 @@ int		get_next_line(const int fd, char **line)
 int		main(int ac, char **av)
 {
 	int fd;
-	char *str;
+	char *str = NULL;
 
 
 	// int i = 10000;
@@ -93,6 +95,7 @@ int		main(int ac, char **av)
 			}
 			get_next_line(fd, &str);
 			ft_putstr_v2(str);
+			free(str);
 			if (close(fd) == -1)
 			{
 				ft_putstr_fd_v2(RED"\aClose failed\n"RESET, 2);
@@ -104,6 +107,7 @@ int		main(int ac, char **av)
 	{
 		get_next_line(fd, &str);
 		ft_putstr_v2(str);
+		free(str);
 	}
 
 	sleep(1);
