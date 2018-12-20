@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/20 00:59:14 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/20 03:25:44 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		get_next_line(const int fd, char **line)
 	size_t i;
 	size_t j;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	if (!(tmp = ft_memalloc(1)))
 	{
@@ -43,19 +43,17 @@ int		get_next_line(const int fd, char **line)
 	{
 		tmp = ft_memjoinfree_l(tmp, buf, j, ret);
 		j += ret;
-		while (tmp[i] != '\n' && ret > 0)
-		{
-			i++;
+		while (ret > 0 && tmp[++i] != '\n')
 			ret--;
-		}
 		if (tmp[i] =='\n')
 		{
 			printf("y'a un \\n\n");
 			printf("j = %lu\n", j);
 			printf("i = %lu\n", i);
-			*line = ft_memdup(tmp, i);
-			// *line = ft_strsub(tmp, 0, i);
-			write(1, *line, i);
+			fflush(stdout);
+			*line = ft_strsub_v2(tmp, 0, i);
+			write(1, *line, i + 1);
+			ft_putstr_v2(ALLIANCE"%\n"RESET);
 			free(tmp);
 			free(buf);
 			return (0);
@@ -64,15 +62,12 @@ int		get_next_line(const int fd, char **line)
 	printf("PAS de \\n\n");
 	printf("j = %lu\n", j);
 	printf("i = %lu\n", i);
-	// *line = ft_memdup(tmp, j);
-	*line = ft_memdup(tmp, i);
-	// *line = ft_strsub(tmp, 0, i);
-	write(1, *line, j);
+	fflush(stdout);
+	*line = ft_strsub_v2(tmp, 0, i + 1);
+	write(1, *line, i + 2);
+	ft_putstr_v2(ALLIANCE"%\n"RESET);
 	free(tmp);
 	free(buf);
-
-
-	// tmp =s
 
 	return (0);
 }
