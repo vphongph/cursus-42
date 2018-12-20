@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 18:21:37 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/19 17:38:48 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/20 01:19:02 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@
 
 /*
 ** ATTENTION size_t n
-** Bien renseigner type de var (sizeof) et le nb (pas de bzero)
+** Penser au type de var (sizeof)
+** Et + 1 -> cpy \0 de str s'il existe (éviter overflow)
 */
 
 void	*ft_memdup(void *s, size_t n)
 {
 	void *mem;
 
-	if (!(s && (mem = ft_memalloc(n))))
+	if (!(s && (mem = malloc(n))))
 	{
 		if (ft_putstr_fd_v2(RED"\amemdup -> ∅ pointer | malloc ∅\n"
 			RESET, 2) == -1)

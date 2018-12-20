@@ -6,12 +6,19 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 03:16:09 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/16 03:19:14 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/20 01:20:27 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+#include <unistd.h>
+
+/*
+** ATTENTION size_t n
+** Penser au type de var (sizeof)
+** Et + 1  à size_t n -> cpy \0 de str s'il existe (éviter overflow)
+*/
 
 void	*ft_memjoinfree_r(void *s1, void *s2, size_t l, size_t n)
 {
@@ -19,7 +26,10 @@ void	*ft_memjoinfree_r(void *s1, void *s2, size_t l, size_t n)
 
 	if (!(s1 && s2 && (mem = ft_memjoin(s1, s2, l, n))))
 	{
-		ft_putstr_fd(RED"\amemJF_R NULL pointer or malloc failed\n"RESET, 2);
+		if (ft_putstr_fd_v2(RED"\amemJF_R ∅ pointer | malloc ∅\n"
+			RESET, 2) == -1)
+			write(2, RED"\amemJF_R -> ∅ pointer | malloc ∅ & putstr fd v2 ∅\n"
+				RESET, 75);
 		return (NULL);
 	}
 	free(s2);

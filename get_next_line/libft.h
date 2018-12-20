@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/19 03:53:59 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/19 22:44:33 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ int				ft_strlen_v2(char *s);
 int				ft_putstr_fd_v2(char *s, int fd);
 int				ft_putstr_v2(char *s);
 void			ft_bzero_v2(void *s, size_t n);
+char			*ft_strsub_v2(char *s, unsigned int start, size_t len);
 
 #endif

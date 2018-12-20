@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/19 01:50:41 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/20 00:59:14 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int		get_next_line(const int fd, char **line)
 	j = 0;
 	if (!(tmp = ft_memalloc(1)))
 	{
-		// ft_putstr_fd(RED"\aGNL malloc failed\n"RESET, 2);
+		ft_putstr_fd_v2(RED"\aGNL malloc failed\n"RESET, 2);
 		return (1);
 	}
 	if (!(buf = ft_memalloc(BUFF_SIZE)))
 	{
-		// ft_putstr_fd(RED"\aGNL malloc failed\n"RESET, 2);
+		ft_putstr_fd_v2(RED"\aGNL malloc failed\n"RESET, 2);
 		free(tmp);
 		return (1);
 	}
@@ -93,14 +93,14 @@ int		main(int ac, char **av)
 		// {
 			if ((fd = open(av[1], O_RDONLY)) == -1)
 			{
-				// ft_putstr_fd(RED"\aOpen failed\n"RESET, 2);
+				ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
 				return (1);
 			}
 			get_next_line(fd, &str);
-			ft_putstr(str);
+			ft_putstr_v2(str);
 			if (close(fd) == -1)
 			{
-				// ft_putstr_fd(RED"\aClose failed\n"RESET, 2);
+				ft_putstr_fd_v2(RED"\aClose failed\n"RESET, 2);
 				return (1);
 			}
 		// }
@@ -108,11 +108,10 @@ int		main(int ac, char **av)
 	else
 	{
 		get_next_line(fd, &str);
-		ft_putstr(str);
+		ft_putstr_v2(str);
 	}
 
-	// while (1)
-	// {}
+	sleep(1);
 
 	return (0);
 }

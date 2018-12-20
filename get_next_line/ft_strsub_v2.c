@@ -6,49 +6,27 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 18:29:13 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/18 18:14:22 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/20 00:38:08 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+#include <unistd.h>
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char	*ft_strsub_v2(char *s, unsigned int start, size_t len)
 {
 	char	*str;
-	char	*tmp;
-	size_t	i;
 
-	i = 0;
-	if (!s)
+	if (!(s && (str = (char *)malloc(len + 1))))
+	{
+		if (ft_putstr_fd_v2(RED"\astrsub v2 ∅ pointer | malloc ∅\n"
+			RESET, 2) == -1)
+			write(2, RED"\astrsub v2 -> ∅ pointer | malloc ∅ & putstr fd v2 ∅\n"
+				RESET, 77);
 		return (NULL);
-	if (!(str = (char *)malloc(sizeof(*str) * (len + 1))))
-		return (NULL);
+	}
 	str[len] = 0;
-	tmp = str;
 	s = &s[start];
-	while (len / sizeof(long long))
-	{
-		*(long long *)str = *(long long *)s;
-		str += sizeof(long long);
-		s += sizeof(long long);
-		len -= sizeof(long long);
-	}
-	while (len / sizeof(int))
-	{
-		*(int *)str = *(int *)s;
-		str += sizeof(int);
-		s += sizeof(int);
-		len -= sizeof(int);
-	}
-	while (len / sizeof(short))
-	{
-		*(short *)str = *(short *)s;
-		str += sizeof(short);
-		s += sizeof(short);
-		len -= sizeof(short);
-	}
-	if (len)
-		*str = *s;
-	return (tmp);
+	return (ft_memcpy_v2(str, s, len));
 }

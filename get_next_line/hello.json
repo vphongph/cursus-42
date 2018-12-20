@@ -1,5 +1,6 @@
 [
-//Cmd pour avoir ses achievements
+//cmd pour pretty JSON : cmd + ctrl + j,
+//cmd pour avoir ses achievements
 //curl  -H "Authorization: Bearer 94197e1e9739d413dca9ff409141e7c01a7e32501ab605fc9035aeecb070bcac" "https://api.intra.42.fr/v2/achievements"
   {
     "id": 1,
