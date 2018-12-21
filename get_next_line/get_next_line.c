@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/20 21:47:20 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/21 04:45:44 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ int		get_next_line(const int fd, char **line)
 
 	i = -1;
 	j = 0;
-	if (!(tmp = ft_memalloc(1)))
+	if (!(line && (tmp = ft_memalloc(0)) && (buf = ft_memalloc(BUFF_SIZE))))
 	{
-		ft_putstr_fd_v2(RED"\aGNL malloc failed\n"RESET, 2);
-		return (1);
-	}
-	if (!(buf = ft_memalloc(BUFF_SIZE)))
-	{
-		ft_putstr_fd_v2(RED"\aGNL malloc failed\n"RESET, 2);
 		free(tmp);
-		return (1);
+		free(buf);
+		ft_putstr_fd_v2(RED"\aGNL malloc ∅\n"RESET, 2);
+		return (-1);
 	}
+
+
+	// free(*line);
+
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		tmp = ft_memjoinfree_l(tmp, buf, j, ret);
@@ -51,20 +51,20 @@ int		get_next_line(const int fd, char **line)
 			printf("j = %lu\n", j);
 			printf("i = %lu\n", i);
 			fflush(stdout);
-			free(*line);
+			// free(*line);
 			*line = ft_strsub_v2(tmp, 0, i);
 			write(1, *line, i + 1);
 			ft_putstr_v2(ALLIANCE"%\n"RESET);
 			free(tmp);
 			free(buf);
-			return (0);
+			return (1);
 		}
 	}
 	printf("PAS de \\n\n");
 	printf("j = %lu\n", j);
 	printf("i = %lu\n", i);
 	fflush(stdout);
-	free(*line);
+	// free(*line);
 	*line = ft_strsub_v2(tmp, 0, i + 1);
 	write(1, *line, i + 2);
 	ft_putstr_v2(ALLIANCE"%\n"RESET);
@@ -78,7 +78,13 @@ int		main(int ac, char **av)
 {
 	int fd;
 	char *str = NULL;
+	// char *str = "lol";
+	// char const *str;
+	// const char *str;
+	// char str[10];
+	// char str[10] = {'a','b','c',0};
 
+	str = (char *)malloc(1000);
 
 	// int i = 10000;
 

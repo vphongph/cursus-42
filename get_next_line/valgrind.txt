@@ -1,37 +1,52 @@
-==54306== Memcheck, a memory error detector
-==54306== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==54306== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==54306== Command: ./exeGNL hello.txt
-==54306== 
---54306-- run: /usr/bin/dsymutil "./exeGNL"
-warning: no debug symbols in executable (-arch x86_64)
-==54306== 
-==54306== HEAP SUMMARY:
-==54306==     in use at exit: 22,308 bytes in 163 blocks
-==54306==   total heap usage: 290 allocs, 127 frees, 34,448 bytes allocated
-==54306== 
-==54306== 72 bytes in 3 blocks are possibly lost in loss record 26 of 43
-==54306==    at 0x10009AC82: calloc (in /Users/vphongph/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==54306==    by 0x1005B4832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==54306==    by 0x1005C7D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==54306==    by 0x10000903B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==54306==    by 0x100009255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==54306==    by 0x10020200A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==54306==    by 0x1005B4072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==54306==    by 0x10019568D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==54306==    by 0x10019563A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==54306==    by 0x1000A99D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==54306==    by 0x100019A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==54306==    by 0x100019C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==54306== 
-==54306== LEAK SUMMARY:
-==54306==    definitely lost: 0 bytes in 0 blocks
-==54306==    indirectly lost: 0 bytes in 0 blocks
-==54306==      possibly lost: 72 bytes in 3 blocks
-==54306==    still reachable: 200 bytes in 6 blocks
-==54306==         suppressed: 22,036 bytes in 154 blocks
-==54306== Reachable blocks (those to which a pointer was found) are not shown.
-==54306== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==54306== 
-==54306== For counts of detected and suppressed errors, rerun with: -v
-==54306== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==13208== Memcheck, a memory error detector
+==13208== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==13208== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==13208== Command: ./exeGNL hello.txt
+==13208== 
+==13208== Conditional jump or move depends on uninitialised value(s)
+==13208==    at 0x1004F55E8: _platform_memchr$VARIANT$Base (in /usr/lib/system/libsystem_platform.dylib)
+==13208==    by 0x1002A14D1: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==13208==    by 0x1002AB898: __vfprintf (in /usr/lib/system/libsystem_c.dylib)
+==13208==    by 0x1002D1422: __v2printf (in /usr/lib/system/libsystem_c.dylib)
+==13208==    by 0x1002A733D: vfprintf_l (in /usr/lib/system/libsystem_c.dylib)
+==13208==    by 0x1002A5247: printf (in /usr/lib/system/libsystem_c.dylib)
+==13208==    by 0x1000016A4: get_next_line (in ./exeGNL)
+==13208==    by 0x10000188A: main (in ./exeGNL)
+==13208==  Uninitialised value was created by a stack allocation
+==13208==    at 0x1002A73C4: __vfprintf (in /usr/lib/system/libsystem_c.dylib)
+==13208== 
+==13208== 
+==13208== HEAP SUMMARY:
+==13208==     in use at exit: 23,308 bytes in 164 blocks
+==13208==   total heap usage: 291 allocs, 127 frees, 35,447 bytes allocated
+==13208== 
+==13208== 72 bytes in 3 blocks are possibly lost in loss record 26 of 44
+==13208==    at 0x10009AC82: calloc (in /Users/vphongph/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==13208==    by 0x1005B4832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==13208==    by 0x1005C7D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==13208==    by 0x10000903B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==13208==    by 0x100009255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==13208==    by 0x10020200A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==13208==    by 0x1005B4072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==13208==    by 0x10019568D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==13208==    by 0x10019563A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==13208==    by 0x1000A99D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==13208==    by 0x100019A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==13208==    by 0x100019C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==13208== 
+==13208== 1,000 bytes in 1 blocks are definitely lost in loss record 38 of 44
+==13208==    at 0x10009A616: malloc (in /Users/vphongph/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==13208==    by 0x10000182C: main (in ./exeGNL)
+==13208== 
+==13208== LEAK SUMMARY:
+==13208==    definitely lost: 1,000 bytes in 1 blocks
+==13208==    indirectly lost: 0 bytes in 0 blocks
+==13208==      possibly lost: 72 bytes in 3 blocks
+==13208==    still reachable: 200 bytes in 6 blocks
+==13208==         suppressed: 22,036 bytes in 154 blocks
+==13208== Reachable blocks (those to which a pointer was found) are not shown.
+==13208== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==13208== 
+==13208== For counts of detected and suppressed errors, rerun with: -v
+==13208== ERROR SUMMARY: 4 errors from 3 contexts (suppressed: 12 from 12)
+Fri Dec 21 04:40:43 CET 2018
