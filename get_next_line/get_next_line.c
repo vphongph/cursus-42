@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/23 05:02:13 by vphongph         ###   ########.fr       */
+/*   Updated: 2018/12/27 23:19:10 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ int		get_next_line(const int fd, char **line)
 	char *buf;
 	int ret;
 	int i = -1;
-	size_t j;
+	static size_t j = 0;
 
 	if (!tmp)
-		tmp = ft_memalloc(1);
-	j = ft_strlen_v2(tmp);
+		tmp = ft_memalloc(0);
 	if (!(line && tmp && (buf = ft_memalloc(BUFF_SIZE))))
 	{
 		free(tmp);
@@ -36,24 +35,21 @@ int		get_next_line(const int fd, char **line)
 		ft_putstr_fd_v2(RED"\aGNL -> pointer ∅ | malloc ∅\n"RESET, 2);
 		return (-1);
 	}
-	while (tmp)
+	while (i < (int)j)
 	{
-		if ((ret = read(fd, buf, BUFF_SIZE)) == 0)
-			// break;
+		ret = read(fd, buf, BUFF_SIZE);
 		printf(BLUE"%d"RESET"\n", ret);
 		printf(YELLOW"Lecture + ce qui a été lu en trop :"RESET"\n");
 		tmp = ft_memjoinfree_l(tmp, buf, j, ret);
 		write(1, tmp, j + ret);
 		ft_putstr_v2(FEDERATION"%\n"RESET);
-		i = j;
 		j += ret;
-		ret += i;
-		i = -1;
 		printf("%lu\n", j);
 		printf("%d\n", ret);
-		while (ret > 0 && tmp[++i] != '\n')
-			ret--;
-		if (tmp[i] =='\n')
+		while (++i < (int)j && tmp[i] != '\n')
+			;
+		printf(YELLOW"Checkpoint 2"RESET"\n");
+		if (tmp[i-1] =='\n')
 		{
 			*line = ft_strsub_v2(tmp, 0, i);
 			write(1, *line, i + 1);
@@ -61,7 +57,7 @@ int		get_next_line(const int fd, char **line)
 			break;
 		}
 	}
-	if (ret > 0)
+	if (i < ret)
 	{
 		tmp = ft_memcpy_v2(tmp, &tmp[i + 1], ret - 1);
 		tmp[ret - 1] = 0;
@@ -74,8 +70,8 @@ int		get_next_line(const int fd, char **line)
 	printf("i = %d\n", i);
 	printf("ret = %d\n", ret);
 	fflush(stdout);
-	*line = ft_strsub_v2(tmp, 0, i + 1);
-	write(1, *line, i + 2);
+	*line = ft_strsub_v2(tmp, 0, i);
+	write(1, *line, i + 1);
 	free(tmp);
 	free(buf);
 	return (0);
@@ -107,11 +103,7 @@ int		main(int ac, char **av)
 			}
 
 			get_next_line(fd, &str);
-			get_next_line(fd, &str);
-			get_next_line(fd, &str);
-
-
-
+			// get_next_line(fd, &str);
 
 
 			if (close(fd) == -1)
