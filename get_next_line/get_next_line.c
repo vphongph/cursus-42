@@ -6,11 +6,12 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/27 23:19:10 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:57:36 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "get_next_line.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -20,61 +21,55 @@
 
 int		get_next_line(const int fd, char **line)
 {
-	static char *tmp;
-	char *buf;
-	int ret;
-	int i = -1;
-	static size_t j = 0;
+	// static t_fddata*	begin;
+	static t_fddata*	data;
+	char				*buf;
+	int 				ret;
+	int 				i = -1;
 
-	if (!tmp)
-		tmp = ft_memalloc(0);
-	if (!(line && tmp && (buf = ft_memalloc(BUFF_SIZE))))
+	if (read(data->index_fd, buf, 0) == -1)
 	{
-		free(tmp);
+		ft_putstr_fd_v2(RED"\aGNL -> read ∅\n"RESET, 2);
+		return (-1);
+	}
+
+	// data = begin;
+	// while (data->index_fd != fd)
+	// {
+	// 	data = data->next;
+	// 	if (data == NULL)
+
+	// }
+
+	if (!data->str)
+		data->str = ft_memalloc(0);
+	if (!(line && data->str && (buf = ft_memalloc(BUFF_SIZE))))
+	{
+		free(data->str);
 		free(buf);
 		ft_putstr_fd_v2(RED"\aGNL -> pointer ∅ | malloc ∅\n"RESET, 2);
 		return (-1);
 	}
-	while (i < (int)j)
+
+	while (i < data->size_str)
 	{
-		ret = read(fd, buf, BUFF_SIZE);
-		printf(BLUE"%d"RESET"\n", ret);
-		printf(YELLOW"Lecture + ce qui a été lu en trop :"RESET"\n");
-		tmp = ft_memjoinfree_l(tmp, buf, j, ret);
-		write(1, tmp, j + ret);
-		ft_putstr_v2(FEDERATION"%\n"RESET);
-		j += ret;
-		printf("%lu\n", j);
-		printf("%d\n", ret);
-		while (++i < (int)j && tmp[i] != '\n')
-			;
-		printf(YELLOW"Checkpoint 2"RESET"\n");
-		if (tmp[i-1] =='\n')
+
+	}
+	while ((ret = read(data->index_fd, buf, BUFF_SIZE)))
+	{
+		data->str = ft_memjoinfree_l(data->str, buf, data->size_str, ret);
+		while (ret > 0 && data->str[++i] != '\n')
+			ret--;
+		if (data->str[i] != '\n')
 		{
-			*line = ft_strsub_v2(tmp, 0, i);
-			write(1, *line, i + 1);
-			ft_putstr_v2(ALLIANCE"%\n"RESET);
+			*line = ft_strsub_v2(data->str, 0, i + 1);
+			if (ret)
+			data->str = ft_memcpy_v2(data->str, &buf[i], ret);
+			free(buf);
 			break;
 		}
 	}
-	if (i < ret)
-	{
-		tmp = ft_memcpy_v2(tmp, &tmp[i + 1], ret - 1);
-		tmp[ret - 1] = 0;
-		printf(YELLOW"Lu en trop :"RESET"\n");
-		write(1, tmp, ret -1);
-		ft_putstr_v2(ORDER"%\n"RESET);
-		return (1);
-	}
-	printf("PAS de \\n\n");
-	printf("i = %d\n", i);
-	printf("ret = %d\n", ret);
-	fflush(stdout);
-	*line = ft_strsub_v2(tmp, 0, i);
-	write(1, *line, i + 1);
-	free(tmp);
-	free(buf);
-	return (0);
+
 }
 
 int		main(int ac, char **av)
