@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/03 21:57:36 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/04 05:19:29 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,26 @@ int		get_next_line(const int fd, char **line)
 	int 				ret;
 	int 				i = -1;
 
+	if (!data)
+	{
+		data = (t_fddata *)ft_memalloc(sizeof(t_fddata));
+		data->str = (char *)ft_memalloc(0);
+	}
+
+	// if (!(line && data->str && (buf = (char *)ft_memalloc(BUFF_SIZE))))
+	// {
+		// free(data->str);
+		// free(buf);
+		// ft_putstr_fd_v2(RED"\aGNL -> pointer ∅ | malloc ∅\n"RESET, 2);
+		// return (-1);
+	// }
+
+	buf = (char *)ft_memalloc(BUFF_SIZE);
 	if (read(data->index_fd, buf, 0) == -1)
 	{
 		ft_putstr_fd_v2(RED"\aGNL -> read ∅\n"RESET, 2);
 		return (-1);
 	}
-
 	// data = begin;
 	// while (data->index_fd != fd)
 	// {
@@ -41,35 +55,57 @@ int		get_next_line(const int fd, char **line)
 
 	// }
 
-	if (!data->str)
-		data->str = ft_memalloc(0);
-	if (!(line && data->str && (buf = ft_memalloc(BUFF_SIZE))))
+	data->index_fd = fd;
+
+
+	if (data->size_str > 0)
 	{
-		free(data->str);
-		free(buf);
-		ft_putstr_fd_v2(RED"\aGNL -> pointer ∅ | malloc ∅\n"RESET, 2);
-		return (-1);
+		while ((i + 1) < data->size_str && data->str[++i]!= '\n')
+			;
+		if (data->str[i] == '\n')
+		{
+			ft_putstr_v2(YELLOW"y'a un \\n dans la static\n"RESET);
+			*line = ft_strsub_v2(data->str, 0, i);
+			write(1, *line, i + 1);
+			ft_putstr_v2(ALLIANCE"%\n"RESET);
+			data->str = ft_memcpy_v2(data->str, &data->str[i + 1], data->size_str -= i + 1);
+			return (1);
+		}
+
 	}
 
-	while (i < data->size_str)
-	{
-
-	}
 	while ((ret = read(data->index_fd, buf, BUFF_SIZE)))
 	{
 		data->str = ft_memjoinfree_l(data->str, buf, data->size_str, ret);
+		data->size_str += ret;
 		while (ret > 0 && data->str[++i] != '\n')
-			ret--;
-		if (data->str[i] != '\n')
 		{
-			*line = ft_strsub_v2(data->str, 0, i + 1);
+			ret--;
+		}
+		if (data->str[i] == '\n')
+		{
+			ft_putstr_v2(YELLOW"y'a un \\n\n"RESET);
+			*line = ft_strsub_v2(data->str, 0, i);
+			write(1, *line, i + 1);
+			ft_putstr_v2(ALLIANCE"%\n"RESET);
 			if (ret)
-			data->str = ft_memcpy_v2(data->str, &buf[i], ret);
-			free(buf);
-			break;
+			{
+				data->str = ft_memcpy_v2(data->str, &data->str[i + 1], ret - 1);
+				data->size_str = ret - 1;
+			}
+			write(1, data->str, ret - 1);
+			ft_putstr_v2(ORDER"%\n"RESET);
+			return (1);
 		}
 	}
 
+	ft_putstr_v2(YELLOW"y'a PAS de \\n\n"RESET);
+	*line = ft_strsub_v2(data->str, 0, i + 1);
+	write(1, *line, i + 2);
+	ft_putstr_v2(FEDERATION"%\n"RESET);
+	free(buf);
+	// free(data->str);
+	return(0);
 }
 
 int		main(int ac, char **av)
@@ -96,9 +132,13 @@ int		main(int ac, char **av)
 				ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
 				return (1);
 			}
-
 			get_next_line(fd, &str);
-			// get_next_line(fd, &str);
+			get_next_line(fd, &str);
+			get_next_line(fd, &str);
+			get_next_line(fd, &str);
+			get_next_line(fd, &str);
+
+
 
 
 			if (close(fd) == -1)
@@ -112,7 +152,7 @@ int		main(int ac, char **av)
 	{
 		get_next_line(fd, &str);
 		ft_putstr_v2(str);
-		free(str);
+		// free(str);
 	}
 
 	return (0);
