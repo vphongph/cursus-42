@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/04 18:20:40 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/04 18:59:51 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		get_next_line(const int fd, char **line)
 	if (!data)
 	{
 		data = (t_fddata *)ft_memalloc(sizeof(t_fddata));
-		// data->str = (char *)ft_memalloc(0);
+		data->str = (char *)ft_memalloc(0);
 	}
 
 	// if (!(line && data->str && (buf = (char *)ft_memalloc(BUFF_SIZE))))
@@ -42,12 +42,15 @@ int		get_next_line(const int fd, char **line)
 	// }
 
 	printf ("size BUFF = %lu\n",sizeof(BUFF_SIZE));
+	printf ("size BUFF = %lu\n",sizeof(BUFF_SIZE + 1));
+	printf ("BUFF = %d\n", BUFF_SIZE);
 
-	// if (sizeof(BUFF_SIZE) != 4 || BUFF_SIZE < 0)
-	// {
-		// return(-1);
-	// }
-	sleep(10);
+	if (sizeof(BUFF_SIZE + 1) != 4 || BUFF_SIZE < 0)
+	{
+		ft_putstr_fd_v2(RED"\aGNL -> ∅ BUFF SIZE\n"RESET, 2);
+		return(-1);
+	}
+
 
 	if (!(buf = (char *)ft_memalloc(BUFF_SIZE)) || read(fd, buf, 0) == -1)
 	{
@@ -55,6 +58,7 @@ int		get_next_line(const int fd, char **line)
 		ft_putstr_fd_v2(RED"\aGNL -> malloc ∅ | read ∅\n"RESET, 2);
 		return (-1);
 	}
+	printf("read 0 = %zd\n", read(fd, buf, 0));
 
 	// data = begin;
 	// while (data->index_fd != fd)
