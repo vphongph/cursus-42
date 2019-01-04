@@ -6,13 +6,15 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 02:07:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/03 01:09:57 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:50:16 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 #include <unistd.h>
+
+size_t	ft_strlen_1(char *s);
 
 int		main(void)
 {
@@ -29,7 +31,7 @@ int		main(void)
 
 	printf("      str = %s\n", str);
 	printf("   strlen = %lu\n", strlen(str));
-	// printf("   strlen = %lu\n", ft_strlen(str));
+	printf("   strlen = %lu\n", ft_strlen_1(str));
 	printf("strlen v2 = %d\n", ft_strlen_v2(str));
 
 	return (0);

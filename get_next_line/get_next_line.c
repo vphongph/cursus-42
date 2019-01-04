@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/04 05:19:29 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/04 18:20:40 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		get_next_line(const int fd, char **line)
 	if (!data)
 	{
 		data = (t_fddata *)ft_memalloc(sizeof(t_fddata));
-		data->str = (char *)ft_memalloc(0);
+		// data->str = (char *)ft_memalloc(0);
 	}
 
 	// if (!(line && data->str && (buf = (char *)ft_memalloc(BUFF_SIZE))))
@@ -41,12 +41,21 @@ int		get_next_line(const int fd, char **line)
 		// return (-1);
 	// }
 
-	buf = (char *)ft_memalloc(BUFF_SIZE);
-	if (read(data->index_fd, buf, 0) == -1)
+	printf ("size BUFF = %lu\n",sizeof(BUFF_SIZE));
+
+	// if (sizeof(BUFF_SIZE) != 4 || BUFF_SIZE < 0)
+	// {
+		// return(-1);
+	// }
+	sleep(10);
+
+	if (!(buf = (char *)ft_memalloc(BUFF_SIZE)) || read(fd, buf, 0) == -1)
 	{
-		ft_putstr_fd_v2(RED"\aGNL -> read ∅\n"RESET, 2);
+		free(buf);
+		ft_putstr_fd_v2(RED"\aGNL -> malloc ∅ | read ∅\n"RESET, 2);
 		return (-1);
 	}
+
 	// data = begin;
 	// while (data->index_fd != fd)
 	// {
@@ -132,14 +141,8 @@ int		main(int ac, char **av)
 				ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
 				return (1);
 			}
-			get_next_line(fd, &str);
-			get_next_line(fd, &str);
-			get_next_line(fd, &str);
-			get_next_line(fd, &str);
-			get_next_line(fd, &str);
-
-
-
+			while (get_next_line(fd, &str) > 0)
+			{}
 
 			if (close(fd) == -1)
 			{
@@ -150,8 +153,8 @@ int		main(int ac, char **av)
 		}
 	else
 	{
-		get_next_line(fd, &str);
-		ft_putstr_v2(str);
+		while (get_next_line(fd, &str))
+		{}
 		// free(str);
 	}
 

@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 21:05:38 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/23 03:23:46 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:47:30 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ int		ft_strlen_v2(char *s)
 			return ((str + 7) - s);
 		str += 8;
 	}
+}
+
+size_t	ft_strlen_1(char *s)
+{
+	char *str;
+
+	str = s;
+	while (*str)
+		str++;
+	return (str - s);
 }
