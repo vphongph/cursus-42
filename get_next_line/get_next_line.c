@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/04 18:59:51 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/06 23:20:37 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <stdio.h>
 
 
+#include <malloc/malloc.h>
+
 
 int		get_next_line(const int fd, char **line)
 {
@@ -28,10 +30,7 @@ int		get_next_line(const int fd, char **line)
 	int 				i = -1;
 
 	if (!data)
-	{
 		data = (t_fddata *)ft_memalloc(sizeof(t_fddata));
-		data->str = (char *)ft_memalloc(0);
-	}
 
 	// if (!(line && data->str && (buf = (char *)ft_memalloc(BUFF_SIZE))))
 	// {
@@ -41,24 +40,28 @@ int		get_next_line(const int fd, char **line)
 		// return (-1);
 	// }
 
-	printf ("size BUFF = %lu\n",sizeof(BUFF_SIZE));
-	printf ("size BUFF = %lu\n",sizeof(BUFF_SIZE + 1));
-	printf ("BUFF = %d\n", BUFF_SIZE);
+	// printf ("size BUFF = %lu\n",sizeof(BUFF_SIZE));
+	// printf ("size BUFF = %lu\n",sizeof(BUFF_SIZE + 1));
+	// printf ("BUFF = %d\n", BUFF_SIZE);
 
 	if (sizeof(BUFF_SIZE + 1) != 4 || BUFF_SIZE < 0)
 	{
 		ft_putstr_fd_v2(RED"\aGNL -> ∅ BUFF SIZE\n"RESET, 2);
+		printf("malloc line ? = %lu\n", malloc_size(*line));
+		printf("malloc data str ? = %lu\n", malloc_size(data->str));
+		printf("malloc buf ? = %lu\n", malloc_size(buf));
 		return(-1);
 	}
-
 
 	if (!(buf = (char *)ft_memalloc(BUFF_SIZE)) || read(fd, buf, 0) == -1)
 	{
 		free(buf);
 		ft_putstr_fd_v2(RED"\aGNL -> malloc ∅ | read ∅\n"RESET, 2);
+		printf("malloc line ? = %lu\n", malloc_size(*line));
+		printf("malloc data str ? = %lu\n", malloc_size(data->str));
+		printf("malloc buf ? = %lu\n", malloc_size(buf));
 		return (-1);
 	}
-	printf("read 0 = %zd\n", read(fd, buf, 0));
 
 	// data = begin;
 	// while (data->index_fd != fd)
@@ -77,11 +80,13 @@ int		get_next_line(const int fd, char **line)
 			;
 		if (data->str[i] == '\n')
 		{
-			ft_putstr_v2(YELLOW"y'a un \\n dans la static\n"RESET);
 			*line = ft_strsub_v2(data->str, 0, i);
 			write(1, *line, i + 1);
-			ft_putstr_v2(ALLIANCE"%\n"RESET);
+			ft_putstr_v2(ASSEMBLY"%\n"RESET);
 			data->str = ft_memcpy_v2(data->str, &data->str[i + 1], data->size_str -= i + 1);
+			printf("malloc line ? = %lu\n", malloc_size(*line));
+			printf("malloc data str ? = %lu\n", malloc_size(data->str));
+			printf("malloc buf ? = %lu\n", malloc_size(buf));
 			return (1);
 		}
 
@@ -97,7 +102,6 @@ int		get_next_line(const int fd, char **line)
 		}
 		if (data->str[i] == '\n')
 		{
-			ft_putstr_v2(YELLOW"y'a un \\n\n"RESET);
 			*line = ft_strsub_v2(data->str, 0, i);
 			write(1, *line, i + 1);
 			ft_putstr_v2(ALLIANCE"%\n"RESET);
@@ -108,16 +112,29 @@ int		get_next_line(const int fd, char **line)
 			}
 			write(1, data->str, ret - 1);
 			ft_putstr_v2(ORDER"%\n"RESET);
+			printf("malloc line ? = %lu\n", malloc_size(*line));
+			printf("malloc data str ? = %lu\n", malloc_size(data->str));
+			printf("malloc buf ? = %lu\n", malloc_size(buf));
 			return (1);
 		}
 	}
-
-	ft_putstr_v2(YELLOW"y'a PAS de \\n\n"RESET);
+	free(buf);
+	if (!(i + 1))
+	{
+		ft_putstr_v2(FEDERATION"%\n"RESET);
+		printf("malloc line ? = %lu\n", malloc_size(*line));
+		printf("malloc data str ? = %lu\n", malloc_size(data->str));
+		printf("malloc buf ? = %lu\n", malloc_size(buf));
+		free(data->str);
+		return (0);
+	}
 	*line = ft_strsub_v2(data->str, 0, i + 1);
 	write(1, *line, i + 2);
 	ft_putstr_v2(FEDERATION"%\n"RESET);
-	free(buf);
-	// free(data->str);
+	free(data->str);
+	printf("malloc line ? = %lu\n", malloc_size(*line));
+	printf("malloc data str ? = %lu\n", malloc_size(data->str));
+	printf("malloc buf ? = %lu\n", malloc_size(buf));
 	return(0);
 }
 
@@ -125,12 +142,11 @@ int		main(int ac, char **av)
 {
 	int fd;
 	char *str = NULL;
-	// char *str = "lol";
 	// char const *str;
 	// const char *str;
 	// char str[10];
 	// char str[10] = {'a','b','c',0};
-	// str = (char *)malloc(1);
+	// str = (char *)malloc(0);
 
 	// int i = 10000;
 
@@ -138,29 +154,32 @@ int		main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		// while (i--)
-		// {
-			if ((fd = open(av[1], O_RDONLY)) == -1)
-			{
-				ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
-				return (1);
-			}
-			while (get_next_line(fd, &str) > 0)
-			{}
-
-			if (close(fd) == -1)
-			{
-				ft_putstr_fd_v2(RED"\aClose failed\n"RESET, 2);
-				return (1);
-			}
-		// }
+		if ((fd = open(av[1], O_RDONLY)) == -1)
+		{
+			ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
+			return (1);
 		}
+		while (get_next_line(fd, &str) > 0)
+		{
+			free(str);
+		printf("malloc main line ? = %lu\n", malloc_size(str));
+
+		}
+		free(str);
+		printf("malloc main line ? = %lu\n", malloc_size(str));
+		if (close(fd) == -1)
+		{
+			ft_putstr_fd_v2(RED"\aClose failed\n"RESET, 2);
+			return (1);
+		}
+	}
 	else
 	{
 		while (get_next_line(fd, &str))
 		{}
-		// free(str);
 	}
+
+	sleep(3);
 
 	return (0);
 }

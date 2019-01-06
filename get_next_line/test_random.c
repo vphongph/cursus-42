@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 01:35:06 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/20 21:09:30 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:08:21 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 void 	test_leaks(void)
 {
 	// char *str = NULL;
-	// str = ft_memalloc(10);
+	ft_memalloc(0);
 	// free(str);
 }
 
 int		main(void)
 {
-	// int i = -1;
-	// // char *str;
+	// int i = 2;
+	char *str;
 	// // char *str1 = NULL;
 	// char str1[26] = "Hello je suis un Pingouin";
 	// char str1_1[41] = ALLIANCE"Vive l'Alliance !\n"RESET;
@@ -42,7 +42,7 @@ int		main(void)
 
 	// ft_bzero_v2(str4, 1000000);
 
-	// test_leaks();
+	test_leaks();
 
 	// str3 = ft_memdup(str1_1,ft_strlen_v2(str1_1) + 1);
 	// printf("%s\n", str3);
@@ -56,7 +56,9 @@ int		main(void)
 	// ft_memalloc(1000);
 	// ft_memalloc(1000);
 	// ft_memalloc(1000);
-	// ft_memalloc(1000);
+
+	// while(i--)
+		// ft_memalloc(0);
 
 	// free(str3);
 
@@ -83,7 +85,9 @@ int		main(void)
 	// printf("%lu\n", strlen(str1));
 	// printf("%lu\n", strlen("à"));
 	// write(1,"END\n",4);
-	// str = malloc(0);
+	str = malloc(0);
+
+	sleep(3);
 
 	return (0);
 }
