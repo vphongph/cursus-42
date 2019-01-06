@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/06 23:20:37 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/06 23:30:46 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int		get_next_line(const int fd, char **line)
 			printf("malloc line ? = %lu\n", malloc_size(*line));
 			printf("malloc data str ? = %lu\n", malloc_size(data->str));
 			printf("malloc buf ? = %lu\n", malloc_size(buf));
+			free(buf);
 			return (1);
 		}
 
@@ -115,6 +116,7 @@ int		get_next_line(const int fd, char **line)
 			printf("malloc line ? = %lu\n", malloc_size(*line));
 			printf("malloc data str ? = %lu\n", malloc_size(data->str));
 			printf("malloc buf ? = %lu\n", malloc_size(buf));
+			free(buf);
 			return (1);
 		}
 	}
@@ -165,7 +167,6 @@ int		main(int ac, char **av)
 		printf("malloc main line ? = %lu\n", malloc_size(str));
 
 		}
-		free(str);
 		printf("malloc main line ? = %lu\n", malloc_size(str));
 		if (close(fd) == -1)
 		{
