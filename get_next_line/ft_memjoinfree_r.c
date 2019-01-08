@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 03:16:09 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/20 01:20:27 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/08 23:15:59 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 ** ATTENTION size_t n
 ** Penser au type de var (sizeof)
 ** Et + 1  à size_t n -> cpy \0 de str s'il existe (éviter overflow)
+** Si len = 0, pointeur NULL ok
 */
 
 void	*ft_memjoinfree_r(void *s1, void *s2, size_t l, size_t n)
 {
 	void *mem;
 
-	if (!(s1 && s2 && (mem = ft_memjoin(s1, s2, l, n))))
+	if ((l && !s1) || (n && !s2) || !(mem = ft_memjoin(s1, s2, l, n)))
 	{
 		if (ft_putstr_fd_v2(RED"\amemJF_R ∅ pointer | malloc ∅\n"
 			RESET, 2) == -1)

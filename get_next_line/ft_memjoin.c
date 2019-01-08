@@ -6,35 +6,27 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 01:48:59 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/08 18:32:58 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/08 23:37:00 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
-
 
 /*
 ** ATTENTION size_t n
 ** Penser au type de var (sizeof)
 ** Et + 1  à size_t n -> cpy \0 de str s'il existe (éviter overflow)
+** Si len = 0, pointeur NULL ok
+** Mais attention malloc 0 dans le cas ou les deux len = 0 !
 */
 
 void	*ft_memjoin(void *s1, void *s2, size_t l, size_t n)
 {
 	void *mem;
 
-	printf("s1 = %s\n", s1);
-	printf("l %lu\n", l);
-	printf("s2 = %s\n", s2);
-	printf("n =%lu\n", n);
-
-
-	if ((l && !s1)
-		|| (n && !s2)
-		|| !(mem = malloc(l + n)))
+	if ((l && !s1) || (n && !s2) || !(mem = malloc(l + n)))
 	{
 		if (ft_putstr_fd_v2(RED"\amemjoin ∅ pointer | malloc ∅\n"
 			RESET, 2) == -1)

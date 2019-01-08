@@ -6,13 +6,13 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 23:17:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/08 19:01:40 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/08 23:48:12 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 5L
+# define BUFF_SIZE 2147483648
 
 typedef struct	s_fdDat{
 
