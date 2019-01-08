@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/08 02:26:19 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/08 19:14:44 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static int	check(int fd, char **line, char **buf, t_fdDat **dat)
 		&& line
 		&& !read(fd, *buf, 0)
 		&& (*dat ? *dat : (*dat = (t_fdDat *)ft_memalloc(sizeof(t_fdDat)))))
+	{
+		printf("\"%s\"\n", *buf);
 		return (0);
+	}
 	free(*buf);
 	ft_putstr_fd_v2(RED"\aGNL -> check ∅\n"RESET, 2);
 	return (1);
@@ -36,7 +39,7 @@ static int	check(int fd, char **line, char **buf, t_fdDat **dat)
 int			get_next_line(const int fd, char **line)
 {
 	// static t_fdDat*	begin;
-	static t_fdDat*		dat;
+	static t_fdDat*		dat = 0x0;
 	char				*buf;
 	int 				ret;
 	int 				i = -1;
@@ -60,6 +63,8 @@ int			get_next_line(const int fd, char **line)
 
 	// }
 
+	ft_putstr_v2(YELLOW"doubleliputUUUUU\n"RESET);
+
 	dat->index_fd = fd;
 
 	while ((i + 1) < dat->size_s)
@@ -74,9 +79,10 @@ int			get_next_line(const int fd, char **line)
 			return (1);
 		}
 	}
-
-	while ((ret = read(dat->index_fd, buf, BUFF_SIZE)))
+	printf("%d\n", (int)BUFF_SIZE);
+	while ((ret = read(dat->index_fd, buf, BUFF_SIZE)) > 0 )
 	{
+		printf("%d\n", ret);
 		dat->s = ft_memjoinfree_l(dat->s, buf, dat->size_s, ret);
 		dat->size_s += ret;
 		while (ret > 0 && dat->s[++i] != '\n')
@@ -138,12 +144,12 @@ int		main(int ac, char **av)
 			free(str);
 			str = NULL;
 		}
-		get_next_line(fd, &str);
-		free(str);
-		str = NULL;
-		get_next_line(fd, &str);
-		free(str);
-		str = NULL;
+		// get_next_line(fd, &str);
+		// free(str);
+		// str = NULL;
+		// get_next_line(fd, &str);
+		// free(str);
+		// str = NULL;
 
 		if (close(fd) == -1)
 		{
