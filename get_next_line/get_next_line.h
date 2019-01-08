@@ -6,21 +6,21 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 23:17:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/06 23:11:49 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/08 02:32:30 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 10000
+# define BUFF_SIZE ((unsigned long)(unsigned int)((unsigned long)-1))
 
-typedef struct	s_fddata{
+typedef struct	s_fdDat{
 
-	char			*str;
+	char			*s;
 	int 			index_fd;
-	int				size_str;
+	int				size_s;
 	struct s_fddata	*next;
 
-}				t_fddata;
+}				t_fdDat;
 
 #endif

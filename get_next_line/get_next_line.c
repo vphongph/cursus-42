@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/06 23:30:46 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/08 02:26:19 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,102 +20,76 @@
 
 #include <malloc/malloc.h>
 
-
-int		get_next_line(const int fd, char **line)
+static int	check(int fd, char **line, char **buf, t_fdDat **dat)
 {
-	// static t_fddata*	begin;
-	static t_fddata*	data;
+
+	if ((*buf = (char *)ft_memalloc(BUFF_SIZE))
+		&& line
+		&& !read(fd, *buf, 0)
+		&& (*dat ? *dat : (*dat = (t_fdDat *)ft_memalloc(sizeof(t_fdDat)))))
+		return (0);
+	free(*buf);
+	ft_putstr_fd_v2(RED"\aGNL -> check ∅\n"RESET, 2);
+	return (1);
+}
+
+int			get_next_line(const int fd, char **line)
+{
+	// static t_fdDat*	begin;
+	static t_fdDat*		dat;
 	char				*buf;
 	int 				ret;
 	int 				i = -1;
 
-	if (!data)
-		data = (t_fddata *)ft_memalloc(sizeof(t_fddata));
-
-	// if (!(line && data->str && (buf = (char *)ft_memalloc(BUFF_SIZE))))
-	// {
-		// free(data->str);
-		// free(buf);
-		// ft_putstr_fd_v2(RED"\aGNL -> pointer ∅ | malloc ∅\n"RESET, 2);
-		// return (-1);
-	// }
-
-	// printf ("size BUFF = %lu\n",sizeof(BUFF_SIZE));
-	// printf ("size BUFF = %lu\n",sizeof(BUFF_SIZE + 1));
-	// printf ("BUFF = %d\n", BUFF_SIZE);
-
-	if (sizeof(BUFF_SIZE + 1) != 4 || BUFF_SIZE < 0)
-	{
-		ft_putstr_fd_v2(RED"\aGNL -> ∅ BUFF SIZE\n"RESET, 2);
-		printf("malloc line ? = %lu\n", malloc_size(*line));
-		printf("malloc data str ? = %lu\n", malloc_size(data->str));
-		printf("malloc buf ? = %lu\n", malloc_size(buf));
+	if (check(fd, line, &buf, &dat))
 		return(-1);
-	}
 
-	if (!(buf = (char *)ft_memalloc(BUFF_SIZE)) || read(fd, buf, 0) == -1)
-	{
-		free(buf);
-		ft_putstr_fd_v2(RED"\aGNL -> malloc ∅ | read ∅\n"RESET, 2);
-		printf("malloc line ? = %lu\n", malloc_size(*line));
-		printf("malloc data str ? = %lu\n", malloc_size(data->str));
-		printf("malloc buf ? = %lu\n", malloc_size(buf));
-		return (-1);
-	}
-
-	// data = begin;
-	// while (data->index_fd != fd)
+	// if (!(line && dat->s && (buf = (char *)ft_memalloc(BUFF_SIZE))))
 	// {
-	// 	data = data->next;
-	// 	if (data == NULL)
+	// 	free(dat->s);
+	// 	free(buf);
+	// 	ft_putstr_fd_v2(RED"\aGNL -> pointer ∅ | malloc ∅\n"RESET, 2);
+	// 	return (-1);
+	// }
+
+	// dat = begin;
+	// while (dat->index_fd != fd)
+	// {
+	// 	dat = dat->next;
+	// 	if (dat == NULL)
 
 	// }
 
-	data->index_fd = fd;
+	dat->index_fd = fd;
 
-
-	if (data->size_str > 0)
+	while ((i + 1) < dat->size_s)
 	{
-		while ((i + 1) < data->size_str && data->str[++i]!= '\n')
-			;
-		if (data->str[i] == '\n')
+		if (dat->s[++i] == '\n')
 		{
-			*line = ft_strsub_v2(data->str, 0, i);
-			write(1, *line, i + 1);
-			ft_putstr_v2(ASSEMBLY"%\n"RESET);
-			data->str = ft_memcpy_v2(data->str, &data->str[i + 1], data->size_str -= i + 1);
-			printf("malloc line ? = %lu\n", malloc_size(*line));
-			printf("malloc data str ? = %lu\n", malloc_size(data->str));
-			printf("malloc buf ? = %lu\n", malloc_size(buf));
+			*line = ft_strsub_v2(dat->s, 0, i);
+			// write(1, *line, i + 1);
+			// ft_putstr_v2(ASSEMBLY"%\n"RESET);
+			dat->s = ft_memcpy_v2(dat->s, &dat->s[i + 1], dat->size_s -= i + 1);
 			free(buf);
 			return (1);
 		}
-
 	}
 
-	while ((ret = read(data->index_fd, buf, BUFF_SIZE)))
+	while ((ret = read(dat->index_fd, buf, BUFF_SIZE)))
 	{
-		data->str = ft_memjoinfree_l(data->str, buf, data->size_str, ret);
-		data->size_str += ret;
-		while (ret > 0 && data->str[++i] != '\n')
-		{
+		dat->s = ft_memjoinfree_l(dat->s, buf, dat->size_s, ret);
+		dat->size_s += ret;
+		while (ret > 0 && dat->s[++i] != '\n')
 			ret--;
-		}
-		if (data->str[i] == '\n')
+		if (dat->s[i] == '\n')
 		{
-			*line = ft_strsub_v2(data->str, 0, i);
-			write(1, *line, i + 1);
-			ft_putstr_v2(ALLIANCE"%\n"RESET);
-			if (ret)
-			{
-				data->str = ft_memcpy_v2(data->str, &data->str[i + 1], ret - 1);
-				data->size_str = ret - 1;
-			}
-			write(1, data->str, ret - 1);
-			ft_putstr_v2(ORDER"%\n"RESET);
-			printf("malloc line ? = %lu\n", malloc_size(*line));
-			printf("malloc data str ? = %lu\n", malloc_size(data->str));
-			printf("malloc buf ? = %lu\n", malloc_size(buf));
+			*line = ft_strsub_v2(dat->s, 0, i);
+			// write(1, *line, i + 1);
+			// ft_putstr_v2(ALLIANCE"%\n"RESET);
+			dat->s = ft_memcpy_v2(dat->s, &dat->s[i + 1], ret - 1);
+			dat->size_s = ret - 1;
+			// write(1, dat->s, ret - 1);
+			// ft_putstr_v2(ORDER"%\n"RESET);
 			free(buf);
 			return (1);
 		}
@@ -123,20 +97,18 @@ int		get_next_line(const int fd, char **line)
 	free(buf);
 	if (!(i + 1))
 	{
-		ft_putstr_v2(FEDERATION"%\n"RESET);
-		printf("malloc line ? = %lu\n", malloc_size(*line));
-		printf("malloc data str ? = %lu\n", malloc_size(data->str));
-		printf("malloc buf ? = %lu\n", malloc_size(buf));
-		free(data->str);
+		// ft_putstr_v2(YELLOW"%\n"RESET);
+		free(dat);
+		dat = NULL;
 		return (0);
 	}
-	*line = ft_strsub_v2(data->str, 0, i + 1);
-	write(1, *line, i + 2);
-	ft_putstr_v2(FEDERATION"%\n"RESET);
-	free(data->str);
-	printf("malloc line ? = %lu\n", malloc_size(*line));
-	printf("malloc data str ? = %lu\n", malloc_size(data->str));
-	printf("malloc buf ? = %lu\n", malloc_size(buf));
+	*line = ft_strsub_v2(dat->s, 0, i + 1);
+	// write(1, *line, i + 2);
+	// ft_putstr_v2(FEDERATION"%\n"RESET);
+	free(dat->s);
+	dat->s = NULL;
+	free(dat);
+	dat = NULL;
 	return(0);
 }
 
@@ -164,10 +136,15 @@ int		main(int ac, char **av)
 		while (get_next_line(fd, &str) > 0)
 		{
 			free(str);
-		printf("malloc main line ? = %lu\n", malloc_size(str));
-
+			str = NULL;
 		}
-		printf("malloc main line ? = %lu\n", malloc_size(str));
+		get_next_line(fd, &str);
+		free(str);
+		str = NULL;
+		get_next_line(fd, &str);
+		free(str);
+		str = NULL;
+
 		if (close(fd) == -1)
 		{
 			ft_putstr_fd_v2(RED"\aClose failed\n"RESET, 2);
