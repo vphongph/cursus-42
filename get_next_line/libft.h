@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/04 18:06:15 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/09 21:26:19 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ typedef	struct	s_list
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
+
+typedef	struct	s_dlist
+{
+	struct s_dlist *prev;
+	struct s_dlist *next;
+	void			*content;
+	size_t			content_size;
+}				t_dlist;
 
 typedef struct	s_512speed
 {
@@ -118,5 +126,7 @@ int				ft_putstr_fd_v2(char *s, int fd);
 int				ft_putstr_v2(char *s);
 void			ft_bzero_v2(void *s, size_t n);
 char			*ft_strsub_v2(char *s, unsigned int start, size_t len);
+t_dlist			*ft_dlstnew(void *content, size_t content_size);
+
 
 #endif

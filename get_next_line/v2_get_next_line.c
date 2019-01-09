@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   v2_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/09 22:56:26 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/09 21:13:11 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,14 @@
 #include <stdio.h>
 #include <malloc/malloc.h>
 
-static int	check(int fd, char **line, char **buf, t_dlist **dlst)
+static int	check(int fd, char **line, char **buf, t_fdDat **dat)
 {
-	// t_fdDat *dat;
-	t_fdDat dat;
-	dat.s = NULL;
-	dat.index_fd = 0;
-	dat.size_s = 0;
-
 	if ((*buf = ((int)BUFF_SIZE < 0 ? NULL : (char *)ft_memalloc(BUFF_SIZE)))
 		&& line
 		&& !read(fd, *buf, 0)
-		&& (*dlst ? *dlst : (*dlst = ft_dlstnew(&dat, sizeof(t_fdDat)))))
-	{
-		// free(*dlst);
-		printf("malloc size dlst = %lu\n", malloc_size(*dlst));
-		(*dlst)->content = &dat;
-		printf("malloc size s = %lu\n", malloc_size(dat.s));
-		printf("malloc size content = %lu\n", malloc_size((*dlst)->content));
-		printf("malloc size s = %lu\n", malloc_size(((t_fdDat*)(*dlst)->content)->s));
-		printf("fd = %d\n",((t_fdDat*)(*dlst)->content)->index_fd = fd);
+		&& (*dat ? *dat : (*dat = (t_fdDat *)ft_memalloc(sizeof(t_fdDat)))))
+		// && (*dlst ? *dlst : ft_lstnew(dat, sizeof(dat))))
 		return (0);
-	}
 	free(*buf);
 	ft_putstr_fd_v2(RED"\aGNL -> check ∅\n"RESET, 2);
 	return (1);
@@ -49,15 +35,14 @@ static int	check(int fd, char **line, char **buf, t_dlist **dlst)
 
 int			get_next_line(const int fd, char **line)
 {
-	static t_dlist*		dlst;
+	// static t_dlist*		dlst;
+	static t_fdDat*		dat;
 	char				*buf;
-	// int 				ret;
-	// int 				i = -1;
+	int 				ret;
+	int 				i = -1;
 
-	if (check(fd, line, &buf, &dlst))
+	if (check(fd, line, &buf, &dat))
 		return(-1);
-
-	// free(dlst);
 
 	// if (!(line && dat->s && (buf = (char *)ft_memalloc(BUFF_SIZE))))
 	// {
@@ -75,54 +60,54 @@ int			get_next_line(const int fd, char **line)
 
 	// }
 
-	// dlst->((t_fdDat*)content)->index_fd = fd;
+	dat->index_fd = fd;
 
-	// while ((i + 1) < dlst->size_s)
-	// {
-	// 	if (dlst->s[++i] == '\n')
-	// 	{
-	// 		*line = ft_strsub_v2(dlst->s, 0, i);
-	// 		write(1, *line, i + 1);
-	// 		ft_putstr_v2(ASSEMBLY"%\n"RESET);
-	// 		dlst->s = ft_memcpy_v2(dlst->s, &dlst->s[i + 1], dlst->size_s -= i + 1);
-	// 		free(buf);
-	// 		return (1);
-	// 	}
-	// }
-	// while ((ret = read(dlst->index_fd, buf, BUFF_SIZE)))
-	// {
-	// 	dlst->s = ft_memjoinfree_l(dlst->s, buf, dlst->size_s, ret);
-	// 	dlst->size_s += ret;
-	// 	while (ret > 0 && dlst->s[++i] != '\n')
-	// 		ret--;
-	// 	if (dlst->s[i] == '\n')
-	// 	{
-	// 		*line = ft_strsub_v2(dlst->s, 0, i);
-	// 		write(1, *line, i + 1);
-	// 		ft_putstr_v2(ALLIANCE"%\n"RESET);
-	// 		dlst->s = ft_memcpy_v2(dlst->s, &dlst->s[i + 1], ret - 1);
-	// 		dlst->size_s = ret - 1;
-	// 		// write(1, dlst->s, ret - 1);
-	// 		// ft_putstr_v2(ORDER"%\n"RESET);
-	// 		free(buf);
-	// 		return (1);
-	// 	}
-	// }
-	// free(buf);
-	// if (!(i + 1))
-	// {
-	// 	// ft_putstr_v2(YELLOW"%\n"RESET);
-	// 	free(dlst);
-	// 	dlst = NULL;
-	// 	return (0);
-	// }
-	// *line = ft_strsub_v2(dlst->s, 0, i + 1);
-	// write(1, *line, i + 2);
-	// ft_putstr_v2(FEDERATION"%\n"RESET);
-	// free(dlst->s);
-	// dlst->s = NULL;
-	// free(dlst);
-	// dlst = NULL;
+	while ((i + 1) < dat->size_s)
+	{
+		if (dat->s[++i] == '\n')
+		{
+			*line = ft_strsub_v2(dat->s, 0, i);
+			write(1, *line, i + 1);
+			ft_putstr_v2(ASSEMBLY"%\n"RESET);
+			dat->s = ft_memcpy_v2(dat->s, &dat->s[i + 1], dat->size_s -= i + 1);
+			free(buf);
+			return (1);
+		}
+	}
+	while ((ret = read(dat->index_fd, buf, BUFF_SIZE)))
+	{
+		dat->s = ft_memjoinfree_l(dat->s, buf, dat->size_s, ret);
+		dat->size_s += ret;
+		while (ret > 0 && dat->s[++i] != '\n')
+			ret--;
+		if (dat->s[i] == '\n')
+		{
+			*line = ft_strsub_v2(dat->s, 0, i);
+			write(1, *line, i + 1);
+			ft_putstr_v2(ALLIANCE"%\n"RESET);
+			dat->s = ft_memcpy_v2(dat->s, &dat->s[i + 1], ret - 1);
+			dat->size_s = ret - 1;
+			// write(1, dat->s, ret - 1);
+			// ft_putstr_v2(ORDER"%\n"RESET);
+			free(buf);
+			return (1);
+		}
+	}
+	free(buf);
+	if (!(i + 1))
+	{
+		// ft_putstr_v2(YELLOW"%\n"RESET);
+		free(dat);
+		dat = NULL;
+		return (0);
+	}
+	*line = ft_strsub_v2(dat->s, 0, i + 1);
+	write(1, *line, i + 2);
+	ft_putstr_v2(FEDERATION"%\n"RESET);
+	free(dat->s);
+	dat->s = NULL;
+	free(dat);
+	dat = NULL;
 	return(0);
 }
 
