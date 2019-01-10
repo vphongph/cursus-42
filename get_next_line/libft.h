@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/09 21:26:19 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/10 17:20:04 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef	struct	s_list
 
 typedef	struct	s_dlist
 {
-	struct s_dlist *prev;
-	struct s_dlist *next;
+	struct s_dlist	*prev;
+	struct s_dlist	*next;
 	void			*content;
 	size_t			content_size;
 }				t_dlist;
