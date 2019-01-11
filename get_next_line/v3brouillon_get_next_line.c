@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   v3brouillon_get_next_line.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/11 16:40:46 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/11 16:33:46 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,43 @@
 
 static int	check(int fd, char **line, char **buf, t_dlist **dlst)
 {
+	// t_fdDat *dat;
 	t_fdDat dat;
 	dat.s = NULL;
 	dat.index_fd = 0;
 	dat.size_s = 0;
 
 	if ((*buf = ((int)BUFF_SIZE < 0 ? NULL : (char *)ft_memalloc(BUFF_SIZE)))
-		&& line && !read(fd, *buf, 0)
-			&& (*dlst ? *dlst : (*dlst = ft_dlstnew(&dat, sizeof(t_fdDat)))))
+		&& line
+		&& !read(fd, *buf, 0)
+		&& (*dlst ? *dlst : (*dlst = ft_dlstnew(&dat, sizeof(t_fdDat)))))
+	{
+		free(*buf);
+		buf = NULL;
+		// dat.s = malloc(0);
+		printf("     malloc size dat s = %lu\n", malloc_size(dat.s));
+
+		// dat.s = ((t_fdDat *)(*dlst)->content)->s;
+		printf("     malloc size dat.s = %lu\n", malloc_size(dat.s));
+		printf("     malloc size dlst = %lu\n", malloc_size(*dlst));
+		free(((t_fdDat *)(*dlst)->content)->s);
+		free((*dlst)->content);
+		// ((t_fdDat *)(*dlst)->content)->s = NULL;
+		free(*dlst);
+		// *dlst = NULL;
+		// free(dat.s);
+		// dat.s = NULL;
+		printf("     malloc size dlst = %lu\n\n", malloc_size(*dlst));
+
+
+		// printf("     malloc size dlst = %lu\n", malloc_size(*dlst));
+		// printf("  malloc size content = %lu\n", malloc_size((*dlst)->content));
+		// printf("    malloc size dat s = %lu\n", malloc_size(dat.s));
+		// printf("malloc size content s = %lu\n", malloc_size(((t_fdDat*)(*dlst)->content)->s));
+		// printf("fd = %d\n",((t_fdDat*)(*dlst)->content)->index_fd = fd);
 		return (0);
+	}
 	free(*buf);
-	// *dlst ? free(*dlst) && dlst = NULL && : ;
 	ft_putstr_fd_v2(RED"\aGNL -> check ∅\n"RESET, 2);
 	return (1);
 }
