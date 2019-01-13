@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/13 04:39:23 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/13 06:07:43 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,21 @@ static int	check(int fd, char **line, char **buf, t_dlist **dlst)
 			&& (*dlst ? *dlst : (*dlst = ft_dlstnew(&dat, sizeof(t_fdDat)))))
 		return (0);
 	free(*buf);
+	// if (*dlst)
+	{
+		ft_putstr_v2("ICI\n");
+		malloc_size(((t_fdDat *)(*dlst)->content)->s);
+		ft_putstr_v2("ICI\n");
+		sleep(10);
+		ft_memdel((void *)&((t_fdDat *)(*dlst)->content)->s);
+		printf("mal size s = %lu\n", malloc_size(((t_fdDat *)(*dlst)->content)->s));
+		printf("mal size content = %lu\n", malloc_size((*dlst)->content));
+		ft_memdel((void *)&(*dlst)->content);
+		printf("mal size content = %lu\n", malloc_size((*dlst)->content));
+	}
+	printf("mal size dlst = %lu\n", malloc_size(*dlst));
+	ft_memdel((void *)dlst);
+	printf("mal size dlst = %lu\n", malloc_size(*dlst));
 	// free static
 	ft_putstr_fd_v2(RED"\aGNL -> check ∅\n"RESET, 2);
 	return (1);
@@ -44,14 +59,14 @@ static int	gnl1_0(char **line, t_dlist **dlst, int *i, char **buf)
 	t_fdDat*	ss;
 
 	ss = ((t_fdDat *)(*dlst)->content);
-	free(*buf);
+	ft_memdel((void *)buf);
 	if (i[2] == 'Z')
 	{
 		(i[0] + 1) ? (*line = ft_strsub_v2(ss->s, 0, i[0] + 1)) : *line;
 		(i[0] + 1) ? write(1, *line, i[0] + 2),  ft_putstr_v2(FEDERATION"%\n"RESET): ft_putstr_v2(YELLOW"%\n"RESET);
 		ft_memdel((void *)&ss->s);
 		ft_memdel((void *)&ss);
-		ft_memdel((void *)&*dlst);
+		ft_memdel((void *)dlst);
 	}
 	else
 		*line = ft_strsub_v2(ss->s, 0, i[0]);
@@ -126,6 +141,7 @@ int			main(int ac, char **av)
 		printf("%d\n",get_next_line(fd, &str));
 		free(str);
 		str = NULL;
+		fd--;
 
 		if (close(fd) == -1)
 		{
