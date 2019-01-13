@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   test_valgrind.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 23:17:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/13 20:42:54 by vphongph         ###   ########.fr       */
+/*   Created: 2019/01/13 20:01:43 by vphongph          #+#    #+#             */
+/*   Updated: 2019/01/13 20:07:57 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
-# include <string.h>
+#include <unistd.h>
 
-typedef struct	s_fdDat{
-
-	char		*s;
-	int 		index_fd;
-	int			size_s;
-}				t_fdDat;
-
-#endif
+int 	main(void)
+{
+	sleep(3);
+	return (0);
+}

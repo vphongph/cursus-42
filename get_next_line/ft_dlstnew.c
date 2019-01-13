@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 00:14:23 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/13 06:05:29 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/13 19:32:17 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_dlist	*ft_dlstnew(void *content, size_t content_size)
 {
 	t_dlist *newlst;
 
-	if ((newlst = (t_dlist *)ft_memalloc(sizeof(t_dlist))))
+	if (!(newlst = (t_dlist *)ft_memalloc(sizeof(t_dlist))))
 		return (NULL);
 	if (!content)
 	{
