@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/13 04:39:23 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/13 03:54:53 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,7 @@ static int	gnl1_0(char **line, t_dlist **dlst, int *i, char **buf)
 	t_fdDat*	ss;
 
 	ss = ((t_fdDat *)(*dlst)->content);
-	free(*buf);
-	if (i[2] == 'Z')
-	{
-		(i[0] + 1) ? (*line = ft_strsub_v2(ss->s, 0, i[0] + 1)) : *line;
-		(i[0] + 1) ? write(1, *line, i[0] + 2),  ft_putstr_v2(FEDERATION"%\n"RESET): ft_putstr_v2(YELLOW"%\n"RESET);
-		ft_memdel((void *)&ss->s);
-		ft_memdel((void *)&ss);
-		ft_memdel((void *)&*dlst);
-	}
-	else
-		*line = ft_strsub_v2(ss->s, 0, i[0]);
+	i[2] == 'Z' ? *line : (*line = ft_strsub_v2(ss->s, 0, i[0]));
 	if (i[2] == 'S' && ((ss->size_s -= i[0] + 1) == ss->size_s))
 	{
 		ss->s = ft_memcpy_v2(ss->s, &ss->s[i[0] + 1], ss->size_s);
@@ -67,8 +57,62 @@ static int	gnl1_0(char **line, t_dlist **dlst, int *i, char **buf)
 		write(1, *line, i[0] + 1);
 		ft_putstr_v2(ALLIANCE"%\n"RESET);
 	}
+	free(*buf);
+	if (!(i[0] + 1))
+	{
+		ft_putstr_v2(YELLOW"%\n"RESET);
+		ft_memdel((void *)&ss);
+		ft_memdel((void *)&*dlst);
+
+	}
+	else if (i[2] == 'Z')
+	{
+		*line = ft_strsub_v2(ss->s, 0, i[0] + 1);
+		write(1, *line, i[0] + 2);
+		ft_putstr_v2(FEDERATION"%\n"RESET);
+		ft_memdel((void *)&ss->s);
+		ft_memdel((void *)&ss);
+		ft_memdel((void *)&*dlst);
+
+	}
 	return (i[2] == 'Z' ? 0 : 1);
 }
+
+// static int	gnl0(char **line, t_dlist **dlst, int *i, char **buf)
+// {
+// 	t_fdDat*			ss;
+
+// 	ss = ((t_fdDat *)(*dlst)->content);
+// 	if (!(i[0] + 1))
+// 	{
+// 		ft_putstr_v2(YELLOW"%\n"RESET);
+// 		printf("malloc size ss = %lu\n", malloc_size(ss));
+// 		ft_memdel((void *)&ss);
+// 		printf("malloc size ss = %lu\n", malloc_size(ss));
+// 		printf("malloc size dlst = %lu\n", malloc_size(*dlst));
+// 		ft_memdel((void *)&*dlst);
+// 		printf("malloc size dlst = %lu\n", malloc_size(*dlst));
+// 		free(*buf);
+
+// 		return(0);
+// 	}
+// 	*line = ft_strsub_v2(ss->s, 0, i[0] + 1);
+// 	write(1, *line, i[0] + 2);
+// 	ft_putstr_v2(FEDERATION"%\n"RESET);
+// 	printf("malloc size buf = %lu\n", malloc_size(ss->s));
+// 	ft_memdel((void *)&ss->s);
+// 	printf("malloc size buf = %lu\n", malloc_size(ss->s));
+// 	printf("malloc size ss = %lu\n", malloc_size(ss));
+// 	ft_memdel((void *)&ss);
+// 	printf("malloc size ss = %lu\n", malloc_size(ss));
+// 	printf("malloc size dlst = %lu\n", malloc_size(*dlst));
+// 	ft_memdel((void *)&*dlst);
+// 	printf("malloc size dlst = %lu\n", malloc_size(*dlst));
+// 	printf("malloc size buf = %lu\n", malloc_size(*buf));
+// 	free(*buf);
+
+// 	return(0);
+// }
 
 /*
 ** ATTENTION int i
@@ -84,7 +128,6 @@ int			get_next_line(const int fd, char **line)
 	int					i[3];
 
 	i[0] = -1;
-	i[2] = 'Z';
 	if ((check(fd, line, &buf, &dlst)))
 		return(-1);
 	((t_fdDat *)dlst->content)->index_fd = fd;
@@ -93,21 +136,48 @@ int			get_next_line(const int fd, char **line)
 			return (gnl1_0(line, &dlst, i, &buf));
 	while ((i[1] = read(((t_fdDat *)dlst->content)->index_fd, buf, BUFF_SIZE)))
 	{
-		((t_fdDat *)dlst->content)->s = ft_memjoinfree_l(
-			((t_fdDat *)dlst->content)->s,buf, ((t_fdDat *)dlst->content)->size_s, i[1]);
+		((t_fdDat *)dlst->content)->s = ft_memjoinfree_l(((t_fdDat *)dlst->content)->s,
+			buf, ((t_fdDat *)dlst->content)->size_s, i[1]);
 		((t_fdDat *)dlst->content)->size_s += i[1];
 		while (i[1] > 0 && ((t_fdDat *)dlst->content)->s[++i[0]] != '\n')
 			i[1]--;
 		if (((t_fdDat *)dlst->content)->s[i[0]] == '\n' && (i[2] = 'R'))
 			return (gnl1_0(line, &dlst, i, &buf));
 	}
+	i[2] = 'Z';
 	return (gnl1_0(line, &dlst, i, &buf));
+	// if (!(i[0] + 1))
+	// {
+	// 	// ft_putstr_v2(YELLOW"%\n"RESET);
+	// 	free(ss);
+	// 	ss = NULL;
+	// 	free(dlst);
+	// 	dlst = NULL;
+	// 	return (0);
+	// }
+	// *line = ft_strsub_v2(ss->s, 0, i[0] + 1);
+	// write(1, *line, i[0] + 2);
+	// ft_putstr_v2(FEDERATION"%\n"RESET);
+	// free(ss->s);
+	// ss->s = NULL;
+	// free(ss);
+	// ss = NULL;
+	// free(dlst);
+	// dlst = NULL;
+	// return(0);
 }
 
 int			main(int ac, char **av)
 {
 	int fd;
 	char *str = NULL;
+	// char const *str;
+	// const char *str;
+	// char str[10];
+	// char str[10] = {'a','b','c',0};
+	// str = (char *)malloc(0);
+
+	// int i = 10000;
 
 	fd = 0;
 
