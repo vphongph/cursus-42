@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/13 01:29:57 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/13 03:39:27 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,54 +39,80 @@ static int	check(int fd, char **line, char **buf, t_dlist **dlst)
 	return (1);
 }
 
-static int	gnl1_0(char **line, t_fdDat **ss, int *i, char **buf)
+static int	gnl1_0(char **line, t_dlist **dlst, int *i, char **buf)
 {
-	*line = ft_strsub_v2((*ss)->s, 0, i[0]);
-	if (i[2] == 'S' && (((*ss)->size_s -= i[0] + 1) == (*ss)->size_s))
-	// {
-		(*ss)->s = ft_memcpy_v2((*ss)->s, &(*ss)->s[i[0] + 1], (*ss)->size_s);
-		// write(1, *line, i[0] + 1);
-		// ft_putstr_v2(ASSEMBLY"%\n"RESET);
-	// }
-	if (i[2] == 'R' && (((*ss)->size_s = i[1] - 1) == (*ss)->size_s))
-	// {
-		(*ss)->s = ft_memcpy_v2((*ss)->s, &(*ss)->s[i[0] + 1], i[1] - 1);
-		// write(1, *line, i[0] + 1);
-		// ft_putstr_v2(ALLIANCE"%\n"RESET);
-	// }
-	free(*buf);
-	return (i[2] == 'Z' ? 0 : 1);
-}
-
-static int	gnl0(char **line, t_dlist **dlst, int *i, char **buf)
-{
-	t_fdDat*			ss;
+	t_fdDat*	ss;
 
 	ss = ((t_fdDat *)(*dlst)->content);
+	i[2] == 'Z' ? *line : (*line = ft_strsub_v2(ss->s, 0, i[0]));
+	if (i[2] == 'S' && ((ss->size_s -= i[0] + 1) == ss->size_s))
+	{
+		ss->s = ft_memcpy_v2(ss->s, &ss->s[i[0] + 1], ss->size_s);
+		write(1, *line, i[0] + 1);
+		ft_putstr_v2(ASSEMBLY"%\n"RESET);
+	}
+	if (i[2] == 'R' && ((ss->size_s = i[1] - 1) == ss->size_s))
+	{
+		ss->s = ft_memcpy_v2(ss->s, &ss->s[i[0] + 1], i[1] - 1);
+		write(1, *line, i[0] + 1);
+		ft_putstr_v2(ALLIANCE"%\n"RESET);
+	}
+	free(*buf);
 	if (!(i[0] + 1))
 	{
 		ft_putstr_v2(YELLOW"%\n"RESET);
-		free(ss);
-		ss = NULL;
-		free(*dlst);
-		*dlst = NULL;
-		free(*buf);
+		ft_memdel((void *)&ss);
+		ft_memdel((void *)&*dlst);
 
-		return(0);
 	}
-	*line = ft_strsub_v2(ss->s, 0, i[0] + 1);
-	write(1, *line, i[0] + 2);
-	ft_putstr_v2(FEDERATION"%\n"RESET);
-	free(ss->s);
-	ss->s = NULL;
-	free(ss);
-	ss = NULL;
-	free(*dlst);
-	*dlst = NULL;
-	free(*buf);
+	else if (i[2] == 'Z')
+	{
+		*line = ft_strsub_v2(ss->s, 0, i[0] + 1);
+		write(1, *line, i[0] + 2);
+		ft_putstr_v2(FEDERATION"%\n"RESET);
+		ft_memdel((void *)&ss->s);
+		ft_memdel((void *)&ss);
+		ft_memdel((void *)&*dlst);
 
-	return(0);
+	}
+	return (i[2] == 'Z' ? 0 : 1);
 }
+
+// static int	gnl0(char **line, t_dlist **dlst, int *i, char **buf)
+// {
+// 	t_fdDat*			ss;
+
+// 	ss = ((t_fdDat *)(*dlst)->content);
+// 	if (!(i[0] + 1))
+// 	{
+// 		ft_putstr_v2(YELLOW"%\n"RESET);
+// 		printf("malloc size ss = %lu\n", malloc_size(ss));
+// 		ft_memdel((void *)&ss);
+// 		printf("malloc size ss = %lu\n", malloc_size(ss));
+// 		printf("malloc size dlst = %lu\n", malloc_size(*dlst));
+// 		ft_memdel((void *)&*dlst);
+// 		printf("malloc size dlst = %lu\n", malloc_size(*dlst));
+// 		free(*buf);
+
+// 		return(0);
+// 	}
+// 	*line = ft_strsub_v2(ss->s, 0, i[0] + 1);
+// 	write(1, *line, i[0] + 2);
+// 	ft_putstr_v2(FEDERATION"%\n"RESET);
+// 	printf("malloc size buf = %lu\n", malloc_size(ss->s));
+// 	ft_memdel((void *)&ss->s);
+// 	printf("malloc size buf = %lu\n", malloc_size(ss->s));
+// 	printf("malloc size ss = %lu\n", malloc_size(ss));
+// 	ft_memdel((void *)&ss);
+// 	printf("malloc size ss = %lu\n", malloc_size(ss));
+// 	printf("malloc size dlst = %lu\n", malloc_size(*dlst));
+// 	ft_memdel((void *)&*dlst);
+// 	printf("malloc size dlst = %lu\n", malloc_size(*dlst));
+// 	printf("malloc size buf = %lu\n", malloc_size(*buf));
+// 	free(*buf);
+
+// 	return(0);
+// }
 
 /*
 ** ATTENTION int i
@@ -100,26 +126,26 @@ int			get_next_line(const int fd, char **line)
 	static t_dlist*		dlst;
 	char				*buf;
 	int					i[3];
-	t_fdDat*			ss;
 
 	i[0] = -1;
 	if ((check(fd, line, &buf, &dlst)))
 		return(-1);
-	ss = ((t_fdDat *)dlst->content);
-	ss->index_fd = fd;
-	while ((i[0] + 1) < ss->size_s)
-		if (ss->s[++i[0]] == '\n' && (i[2] = 'S'))
-			return(gnl1(line, &ss, i, &buf));
-	while ((i[1] = read(ss->index_fd, buf, BUFF_SIZE)))
+	((t_fdDat *)dlst->content)->index_fd = fd;
+	while ((i[0] + 1) < ((t_fdDat *)dlst->content)->size_s)
+		if (((t_fdDat *)dlst->content)->s[++i[0]] == '\n' && (i[2] = 'S'))
+			return (gnl1_0(line, &dlst, i, &buf));
+	while ((i[1] = read(((t_fdDat *)dlst->content)->index_fd, buf, BUFF_SIZE)))
 	{
-		ss->s = ft_memjoinfree_l(ss->s, buf, ss->size_s, i[1]);
-		ss->size_s += i[1];
-		while (i[1] > 0 && ss->s[++i[0]] != '\n')
+		((t_fdDat *)dlst->content)->s = ft_memjoinfree_l(((t_fdDat *)dlst->content)->s,
+			buf, ((t_fdDat *)dlst->content)->size_s, i[1]);
+		((t_fdDat *)dlst->content)->size_s += i[1];
+		while (i[1] > 0 && ((t_fdDat *)dlst->content)->s[++i[0]] != '\n')
 			i[1]--;
-		if (ss->s[i[0]] == '\n' && (i[2] = 'R'))
-			return(gnl1(line, &ss, i, &buf));
+		if (((t_fdDat *)dlst->content)->s[i[0]] == '\n' && (i[2] = 'R'))
+			return (gnl1_0(line, &dlst, i, &buf));
 	}
-	return(gnl0(line, &dlst, i, &buf));
+	i[2] = 'Z';
+	return (gnl1_0(line, &dlst, i, &buf));
 	// if (!(i[0] + 1))
 	// {
 	// 	// ft_putstr_v2(YELLOW"%\n"RESET);
