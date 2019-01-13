@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/13 01:29:57 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/13 01:27:48 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,23 @@ static int	check(int fd, char **line, char **buf, t_dlist **dlst)
 	return (1);
 }
 
-static int	gnl1_0(char **line, t_fdDat **ss, int *i, char **buf)
+static int	gnl1(char **line, t_fdDat **ss, int *i, char **buf)
 {
 	*line = ft_strsub_v2((*ss)->s, 0, i[0]);
 	if (i[2] == 'S' && (((*ss)->size_s -= i[0] + 1) == (*ss)->size_s))
-	// {
+	{
 		(*ss)->s = ft_memcpy_v2((*ss)->s, &(*ss)->s[i[0] + 1], (*ss)->size_s);
-		// write(1, *line, i[0] + 1);
-		// ft_putstr_v2(ASSEMBLY"%\n"RESET);
-	// }
+		// (*ss)->size_s -= i[0] + 1;
+		write(1, *line, i[0] + 1);
+		ft_putstr_v2(ASSEMBLY"%\n"RESET);
+	}
 	if (i[2] == 'R' && (((*ss)->size_s = i[1] - 1) == (*ss)->size_s))
-	// {
+	{
 		(*ss)->s = ft_memcpy_v2((*ss)->s, &(*ss)->s[i[0] + 1], i[1] - 1);
-		// write(1, *line, i[0] + 1);
-		// ft_putstr_v2(ALLIANCE"%\n"RESET);
-	// }
+		// (*ss)->size_s = i[1] - 1;
+		write(1, *line, i[0] + 1);
+		ft_putstr_v2(ALLIANCE"%\n"RESET);
+	}
 	free(*buf);
 	return (i[2] == 'Z' ? 0 : 1);
 }
