@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/13 20:43:58 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/14 06:42:43 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static int	check(int fd, char **line, char **buf, t_dlist **dlst)
 		ft_memdel((void *)&(*dlst)->content);
 	}
 	ft_memdel((void *)dlst);
-	ft_putstr_fd_v2(RED"\aGNL -> check ∅\n"RESET, 1);
+	ft_putstr_fd_v2(RED"\aGNL -> check ∅\n"RESET, 2);
 
 	return (1);
 }
 
 static int	gnl1_0(char **line, t_dlist **dlst, int *i, char **buf)
 {
-	t_fdDat*	ss;
+	t_fdDat	*ss;
 
 	ss = ((t_fdDat *)(*dlst)->content);
 	ft_memdel((void *)buf);
@@ -85,9 +85,9 @@ static int	gnl1_0(char **line, t_dlist **dlst, int *i, char **buf)
 
 int			get_next_line(const int fd, char **line)
 {
-	static t_dlist*		dlst;
-	char				*buf;
-	int					i[3];
+	static t_dlist	*dlst;
+	char			*buf;
+	int				i[3];
 
 	i[0] = -1;
 	i[2] = 'Z';
@@ -112,8 +112,8 @@ int			get_next_line(const int fd, char **line)
 
 int			main(int ac, char **av)
 {
-	int fd;
-	char *str = NULL;
+	int		fd;
+	char	*str = NULL;
 
 	fd = 0;
 

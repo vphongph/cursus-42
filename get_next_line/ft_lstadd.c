@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_valgrind.c                                    :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/13 20:01:43 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/14 01:14:41 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/03 23:36:08 by vphongph          #+#    #+#             */
+/*   Updated: 2019/01/14 03:44:47 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int 	main(void)
+#include "libft.h"
+
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	return (0);
+	if (alst && new)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
 }
