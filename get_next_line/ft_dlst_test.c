@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 00:13:03 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/14 20:14:03 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/14 20:48:47 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,61 +27,12 @@ void	ft_memdel_test(void **ap)
 		*ap = NULL;
 		printf(BLUE"mall after del : %lu\n"RESET,malloc_size(*ap));
 	}
-	printf(RED"\amemdel ∅\n"RESET);
 }
 
 /*
 ** return 1 = ajouter un nouveau, le top est existant
 ** return 0 = ajouter le premier, le top est inexistant
 */
-
-/*
-** ATTENTION **dlst, ça modifie le pointeur, ce n'est pas une copie
-** TOUJOURS envoyer en arg un pointeur de tête
-** et JAMAIS un dlst->next (pointeurs != => CONFLIT)
-*/
-
-int		ft_dlstdelone_test(t_dlist **dlst)
-{
-	t_dlist *tmp;
-
-	if (dlst)
-	{
-		tmp = *dlst;
-		if (*dlst && (*dlst)->prev && (*dlst)->next)
-		{
-			printf(YELLOW"\nDEL JOIN\n"RESET);
-			printf("dlst = %p\n", *dlst);
-			printf("dlst prev = %p\n", (*dlst)->prev);
-			printf("dlst next = %p\n\n", (*dlst)->next);
-			printf("dlst prev next = %p\n", (*dlst)->prev->next);
-			(*dlst)->prev->next = (*dlst)->next;
-			printf("dlst prev next = %p\n", (*dlst)->prev->next);
-			printf("dlst next prev = %p\n", (*dlst)->next->prev);
-			(*dlst)->next->prev = (*dlst)->prev;
-			printf("dlst next prev = %p\n", (*dlst)->next->prev);
-
-			ft_memdel_test((void *)dlst);
-			return (2);
-		}
-		printf(YELLOW"\nBEFORE DEL TOP\n"RESET);
-		if (*dlst && (*dlst)->next)
-		{
-			printf(YELLOW"\nDEL TOP\n"RESET);
-			(*dlst)->next->prev = NULL;
-			(*dlst) = (*dlst)->next;
-			ft_memdel_test((void *)tmp);
-			return (1);
-		}
-		printf(YELLOW"\nAFTER DEL TOP\n"RESET);
-		*dlst ? (*dlst)->prev->next = NULL : *dlst;
-		ft_memdel_test((void *)dlst);
-		return (0);
-	}
-	ft_putstr_fd_v2(RED"\adlstdelone ∅\n"RESET, 2);
-	return (-1);
-}
-
 
 int		ft_dlstadd_test(t_dlist **top, t_dlist *new)
 {
@@ -122,10 +73,55 @@ int		ft_dlstadd_test(t_dlist **top, t_dlist *new)
 	return (-1);
 }
 
+/*
+** ATTENTION **dlst, ça modifie le pointeur, ce n'est pas une copie
+** TOUJOURS envoyer en arg un pointeur de tête
+** et JAMAIS un dlst->next (pointeurs != => CONFLIT)
+*/
+
+int		ft_dlstdelone_test(t_dlist **dlst)
+{
+	t_dlist *tmp;
+
+	if (dlst)
+	{
+		tmp = *dlst;
+		if (*dlst && (*dlst)->prev && (*dlst)->next)
+		{
+			printf(YELLOW"\nDEL JOIN\n"RESET);
+			printf("dlst = %p\n", *dlst);
+			printf("dlst prev = %p\n", (*dlst)->prev);
+			printf("dlst next = %p\n\n", (*dlst)->next);
+			printf("dlst prev next = %p\n", (*dlst)->prev->next);
+			(*dlst)->prev->next = (*dlst)->next;
+			printf("dlst prev next = %p\n", (*dlst)->prev->next);
+			printf("dlst next prev = %p\n", (*dlst)->next->prev);
+			(*dlst)->next->prev = (*dlst)->prev;
+			printf("dlst next prev = %p\n", (*dlst)->next->prev);
+
+			ft_memdel_test((void *)dlst);
+			return (2);
+		}
+		if (*dlst && (*dlst)->next)
+		{
+			printf(YELLOW"\nDEL TOP\n"RESET);
+			(*dlst)->next->prev = NULL;
+			(*dlst) = (*dlst)->next;
+			ft_memdel_test((void *)&tmp);
+			return (1);
+		}
+		*dlst && (*dlst)->prev ? (*dlst)->prev->next = NULL : *dlst;
+		ft_memdel_test((void *)dlst);
+		return (0);
+	}
+	ft_putstr_fd_v2(RED"\adlstdelone ∅\n"RESET, 2);
+	return (-1);
+}
+
 int		main(void)
 {
 	t_dlist* dlst = NULL;
-	t_dlist* tmp = NULL;
+	t_dlist* top = NULL;
 	t_fdDat	dat;
 	int i = 3;
 
@@ -143,31 +139,30 @@ int		main(void)
 
 	printf(YELLOW"\nBEFORE DEL\n"RESET);
 
-	tmp = dlst , i = 0;
-	while (tmp)
+	top = dlst , i = 0;
+	while (top)
 	{
 		printf(ALLIANCE"floor"RESET" : %d\n", i--);
-		printf(ORDER"fd"RESET" : %d\n",(((t_fdDat *)tmp->content)->index_fd));
-		tmp = tmp->next;
+		printf(ORDER"fd"RESET" : %d\n",(((t_fdDat *)top->content)->index_fd));
+		top = top->next;
 	}
 
-	t_dlist *ptr = dlst;
-	ft_dlstdelone_test(&ptr);
-	ft_dlstdelone_test(&ptr);
+	t_dlist *ptr = dlst->next->next;
 	ft_dlstdelone_test(&ptr);
 
-	printf("ptr = %p\n", ptr);
+
+	printf("\nptr = %p\n", ptr);
 	printf("dlst = %p\n", dlst);
 
 	printf(YELLOW"\nAFTER DEL\n"RESET);
 
-	tmp = ptr , i = 0;
+	top = dlst , i = 0;
 
-	while (tmp)
+	while (top)
 	{
 		printf(ALLIANCE"floor"RESET" : %d\n", i--);
-		printf(ORDER"fd"RESET" : %d\n",(((t_fdDat *)tmp->content)->index_fd));
-		tmp = tmp->next;
+		printf(ORDER"fd"RESET" : %d\n",(((t_fdDat *)top->content)->index_fd));
+		top = top->next;
 	}
 
 	return (0);
