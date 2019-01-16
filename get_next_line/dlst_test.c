@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 00:13:03 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/15 17:32:24 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/16 03:54:50 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 void	ft_memdel_test(void **ap)
 {
+	if (!(ap))
+		printf(RED"memdel ap doesn't exist\n"RESET);
+
 	if (ap && *ap)
 	{
 		printf(BLUE"\nmall before del : %lu\n"RESET,malloc_size(*ap));
@@ -79,7 +82,17 @@ int		ft_dlstadd_test(t_dlist **top, t_dlist *new)
 ** et JAMAIS un dlst->next (pointeurs != => CONFLIT)
 */
 
-int		ft_dlstdelone_test(t_dlist **dlst)
+void	delstruct(void *content, size_t content_size)
+{
+	printf(GREEN"DELSTRUCT\n"RESET);
+	ft_memdel_test((void *)((t_fdDat *)&content)->s);
+	((t_fdDat *)content)->index_fd = 0;
+	((t_fdDat *)content)->size_s = 0;
+	ft_memdel_test(&content);
+	content_size = 0;
+}
+
+int		ft_dlstdelone_test(t_dlist **dlst, void (del)(void *, size_t))
 {
 	t_dlist *tmp;
 
@@ -98,8 +111,10 @@ int		ft_dlstdelone_test(t_dlist **dlst)
 			printf("dlst next prev = %p\n", (*dlst)->next->prev);
 			(*dlst)->next->prev = (*dlst)->prev;
 			printf("dlst next prev = %p\n", (*dlst)->next->prev);
+			if (del)
+				del((*dlst)->content, (*dlst)->content_size);
 			while ((*dlst)->prev)
-			*dlst = (*dlst)->prev;
+				*dlst = (*dlst)->prev;
 			ft_memdel_test((void *)&tmp);
 			return (3);
 		}
@@ -107,6 +122,8 @@ int		ft_dlstdelone_test(t_dlist **dlst)
 		{
 			printf(YELLOW"\nDEL TOP\n"RESET);
 			(*dlst)->next->prev = NULL;
+			if (del)
+				del((*dlst)->content, (*dlst)->content_size);
 			(*dlst) = (*dlst)->next;
 			ft_memdel_test((void *)&tmp);
 			return (2);
@@ -115,12 +132,16 @@ int		ft_dlstdelone_test(t_dlist **dlst)
 		{
 			printf(YELLOW"\nDEL END\n"RESET);
 			(*dlst)->prev->next = NULL;
+			if (del)
+				del((*dlst)->content, (*dlst)->content_size);
 			while ((*dlst)->prev)
 				*dlst = (*dlst)->prev;
 			ft_memdel_test((void *)&tmp);
 			return (1);
 		}
 		printf(YELLOW"\nDEL LAST\n"RESET);
+		if (del)
+			del((*dlst)->content, (*dlst)->content_size);
 		ft_memdel_test((void *)dlst);
 		return(0);
 	}
@@ -139,12 +160,13 @@ int		main(void)
 
 
 	ft_dlstadd_test(NULL, ft_dlstnew(NULL, 0));
-	ft_dlstdelone_test(NULL);
+	ft_dlstdelone_test(NULL, NULL);
 
 	while (i < 10)
 	{
 		dat.index_fd = i++;
 		ft_dlstadd_test(&top, ft_dlstnew(&dat, sizeof(t_fdDat)));
+		((t_fdDat *)top->content)->s =ft_memalloc(100);
 	}
 
 	printf(YELLOW"\nBEFORE DEL\n"RESET);
@@ -157,14 +179,19 @@ int		main(void)
 		tmp = tmp->next;
 	}
 
-	t_dlist *ptr = top->next->next->next->next->next->next->prev->prev->prev->prev->prev->prev->next;
 	i = 0;
-	ft_dlstdelone_test(&ptr);
-	ft_dlstdelone_test(&ptr);
-	ft_dlstdelone_test(&ptr);
+	t_dlist *ptr;
+	// t_dlist *ptr = top->next->next->next->next->next->next->prev->prev->prev->prev->prev->prev->next;
+	ptr = top->next;
+	ft_dlstdelone_test(&ptr, delstruct);
+	ptr = ptr->next;
+	ft_dlstdelone_test(&ptr, delstruct);
+	ptr = ptr->next;
+	ft_dlstdelone_test(&ptr, delstruct);
+
 
 	// while (ptr)
-		// ft_dlstdelone_test(&ptr);
+		// ft_dlstdelone_test(&ptr, delstruct);
 
 	printf("\nptr = %p\n", ptr);
 
