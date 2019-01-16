@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:37:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/15 15:51:40 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/16 22:45:21 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <malloc/malloc.h>
 
-
+int			ft_dlstdelone(t_dlist **top, void (*del)(void *, size_t));
 
 static int	check(int fd, char **line, char **buf, t_dlist **dlst)
 {
@@ -57,8 +57,7 @@ static int	gnl1_0(char **line, t_dlist **dlst, int *i, char **buf)
 		(i[0] + 1) ? *line = ft_strsub_v2(ss->s, 0, i[0] + 1) : *line;
 		(i[0] + 1) ? write(1, *line, i[0] + 2),  ft_putstr_v2(FEDERATION"%\n"RESET): ft_putstr_v2(YELLOW"%\n"RESET);
 		ft_memdel((void *)&ss->s);
-		ft_memdel((void *)&ss);
-		ft_memdel((void *)dlst);
+		ft_dlstdelone(dlst, NULL);
 	}
 	i[2] == 'Z' ? *line : (*line = ft_strsub_v2(ss->s, 0, i[0]));
 	if (i[2] == 'S' && ((ss->size_s -= i[0] + 1) == ss->size_s))

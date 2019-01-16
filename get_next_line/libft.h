@@ -6,13 +6,15 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/10 17:20:04 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:36:29 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # define RED		"\e[38;2;255;0;0m"
+# define DARKPINK	"\e[38;2;252;19;104m"
+# define PINK		"\e[38;2;253;155;203m"
 # define BLUE		"\e[38;2;57;154;250m"
 # define GREEN		"\e[38;2;175;215;44m"
 # define YELLOW		"\e[38;2;243;197;80m"
