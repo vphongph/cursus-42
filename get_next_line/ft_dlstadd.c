@@ -6,13 +6,14 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:30:21 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/16 22:39:45 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:10:34 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
+** La fonction DOIT reçevoir le top en paramètre
 ** return 'A' = ajouter un nouveau, le top est existant, ADDITION
 ** return 'C' = ajouter le premier, le top est inexistant, CREATION
 */

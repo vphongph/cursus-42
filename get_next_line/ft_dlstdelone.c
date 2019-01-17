@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 00:34:17 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/16 23:43:58 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/17 13:58:12 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 ** 'T' = ascii 84 = DEL TOP
 ** 'E' = ascii 69 = DEL END
 ** 'L' = ascii 76 = DEL LAST
+** La fonction supprime le maillon pointé reçu en paramètre,
+** relink la chaîne et place le pointeur en début de chaine
 */
 
 static int	delete(t_dlist **tmp, void (*del)(void *, size_t), int c)
@@ -31,51 +33,51 @@ static int	delete(t_dlist **tmp, void (*del)(void *, size_t), int c)
 	return (c);
 }
 
-static void	move(t_dlist **top, int c)
+static void	relink_move2top(t_dlist **dlst, int c)
 {
 	if (c == 'J')
 	{
-		(*top)->prev->next = (*top)->next;
-		(*top)->next->prev = (*top)->prev;
-		while ((*top)->prev)
-			*top = (*top)->prev;
+		(*dlst)->prev->next = (*dlst)->next;
+		(*dlst)->next->prev = (*dlst)->prev;
+		while ((*dlst)->prev)
+			*dlst = (*dlst)->prev;
 	}
 	if (c == 'T')
 	{
-		(*top)->next->prev = NULL;
-		(*top) = (*top)->next;
+		(*dlst)->next->prev = NULL;
+		(*dlst) = (*dlst)->next;
 	}
 	if (c == 'E')
 	{
-		(*top)->prev->next = NULL;
-		while ((*top)->prev)
-			*top = (*top)->prev;
+		(*dlst)->prev->next = NULL;
+		while ((*dlst)->prev)
+			*dlst = (*dlst)->prev;
 	}
 }
 
-int			ft_dlstdelone(t_dlist **top, void (*del)(void *, size_t))
+int			ft_dlstdelone(t_dlist **dlst, void (*del)(void *, size_t))
 {
 	t_dlist *tmp;
 
-	if (top && *top)
+	if (dlst && *dlst)
 	{
-		tmp = *top;
-		if ((*top)->prev && (*top)->next)
+		tmp = *dlst;
+		if ((*dlst)->prev && (*dlst)->next)
 		{
-			move(top, 'J');
+			relink_move2top(dlst, 'J');
 			return (delete(&tmp, del, 'J'));
 		}
-		if ((*top)->next)
+		if ((*dlst)->next)
 		{
-			move(top, 'T');
+			relink_move2top(dlst, 'T');
 			return (delete(&tmp, del, 'T'));
 		}
-		if ((*top)->prev)
+		if ((*dlst)->prev)
 		{
-			move(top, 'E');
+			relink_move2top(dlst, 'E');
 			return (delete(&tmp, del, 'E'));
 		}
-		return(delete(top, del, 'L'));
+		return(delete(dlst, del, 'L'));
 	}
 	ft_putstr_fd_v2(RED"\adlstdelone ∅\n"RESET, 2);
 	return (-1);

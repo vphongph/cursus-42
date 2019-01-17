@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 00:13:03 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/16 22:41:07 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:38:21 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ int		main(void)
 
 
 	ft_dlstadd(NULL, ft_dlstnew(NULL, 0));
+	ft_dlstadd(NULL, NULL);
 	ft_dlstdelone(NULL, NULL);
 	ft_dlstdelone(&top, NULL);
 

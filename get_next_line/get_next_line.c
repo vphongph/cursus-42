@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 00:07:05 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/17 00:07:25 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:54:28 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,39 @@
 #include <stdio.h>
 #include <malloc/malloc.h>
 
-int			ft_dlstdelone(t_dlist **top, void (*del)(void *, size_t));
+int				ft_dlstdelone(t_dlist **top, void (*del)(void *, size_t));
+int				ft_dlstadd(t_dlist **top, t_dlist *new);
 
-// static int	searchfd(int fd, char **line, char **buf, t_dlist **dlst)
-// {
-//
-// }
 
-static int	check(int fd, char **line, char **buf, t_dlist **dlst)
+static t_dlist	*searchfd(int fd, t_dlist **top)
 {
 	t_fdDat dat;
+	t_dlist *tmp;
 
 	dat.s = NULL;
-	dat.index_fd = 0;
+	dat.index_fd = fd;
 	dat.size_s = 0;
+	tmp = *top;
+
+	while (tmp)
+	{
+		if (((t_fdDat *)(tmp)->content)->index_fd == fd)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	printf(RED"ADD"RESET" : %c\n",ft_dlstadd(top, ft_dlstnew(&dat, sizeof(t_fdDat))));
+	fflush(stdout);
+	return (*top);
+}
+
+static int		check(int fd, char **line, char **buf, t_dlist **dlst)
+{
+	t_dlist *cur;
+
 	if ((*buf = ((int)BUFF_SIZE < 0 ? NULL : (char *)ft_memalloc(BUFF_SIZE)))
 		&& line && !read(fd, *buf, 0)
-			&& (*dlst ? *dlst : (*dlst = ft_dlstnew(&dat, sizeof(t_fdDat)))))
+			&& ((cur = searchfd(fd, dlst))))
 		return (0);
-	// ft_memdel((void *)buf);
 	free(*buf);
 	if (*dlst)
 	{
@@ -50,12 +64,12 @@ static int	check(int fd, char **line, char **buf, t_dlist **dlst)
 	return (1);
 }
 
-static int	gnl1_0(char **line, t_dlist **dlst, int *i, char **buf)
+static int		gnl1_0(char **line, t_dlist **dlst, int *i, char *buf)
 {
 	t_fdDat	*ss;
 
 	ss = ((t_fdDat *)(*dlst)->content);
-	free(*buf);
+	free(buf);
 	if (i[2] == 'Z')
 	{
 		(i[0] + 1) ? *line = ft_strsub_v2(ss->s, 0, i[0] + 1) : *line;
@@ -86,7 +100,7 @@ static int	gnl1_0(char **line, t_dlist **dlst, int *i, char **buf)
 ** i[2] = val abritraire à stocker
 */
 
-int			get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	static t_dlist	*dlst;
 	char			*buf;
@@ -99,7 +113,7 @@ int			get_next_line(const int fd, char **line)
 	((t_fdDat *)dlst->content)->index_fd = fd;
 	while ((i[0] + 1) < ((t_fdDat *)dlst->content)->size_s)
 		if (((t_fdDat *)dlst->content)->s[++i[0]] == '\n' && (i[2] = 'S'))
-			return (gnl1_0(line, &dlst, i, &buf));
+			return (gnl1_0(line, &dlst, i, buf));
 	while ((i[1] = read(((t_fdDat *)dlst->content)->index_fd, buf, BUFF_SIZE)))
 	{
 		((t_fdDat *)dlst->content)->s = ft_memjoinfree_l(
@@ -108,12 +122,12 @@ int			get_next_line(const int fd, char **line)
 		while (i[1] > 0 && ((t_fdDat *)dlst->content)->s[++i[0]] != '\n')
 			i[1]--;
 		if (((t_fdDat *)dlst->content)->s[i[0]] == '\n' && (i[2] = 'R'))
-			return (gnl1_0(line, &dlst, i, &buf));
+			return (gnl1_0(line, &dlst, i, buf));
 	}
-	return (gnl1_0(line, &dlst, i, &buf));
+	return (gnl1_0(line, &dlst, i, buf));
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	int		fd;
 	char	*str = NULL;
@@ -132,6 +146,7 @@ int			main(int ac, char **av)
 			free(str);
 			str = NULL;
 		}
+		printf("%d\n",get_next_line(fd, &str));
 		printf("%d\n",get_next_line(fd, &str));
 		free(str);
 		str = NULL;
