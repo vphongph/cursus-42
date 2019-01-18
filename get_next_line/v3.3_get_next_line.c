@@ -124,15 +124,20 @@ int			main(int ac, char **av)
 			ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
 			return (1);
 		}
-		while (get_next_line(fd, &str) > 0)
-		{
-			free(str);
-			str = NULL;
-		}
+		// while (get_next_line(fd, &str) > 0)
+		// {
+		// 	free(str);
+		// 	str = NULL;
+		// }
 		printf("%d\n",get_next_line(fd, &str));
 		free(str);
 		str = NULL;
-		fd--;
+		printf("%d\n",get_next_line(fd, NULL));
+		free(str);
+		str = NULL;
+		printf("%d\n",get_next_line(fd, &str));
+		free(str);
+		str = NULL;
 
 		if (close(fd) == -1)
 		{

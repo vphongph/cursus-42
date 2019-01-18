@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 02:25:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/18 05:09:44 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/18 19:24:59 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ static t_dlist	*check(int fd, char **line, char **buf, t_dlist **dlst)
 			return (cur);
 	}
 	free(*buf);
-	if (cur)
-	{
-		ft_memdel((void *)&((t_fdDat *)cur->content)->s);
-		ft_dlstdelone(&cur, NULL);
-		ft_putstr_fd_v2(RED"\aFOR DYLALA\n"RESET, 2);
-		*dlst = cur;
-	}
+	// if ((cur = searchfd(fd, dlst)))
+	// {
+	// 	ft_memdel((void *)&((t_fdDat *)cur->content)->s);
+	// 	ft_dlstdelone(&cur, NULL);
+	// 	ft_putstr_fd_v2(RED"\aFOR DYLALA\n"RESET, 2);
+	// 	*dlst = cur;
+	// 	printf("%p", *dlst);
+	// }
 	ft_putstr_fd_v2(RED"\aGNL -> check ∅\n"RESET, 2);
 	return (NULL);
 }
@@ -147,11 +148,18 @@ int				main(int ac, char **av)
 		}
 		// while (get_next_line(fd1, &str) > 0)
 		// {
-		// 	get_next_line(fd1, &str);
+		// 	free(str);
+		// 	str = NULL;
 		// }
-		// printf("%d\n",get_next_line(fd1, &str));
-		// free(str);
-		// str = NULL;
+		printf("%d\n",get_next_line(fd1, &str));
+		free(str);
+		str = NULL;
+		printf("%d\n",get_next_line(fd1, NULL));
+		free(str);
+		str = NULL;
+		printf("%d\n",get_next_line(fd1, &str));
+		free(str);
+		str = NULL;
 		printf("%d\n",get_next_line(fd1, &str));
 		free(str);
 		str = NULL;
