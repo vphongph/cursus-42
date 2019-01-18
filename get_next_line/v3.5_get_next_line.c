@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/18 02:25:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/18 04:36:47 by vphongph         ###   ########.fr       */
+/*   Created: 2019/01/17 00:07:05 by vphongph          #+#    #+#             */
+/*   Updated: 2019/01/18 02:23:54 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,45 +41,41 @@ static t_dlist	*searchfd(int fd, t_dlist **top)
 		tmp = tmp->next;
 	}
 	printf(RED"ADD"RESET" : %c\n",ft_dlstadd(top, ft_dlstnew(&dat, sizeof(t_fdDat))));
+	fflush(stdout);
 	return (*top);
 }
 
-static t_dlist	*check(int fd, char **line, char **buf, t_dlist **dlst)
+static int		check(int fd, char **line, char **buf, t_dlist **dlst)
 {
 	t_dlist *cur;
 
-	cur = NULL;
 	if ((*buf = ((int)BUFF_SIZE < 0 ? NULL : (char *)ft_memalloc(BUFF_SIZE)))
-		&& line && !read(fd, *buf, 0))
-	{
-		if ((cur = searchfd(fd, dlst)))
-			return (cur);
-	}
+		&& line && !read(fd, *buf, 0)
+			&& ((cur = searchfd(fd, dlst))))
+		return (0);
 	free(*buf);
-	if (cur)
+	if (*dlst)
 	{
-		ft_memdel((void *)&((t_fdDat *)cur->content)->s);
-		ft_dlstdelone(&cur, NULL);
-		ft_putstr_fd_v2(RED"\aFOR DYLALA\n"RESET, 2);
-		*dlst = cur;
+		ft_memdel((void *)&((t_fdDat *)(*dlst)->content)->s);
+		ft_dlstdelone(dlst, NULL);
 	}
 	ft_putstr_fd_v2(RED"\aGNL -> check ∅\n"RESET, 2);
-	return (NULL);
+
+	return (1);
 }
 
-static int		gnl1_0(char **line, t_dlist **dlst, int *i, char *buf, t_dlist **cur)
+static int		gnl1_0(char **line, t_dlist **dlst, int *i, char *buf)
 {
 	t_fdDat	*ss;
 
-	ss = ((t_fdDat *)(*cur)->content);
+	ss = ((t_fdDat *)(*dlst)->content);
 	free(buf);
 	if (i[2] == 'Z')
 	{
 		(i[0] + 1) ? *line = ft_strsub_v2(ss->s, 0, i[0] + 1) : *line;
 		(i[0] + 1) ? write(1, *line, i[0] + 2),  ft_putstr_v2(FEDERATION"%\n"RESET): ft_putstr_v2(YELLOW"%\n"RESET);
 		ft_memdel((void *)&ss->s);
-		ft_dlstdelone(cur, NULL);
-		*dlst = *cur;
+		ft_dlstdelone(dlst, NULL);
 	}
 	i[2] == 'Z' ? *line : (*line = ft_strsub_v2(ss->s, 0, i[0]));
 	if (i[2] == 'S' && ((ss->size_s -= i[0] + 1) == ss->size_s))
@@ -107,78 +103,66 @@ static int		gnl1_0(char **line, t_dlist **dlst, int *i, char *buf, t_dlist **cur
 int				get_next_line(const int fd, char **line)
 {
 	static t_dlist	*dlst;
-	t_dlist			*cur;
 	char			*buf;
 	int				i[3];
 
 	i[0] = -1;
 	i[2] = 'Z';
-	if (!(cur = check(fd, line, &buf, &dlst)))
-		return (-1);
-	// ((t_fdDat *)cur->content)->index_fd = fd;
-	while ((i[0] + 1) < ((t_fdDat *)cur->content)->size_s)
-		if (((t_fdDat *)cur->content)->s[++i[0]] == '\n' && (i[2] = 'S'))
-			return (gnl1_0(line, &dlst, i, buf, &cur));
-	while ((i[1] = read(((t_fdDat *)cur->content)->index_fd, buf, BUFF_SIZE)))
+	if ((check(fd, line, &buf, &dlst)))
+		return(-1);
+	((t_fdDat *)dlst->content)->index_fd = fd;
+	while ((i[0] + 1) < ((t_fdDat *)dlst->content)->size_s)
+		if (((t_fdDat *)dlst->content)->s[++i[0]] == '\n' && (i[2] = 'S'))
+			return (gnl1_0(line, &dlst, i, buf));
+	while ((i[1] = read(((t_fdDat *)dlst->content)->index_fd, buf, BUFF_SIZE)))
 	{
-		((t_fdDat *)cur->content)->s = ft_memjoinfree_l(
-			((t_fdDat *)cur->content)->s,buf, ((t_fdDat *)cur->content)->size_s, i[1]);
-		((t_fdDat *)cur->content)->size_s += i[1];
-		while (i[1] > 0 && ((t_fdDat *)cur->content)->s[++i[0]] != '\n')
+		((t_fdDat *)dlst->content)->s = ft_memjoinfree_l(
+			((t_fdDat *)dlst->content)->s,buf, ((t_fdDat *)dlst->content)->size_s, i[1]);
+		((t_fdDat *)dlst->content)->size_s += i[1];
+		while (i[1] > 0 && ((t_fdDat *)dlst->content)->s[++i[0]] != '\n')
 			i[1]--;
-		if (((t_fdDat *)cur->content)->s[i[0]] == '\n' && (i[2] = 'R'))
-			return (gnl1_0(line, &dlst, i, buf, &cur));
+		if (((t_fdDat *)dlst->content)->s[i[0]] == '\n' && (i[2] = 'R'))
+			return (gnl1_0(line, &dlst, i, buf));
 	}
-	return (gnl1_0(line, &dlst, i, buf, &cur));
+	return (gnl1_0(line, &dlst, i, buf));
 }
 
 int				main(int ac, char **av)
 {
-	int		fd1;
-	int		fd2;
+	int		fd;
 	char	*str = NULL;
 
-	if (ac >= 2)
+	fd = 0;
+
+	if (ac == 2)
 	{
-		if ((fd1 = open(av[1], O_RDONLY)) == -1 || (fd2 = open(av[2], O_RDONLY)) == -1)
+		if ((fd = open(av[1], O_RDONLY)) == -1)
 		{
 			ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
 			return (1);
 		}
-		while (get_next_line(fd1, &str) > 0)
-		{
-			get_next_line(fd1, &str);
-		}
-		printf("%d\n",get_next_line(fd1, &str));
-		free(str);
-		str = NULL;
-		printf("%d\n",get_next_line(fd1, &str));
-		free(str);
-		str = NULL;
-
-		while (get_next_line(fd2, &str) > 0)
+		while (get_next_line(fd, &str))
 		{
 			free(str);
 			str = NULL;
 		}
-		printf("%d\n",get_next_line(fd2, &str));
+		printf("%d\n",get_next_line(fd, &str));
+		printf("%d\n",get_next_line(fd, &str));
 		free(str);
 		str = NULL;
-		printf("%d\n",get_next_line(fd2, &str));
-		free(str);
-		str = NULL;
+		fd--;
 
-		if (close(fd1) == -1 || close(fd2) == -1)
+		if (close(fd) == -1)
 		{
 			ft_putstr_fd_v2(RED"\aClose failed\n"RESET, 2);
 			return (1);
 		}
 	}
-	// else
-	// {
-	// 	while (get_next_line(fd, &str))
-	// 	{}
-	// }
+	else
+	{
+		while (get_next_line(fd, &str))
+		{}
+	}
 
 	// sleep(3);
 
