@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 02:25:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/18 04:36:47 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/18 05:09:44 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,28 +145,38 @@ int				main(int ac, char **av)
 			ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
 			return (1);
 		}
-		while (get_next_line(fd1, &str) > 0)
-		{
-			get_next_line(fd1, &str);
-		}
-		printf("%d\n",get_next_line(fd1, &str));
-		free(str);
-		str = NULL;
+		// while (get_next_line(fd1, &str) > 0)
+		// {
+		// 	get_next_line(fd1, &str);
+		// }
+		// printf("%d\n",get_next_line(fd1, &str));
+		// free(str);
+		// str = NULL;
 		printf("%d\n",get_next_line(fd1, &str));
 		free(str);
 		str = NULL;
 
-		while (get_next_line(fd2, &str) > 0)
-		{
-			free(str);
-			str = NULL;
-		}
+		// while (get_next_line(fd2, &str) > 0)
+		// {
+		// 	free(str);
+		// 	str = NULL;
+		// }
+		// printf("%d\n",get_next_line(fd2, &str));
+		// free(str);
+		// str = NULL;
 		printf("%d\n",get_next_line(fd2, &str));
 		free(str);
 		str = NULL;
+
+		printf("%d\n",get_next_line(fd1, &str));
+		free(str);
+		str = NULL;
+
 		printf("%d\n",get_next_line(fd2, &str));
 		free(str);
 		str = NULL;
+
+
 
 		if (close(fd1) == -1 || close(fd2) == -1)
 		{
