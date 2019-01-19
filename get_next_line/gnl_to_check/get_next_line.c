@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 02:25:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 05:57:47 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/19 17:53:19 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-static int		loadline_saveremainder(char **line,
-	t_dlist **top, int *i, t_dlist **cur)
+static int		loadline_saveremainder(char **line, t_dlist **top,
+	int *i, t_dlist **cur)
 {
 	t_fddat	*ss;
 
@@ -36,17 +36,15 @@ static int		loadline_saveremainder(char **line,
 	return (*line ? 1 : 0);
 }
 
-static int		readfd(t_dlist *cur, char *buf, int *i)
+static int		readfd(t_fddat *cur, char *buf, int *i)
 {
-	while ((i[1] = read(((t_fddat *)cur->content)->index_fd, buf, BUFF_SIZE)))
+	while ((i[1] = read(cur->index_fd, buf, BUFF_SIZE)))
 	{
-		((t_fddat *)cur->content)->s = ft_memjoinfree_l(
-			((t_fddat *)cur->content)->s,
-				buf, ((t_fddat *)cur->content)->size_s, i[1]);
-		((t_fddat *)cur->content)->size_s += i[1];
-		while (i[1] > 0 && ((t_fddat *)cur->content)->s[++i[0]] != '\n')
+		cur->s = ft_memjoinfree_l(cur->s, buf, cur->size_s, i[1]);
+		cur->size_s += i[1];
+		while (i[1] > 0 && cur->s[++i[0]] != '\n')
 			i[1]--;
-		if (((t_fddat *)cur->content)->s[i[0]] == '\n' && (i[2] = 'R'))
+		if (cur->s[i[0]] == '\n' && (i[2] = 'R'))
 			return (1);
 	}
 	return (0);
@@ -109,7 +107,7 @@ int				get_next_line(const int fd, char **line)
 			return (loadline_saveremainder(line, &top, i, &cur));
 		}
 	}
-	if (readfd(cur, buf, i))
+	if (readfd(((t_fddat *)cur->content), buf, i))
 	{
 		free(buf);
 		return (loadline_saveremainder(line, &top, i, &cur));

@@ -6,12 +6,11 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:34:10 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 06:29:44 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/19 17:50:53 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
 static void	ft_zero512(void **s, size_t *n)
 {
@@ -35,10 +34,7 @@ static void	ft_zero512(void **s, size_t *n)
 void		ft_bzero_v2(void *s, size_t n)
 {
 	if (!s)
-	{
-		ft_putstr_fd("\abzero v2 -> ∅ pointer\n", 2);
 		return ;
-	}
 	ft_zero512(&s, &n);
 	while (n >> 3)
 	{

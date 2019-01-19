@@ -6,13 +6,12 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 02:08:01 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 06:30:16 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/19 17:52:07 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-#include <unistd.h>
 
 /*
 ** ATTENTION size_t n
@@ -28,10 +27,7 @@ void	*ft_memjoinfree_l(void *s1, void *s2, size_t l, size_t n)
 
 	if ((l && !s1) || (n && !s2) || !(l || n)
 		|| !(mem = ft_memjoin(s1, s2, l, n)))
-	{
-		ft_putstr_fd("\amemjoinfree_L ∅\n", 2);
 		return (NULL);
-	}
 	free(s1);
 	return (mem);
 }

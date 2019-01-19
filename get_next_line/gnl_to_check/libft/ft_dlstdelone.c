@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 00:34:17 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 06:29:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/19 17:44:34 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,5 @@ int			ft_dlstdelone(t_dlist **dlst, void (*del)(void *, size_t))
 		}
 		return (delete(dlst, del, 'L'));
 	}
-	ft_putstr_fd("\adlstdelone ∅\n", 2);
 	return (-1);
 }

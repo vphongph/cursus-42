@@ -6,12 +6,11 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 01:49:59 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 06:30:04 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/19 17:51:21 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
 static void	ft_cpy8(void **dst, void **src, size_t *n)
 {
@@ -43,10 +42,7 @@ void		*ft_memcpy_v2(void *dst, void *src, size_t n)
 	void	*tmp;
 
 	if (!dst || (n && !src))
-	{
-		ft_putstr_fd("\amemcpy v2 -> ∅ pointer\n", 2);
 		return (NULL);
-	}
 	tmp = dst;
 	ft_cpy8(&dst, &src, &n);
 	while (n / sizeof(short))

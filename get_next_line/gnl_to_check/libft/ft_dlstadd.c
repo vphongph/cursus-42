@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:30:21 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 06:29:48 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/19 17:44:30 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int		ft_dlstadd(t_dlist **top, t_dlist *new)
 		*top = new;
 		return ('C');
 	}
-	ft_putstr_fd("\adlstadd ∅\n", 2);
 	return (-1);
 }

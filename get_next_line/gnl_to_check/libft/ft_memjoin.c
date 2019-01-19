@@ -6,13 +6,12 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 01:48:59 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 06:30:12 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/19 17:51:59 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-#include <unistd.h>
 
 /*
 ** ATTENTION size_t n
@@ -27,10 +26,7 @@ void	*ft_memjoin(void *s1, void *s2, size_t l, size_t n)
 	void *mem;
 
 	if ((l && !s1) || (n && !s2) || !(l || n) || !(mem = malloc(l + n)))
-	{
-		ft_putstr_fd("\amemjoin ∅\n", 2);
 		return (NULL);
-	}
 	ft_memcpy_v2(mem, s1, l);
 	ft_memcpy_v2(&mem[l], s2, n);
 	return (mem);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compil_gnl.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 04:22:17 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 05:35:44 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/19 19:51:24 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		main(int ac, char **av)
 		while (i < ac)
 		{
 			if ((open(av[i++], O_RDONLY)) == -1)
-				ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
+				printf("\aOpen failed\n");
 		}
 		fd = 3;
 		while (fd < ac + 2)
@@ -44,7 +44,7 @@ int		main(int ac, char **av)
 				free(str);
 				str = NULL;
 			}
-			printf("%d\n",get_next_line(fd, &str));
+			// printf("%d\n",get_next_line(fd, &str));
 			free(str);
 			str = NULL;
 			fd++;
@@ -52,7 +52,7 @@ int		main(int ac, char **av)
 		fd--;
 		while (fd > 2)
 			if (close(fd--))
-				ft_putstr_fd_v2(RED"\aClose failed\n"RESET, 2);
+				printf("\aClose failed\n");
 	}
 	else
 		while (get_next_line(fd, &str) > 0)
