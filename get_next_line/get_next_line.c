@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 02:25:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/18 19:24:59 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/19 02:53:05 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_dlist	*searchfd(int fd, t_dlist **top)
 			return (tmp);
 		tmp = tmp->next;
 	}
-	printf(RED"ADD"RESET" : %c\n",ft_dlstadd(top, ft_dlstnew(&dat, sizeof(t_fdDat))));
+	ft_dlstadd(top, ft_dlstnew(&dat, sizeof(t_fdDat)));
 	return (*top);
 }
 
@@ -56,46 +56,46 @@ static t_dlist	*check(int fd, char **line, char **buf, t_dlist **dlst)
 			return (cur);
 	}
 	free(*buf);
-	// if ((cur = searchfd(fd, dlst)))
-	// {
-	// 	ft_memdel((void *)&((t_fdDat *)cur->content)->s);
-	// 	ft_dlstdelone(&cur, NULL);
-	// 	ft_putstr_fd_v2(RED"\aFOR DYLALA\n"RESET, 2);
-	// 	*dlst = cur;
-	// 	printf("%p", *dlst);
-	// }
-	ft_putstr_fd_v2(RED"\aGNL -> check ∅\n"RESET, 2);
 	return (NULL);
 }
 
-static int		gnl1_0(char **line, t_dlist **dlst, int *i, char *buf, t_dlist **cur)
+static int		loadline_saveremainder(char **line,
+	t_dlist **dlst, int *i, t_dlist **cur)
 {
 	t_fdDat	*ss;
 
+	*line = NULL;
 	ss = ((t_fdDat *)(*cur)->content);
-	free(buf);
 	if (i[2] == 'Z')
 	{
 		(i[0] + 1) ? *line = ft_strsub_v2(ss->s, 0, i[0] + 1) : *line;
-		(i[0] + 1) ? write(1, *line, i[0] + 2),  ft_putstr_v2(FEDERATION"%\n"RESET): ft_putstr_v2(YELLOW"%\n"RESET);
 		ft_memdel((void *)&ss->s);
 		ft_dlstdelone(cur, NULL);
 		*dlst = *cur;
+		return (*line ? i[0] + 2 : 0);
 	}
 	i[2] == 'Z' ? *line : (*line = ft_strsub_v2(ss->s, 0, i[0]));
 	if (i[2] == 'S' && ((ss->size_s -= i[0] + 1) == ss->size_s))
-	{
 		ss->s = ft_memcpy_v2(ss->s, &ss->s[i[0] + 1], ss->size_s);
-		write(1, *line, i[0] + 1);
-		ft_putstr_v2(ASSEMBLY"%\n"RESET);
-	}
 	if (i[2] == 'R' && ((ss->size_s = i[1] - 1) == ss->size_s))
-	{
 		ss->s = ft_memcpy_v2(ss->s, &ss->s[i[0] + 1], i[1] - 1);
-		write(1, *line, i[0] + 1);
-		ft_putstr_v2(ALLIANCE"%\n"RESET);
+	return (i[0] + 1);
+}
+
+static int		readfd(t_dlist *cur, char *buf, int *i)
+{
+	while ((i[1] = read(((t_fdDat *)cur->content)->index_fd, buf, BUFF_SIZE)))
+	{
+		((t_fdDat *)cur->content)->s = ft_memjoinfree_l(
+			((t_fdDat *)cur->content)->s,
+				buf, ((t_fdDat *)cur->content)->size_s, i[1]);
+		((t_fdDat *)cur->content)->size_s += i[1];
+		while (i[1] > 0 && ((t_fdDat *)cur->content)->s[++i[0]] != '\n')
+			i[1]--;
+		if (((t_fdDat *)cur->content)->s[i[0]] == '\n' && (i[2] = 'R'))
+			return (1);
 	}
-	return (i[2] == 'Z' ? 0 : 1);
+	return (0);
 }
 
 /*
@@ -116,89 +116,58 @@ int				get_next_line(const int fd, char **line)
 	i[2] = 'Z';
 	if (!(cur = check(fd, line, &buf, &dlst)))
 		return (-1);
-	// ((t_fdDat *)cur->content)->index_fd = fd;
 	while ((i[0] + 1) < ((t_fdDat *)cur->content)->size_s)
-		if (((t_fdDat *)cur->content)->s[++i[0]] == '\n' && (i[2] = 'S'))
-			return (gnl1_0(line, &dlst, i, buf, &cur));
-	while ((i[1] = read(((t_fdDat *)cur->content)->index_fd, buf, BUFF_SIZE)))
 	{
-		((t_fdDat *)cur->content)->s = ft_memjoinfree_l(
-			((t_fdDat *)cur->content)->s,buf, ((t_fdDat *)cur->content)->size_s, i[1]);
-		((t_fdDat *)cur->content)->size_s += i[1];
-		while (i[1] > 0 && ((t_fdDat *)cur->content)->s[++i[0]] != '\n')
-			i[1]--;
-		if (((t_fdDat *)cur->content)->s[i[0]] == '\n' && (i[2] = 'R'))
-			return (gnl1_0(line, &dlst, i, buf, &cur));
+		if (((t_fdDat *)cur->content)->s[++i[0]] == '\n' && (i[2] = 'S'))
+		{
+			free(buf);
+			return (loadline_saveremainder(line, &dlst, i, &cur));
+		}
 	}
-	return (gnl1_0(line, &dlst, i, buf, &cur));
+	if (readfd(cur, buf, i))
+	{
+		free(buf);
+		return (loadline_saveremainder(line, &dlst, i, &cur));
+	}
+	return (loadline_saveremainder(line, &dlst, i, &cur));
 }
 
 int				main(int ac, char **av)
 {
-	int		fd1;
-	int		fd2;
+	int		fd = 0;
+	int		i = 1;
+	int		j = 0;
 	char	*str = NULL;
 
 	if (ac >= 2)
 	{
-		if ((fd1 = open(av[1], O_RDONLY)) == -1 || (fd2 = open(av[2], O_RDONLY)) == -1)
+		while (i < ac)
 		{
-			ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
-			return (1);
+			if ((open(av[i++], O_RDONLY)) == -1)
+				ft_putstr_fd_v2(RED"\aOpen failed\n"RESET, 2);
 		}
-		// while (get_next_line(fd1, &str) > 0)
-		// {
-		// 	free(str);
-		// 	str = NULL;
-		// }
-		printf("%d\n",get_next_line(fd1, &str));
-		free(str);
-		str = NULL;
-		printf("%d\n",get_next_line(fd1, NULL));
-		free(str);
-		str = NULL;
-		printf("%d\n",get_next_line(fd1, &str));
-		free(str);
-		str = NULL;
-		printf("%d\n",get_next_line(fd1, &str));
-		free(str);
-		str = NULL;
-
-		// while (get_next_line(fd2, &str) > 0)
-		// {
-		// 	free(str);
-		// 	str = NULL;
-		// }
-		// printf("%d\n",get_next_line(fd2, &str));
-		// free(str);
-		// str = NULL;
-		printf("%d\n",get_next_line(fd2, &str));
-		free(str);
-		str = NULL;
-
-		printf("%d\n",get_next_line(fd1, &str));
-		free(str);
-		str = NULL;
-
-		printf("%d\n",get_next_line(fd2, &str));
-		free(str);
-		str = NULL;
-
-
-
-		if (close(fd1) == -1 || close(fd2) == -1)
+		fd = 3;
+		while (fd < ac + 2)
 		{
-			ft_putstr_fd_v2(RED"\aClose failed\n"RESET, 2);
-			return (1);
+			while ((j = get_next_line(fd, &str)) > 0)
+			{
+				write(1, str, j);
+				printf("\n");
+				// printf("%s\n", str);
+				free(str);
+				str = NULL;
+			}
+			printf("%d\n",get_next_line(fd, &str));
+			free(str);
+			str = NULL;
+			fd++;
 		}
+		fd--;
+		while (fd > 2)
+			if (close(fd--))
+				ft_putstr_fd_v2(RED"\aClose failed\n"RESET, 2);
 	}
-	// else
-	// {
-	// 	while (get_next_line(fd, &str))
-	// 	{}
-	// }
-
-	// sleep(3);
-
+	else
+		while (get_next_line(fd, &str) > 0)
 	return (0);
 }
