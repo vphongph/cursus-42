@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 23:17:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 06:04:57 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/23 16:26:08 by vphongph          #+#    #+#             */
+/*   Updated: 2019/01/19 06:30:00 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
-# include <string.h>
-# include "libft/libft.h"
+#include "libft.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-typedef struct	s_fddat{
+/*
+** ATTENTION size_t n
+** Penser au type de var (sizeof)
+** Et + 1 -> \0 de str (éviter overflow)
+*/
 
-	char		*s;
-	int 		index_fd;
-	int			size_s;
-}				t_fddat;
+void	*ft_memalloc(size_t size)
+{
+	void *mem;
 
-int				get_next_line(const int fd, char **line);
-
-#endif
+	if (!(mem = malloc(size)))
+	{
+		ft_putstr_fd("\amemalloc -> malloc ∅\n", 2);
+		return (NULL);
+	}
+	ft_bzero_v2(mem, size);
+	return (mem);
+}

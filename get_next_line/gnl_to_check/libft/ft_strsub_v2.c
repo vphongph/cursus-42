@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strsub_v2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 23:17:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 06:04:57 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/15 18:29:13 by vphongph          #+#    #+#             */
+/*   Updated: 2019/01/19 06:30:24 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
-# include <string.h>
-# include "libft/libft.h"
+#include "libft.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-typedef struct	s_fddat{
+char	*ft_strsub_v2(char *s, unsigned int start, size_t len)
+{
+	char	*str;
 
-	char		*s;
-	int 		index_fd;
-	int			size_s;
-}				t_fddat;
-
-int				get_next_line(const int fd, char **line);
-
-#endif
+	if (!(s && (str = (char *)malloc(len + 1))))
+	{
+		ft_putstr_fd("\astrsub v2 ∅ pointer | malloc ∅\n", 2);
+		return (NULL);
+	}
+	str[len] = 0;
+	s = &s[start];
+	return (ft_memcpy_v2(str, s, len));
+}

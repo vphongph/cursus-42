@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 23:17:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 06:04:57 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/19 06:04:55 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct	s_fddat{
 
 	char		*s;
-	int 		index_fd;
+	int			index_fd;
 	int			size_s;
 }				t_fddat;
 

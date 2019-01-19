@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putstr_fd_v2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 23:17:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/19 06:04:57 by vphongph         ###   ########.fr       */
+/*   Created: 2018/11/29 22:13:49 by vphongph          #+#    #+#             */
+/*   Updated: 2018/12/18 20:23:39 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
-# include <string.h>
-# include "libft/libft.h"
+#include "libft.h"
+#include <unistd.h>
 
-typedef struct	s_fddat{
+int		ft_putstr_fd_v2(char *s, int fd)
+{
+	int i;
 
-	char		*s;
-	int 		index_fd;
-	int			size_s;
-}				t_fddat;
-
-int				get_next_line(const int fd, char **line);
-
-#endif
+	i = 0;
+	if (!s)
+	{
+		write(2, RED"\aputstr fd v2 -> ∅ pointer\n"RESET, 48);
+		return (-1);
+	}
+	if ((i = write(fd, s, ft_strlen_v2(s))) == -1)
+	{
+		write(2, RED"\aputstr fd v2 -> write ∅\n"RESET, 46);
+		return (-1);
+	}
+	return (i);
+}
