@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:24:21 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/24 18:33:26 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/24 23:28:08 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define FILLIT_H
 # define RED		"\e[38;2;255;0;0m"
 # define RESET		"\e[0m"
-# define BUFF_SIZE	100
+# define BUFF_SIZE	21
 # define O_0	10
 # define I_0	20
 # define I_90	21

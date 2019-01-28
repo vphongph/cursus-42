@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:09:39 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/24 22:59:07 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/01/24 23:39:02 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,25 @@
 
 #include "fillit.h"
 
-char *check_parse(int fd)
+int *check_parse(int fd, int *order)
 {
-	int tetritab[26];
-	char lol[3];
+	int ret;
+	char *buf;
 
-	fd = 0;
-	ft_bzero_v2(tetritab, 26 * sizeof(int));
+	buf = (char *)ft_memalloc(BUFF_SIZE);
+	ret = read(fd, buf, BUFF_SIZE)
 
 
-	return (lol);
+
+	return (order);
 }
 
 int		main(int ac, char **av)
 {
 
 	int i = 0;
-	int *tetritab = NULL;
+	int order[26];
+	ft_bzero_v2(tetritab, 26 * sizeof(int));
 	if (ac > 2)
 	{
 		ft_putstr_fd_v2(RED"Too many arguments"RESET, 2);
@@ -47,7 +49,7 @@ int		main(int ac, char **av)
 			return (-1);
 		}
 
-		check_parse(3);
+		check_parse(3, tetritab);
 
 		while (i < 26)
 		{
