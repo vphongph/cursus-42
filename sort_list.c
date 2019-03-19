@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:47:37 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/19 17:50:20 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/19 17:56:35 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int		main(void)
 	t_list* to_sort = &node_a;
 
 
-	node_a.data = 3;
+	node_a.data = 0;
 	node_b.data = 2;
 	node_c.data = 1;
 	node_d.data = 0;
@@ -141,7 +141,7 @@ int		main(void)
 		to_sort = to_sort->next;
 	}
 
-	to_sort =  sort_list3(&node_a, croissant);
+	to_sort =  sort_list(&node_a, croissant);
 
 	printf("\n");
 
